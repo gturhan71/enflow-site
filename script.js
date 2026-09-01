@@ -1,13 +1,116 @@
 (function () {
   'use strict';
 
-  // ── Scroll Reveal ──────────────────────────────────────────────
-  var revealEls = document.querySelectorAll('.reveal');
+  var hasAnime = typeof window.anime === 'function';
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ── 01 / Hero Load Choreography (Anime.js) ─────────────────────
+  if (hasAnime && !reducedMotion) {
+    window.addEventListener('DOMContentLoaded', function () {
+      var heroHeader = document.querySelector('.hero-header');
+      if (heroHeader) {
+        var tl = window.anime.timeline({
+          easing: 'easeOutExpo',
+          duration: 900
+        });
+
+        tl.add({
+          targets: '.hero-title',
+          opacity: [0, 1],
+          translateY: [24, 0],
+          duration: 800
+        })
+        .add({
+          targets: '.hero-lead',
+          opacity: [0, 1],
+          translateY: [18, 0],
+          duration: 700
+        }, '-=600')
+        .add({
+          targets: '.hero-actions .btn',
+          opacity: [0, 1],
+          translateY: [14, 0],
+          delay: window.anime.stagger(100),
+          duration: 600
+        }, '-=500')
+        .add({
+          targets: '.ledger-track .chain-node',
+          opacity: [0, 1],
+          translateY: [14, 0],
+          scale: [0.96, 1],
+          delay: window.anime.stagger(60),
+          duration: 600
+        }, '-=400');
+      }
+
+      // Continuous subtle energy ripple across the 8-stage enterprise chain
+      var chainNodes = document.querySelectorAll('.ledger-track .chain-node');
+      if (chainNodes.length) {
+        window.anime({
+          targets: chainNodes,
+          borderColor: [
+            { value: 'rgba(41, 151, 255, 0.4)', duration: 400, easing: 'easeOutQuad' },
+            { value: 'rgba(255, 255, 255, 0.08)', duration: 600, easing: 'easeInQuad' }
+          ],
+          delay: window.anime.stagger(200),
+          loop: true,
+          autoplay: true,
+          endDelay: 3500
+        });
+      }
+    });
+  }
+
+  // ── 02 / Staggered Scroll-Reveal (Anime.js + IntersectionObserver)
+  var gridContainers = document.querySelectorAll(
+    '.specs-grid, .problem-grid, .diff-grid, .flow-pipeline, .value-grid, .trust-grid, .audience-grid, .kpi-grid, .documents-grid'
+  );
+
+  if ('IntersectionObserver' in window && gridContainers.length && hasAnime && !reducedMotion) {
+    var gridObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var items = entry.target.querySelectorAll('.reveal');
+            if (items.length) {
+              window.anime({
+                targets: items,
+                opacity: [0, 1],
+                translateY: [28, 0],
+                delay: window.anime.stagger(70, { start: 100 }),
+                easing: 'easeOutCubic',
+                duration: 750,
+                complete: function () {
+                  items.forEach(function (el) { el.classList.add('is-visible'); });
+                }
+              });
+            }
+            gridObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    gridContainers.forEach(function (c) { gridObserver.observe(c); });
+  }
+
+  // Fallback Scroll-reveal for non-grid elements or fallback mode
+  var revealEls = document.querySelectorAll('.section-head.reveal, .cta-card.reveal, .value-cta-banner.reveal, .hero-ledger.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
+            if (hasAnime && !reducedMotion) {
+              window.anime({
+                targets: entry.target,
+                opacity: [0, 1],
+                translateY: [20, 0],
+                easing: 'easeOutQuad',
+                duration: 650
+              });
+            }
             entry.target.classList.add('is-visible');
             io.unobserve(entry.target);
           }
@@ -20,28 +123,32 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // ── One-Click Command Copy ────────────────────────────────────
-  var copyBtns = document.querySelectorAll('.copy-btn');
-  copyBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var text = btn.getAttribute('data-copy');
-      if (!text) return;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          var span = btn.querySelector('span');
-          var orig = span ? span.textContent : '';
-          if (span) span.textContent = 'Kopyalandı!';
-          btn.classList.add('is-copied');
-          setTimeout(function () {
-            if (span) span.textContent = orig;
-            btn.classList.remove('is-copied');
-          }, 2000);
+  // ── 03 / Interactive Card Micro-Physics (Anime.js) ─────────────
+  if (hasAnime && !reducedMotion) {
+    var hoverCards = document.querySelectorAll('.problem-card, .value-card, .trust-card, .spec-card, .flow-card');
+    hoverCards.forEach(function (card) {
+      card.addEventListener('mouseenter', function () {
+        window.anime.remove(card);
+        window.anime({
+          targets: card,
+          translateY: -4,
+          duration: 220,
+          easing: 'easeOutQuad'
         });
-      }
+      });
+      card.addEventListener('mouseleave', function () {
+        window.anime.remove(card);
+        window.anime({
+          targets: card,
+          translateY: 0,
+          duration: 340,
+          easing: 'easeOutElastic(1, 0.8)'
+        });
+      });
     });
-  });
+  }
 
-  // ── Mobile Nav Toggle ──────────────────────────────────────────
+  // ── 04 / Mobile Nav Toggle ────────────────────────────────────
   var toggle = document.getElementById('navToggle');
   var mobileNav = document.getElementById('mobileNav');
   if (toggle && mobileNav) {
@@ -53,7 +160,7 @@
     });
   }
 
-  // ── Apple Ambient Fluid Wave Canvas ────────────────────────────
+  // ── 05 / Apple Ambient Fluid Wave Canvas ───────────────────────
   var canvas = document.getElementById('bgWave');
   if (canvas && canvas.getContext) {
     var ctx = canvas.getContext('2d');
@@ -62,8 +169,6 @@
     var height = 0;
     var time = 0;
     var animId = null;
-
-    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     function resize() {
       width = window.innerWidth;
@@ -76,7 +181,7 @@
     window.addEventListener('resize', resize);
     resize();
 
-    // 4 harmonic wave layers: [baseYRatio, amplitude, wavelength, speed, colorStopA, colorStopB]
+    // 4 harmonic wave layers
     var waves = [
       { y: 0.45, amp: 55, freq: 0.0018, speed: 0.008, colorA: 'rgba(41, 151, 255, 0.14)', colorB: 'rgba(0, 0, 0, 0)' },
       { y: 0.52, amp: 70, freq: 0.0014, speed: 0.006, colorA: 'rgba(48, 209, 88, 0.09)', colorB: 'rgba(0, 0, 0, 0)' },

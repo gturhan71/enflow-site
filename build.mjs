@@ -364,7 +364,7 @@ function renderFooter(c) {
   </footer>`;
 }
 
-function renderPage(c, otherHref, scriptSrc, styleSrc) {
+function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -391,12 +391,13 @@ ${renderTrust(c)}
 ${renderAudience(c)}
 ${renderCta(c)}
 ${renderFooter(c)}
+<script src="${animeSrc}"></script>
 <script src="${scriptSrc}"></script>
 </body>
 </html>`;
 }
 
-function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc) {
+function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -416,12 +417,13 @@ ${renderNav(c, otherHref)}
 ${renderSubPageHead(c, c.documents.backLabel)}
 ${renderDocuments(c)}
 ${renderFooter(c)}
+<script src="${animeSrc}"></script>
 <script src="${scriptSrc}"></script>
 </body>
 </html>`;
 }
 
-function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc) {
+function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -442,6 +444,7 @@ ${renderSubPageHead(c, c.analytics.backLabel)}
 ${renderAnalytics(c)}
 ${renderCta(c)}
 ${renderFooter(c)}
+<script src="${animeSrc}"></script>
 <script src="${scriptSrc}"></script>
 </body>
 </html>`;
@@ -455,29 +458,30 @@ mkdirSync(join(DIST, 'en', 'documents'), { recursive: true });
 mkdirSync(join(DIST, 'analitik'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'analytics'), { recursive: true });
 
-writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css'));
-writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css'));
+writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css', '/anime.min.js'));
+writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css', '../anime.min.js'));
 
 writeFileSync(
   join(DIST, 'dokumanlar', 'index.html'),
-  renderDocumentsPage(content.tr, '/en/documents/', '../script.js', '../styles.css')
+  renderDocumentsPage(content.tr, '/en/documents/', '../script.js', '../styles.css', '../anime.min.js')
 );
 writeFileSync(
   join(DIST, 'en', 'documents', 'index.html'),
-  renderDocumentsPage(content.en, '/dokumanlar/', '../../script.js', '../../styles.css')
+  renderDocumentsPage(content.en, '/dokumanlar/', '../../script.js', '../../styles.css', '../../anime.min.js')
 );
 
 writeFileSync(
   join(DIST, 'analitik', 'index.html'),
-  renderAnalyticsPage(content.tr, '/en/analytics/', '../script.js', '../styles.css')
+  renderAnalyticsPage(content.tr, '/en/analytics/', '../script.js', '../styles.css', '../anime.min.js')
 );
 writeFileSync(
   join(DIST, 'en', 'analytics', 'index.html'),
-  renderAnalyticsPage(content.en, '/analitik/', '../../script.js', '../../styles.css')
+  renderAnalyticsPage(content.en, '/analitik/', '../../script.js', '../../styles.css', '../../anime.min.js')
 );
 
 copyFileSync(join(HERE, 'styles.css'), join(DIST, 'styles.css'));
 copyFileSync(join(HERE, 'script.js'), join(DIST, 'script.js'));
+copyFileSync(join(HERE, 'anime.min.js'), join(DIST, 'anime.min.js'));
 if (existsSync(join(HERE, 'robots.txt'))) copyFileSync(join(HERE, 'robots.txt'), join(DIST, 'robots.txt'));
 
 const ASSETS = join(HERE, 'assets');
