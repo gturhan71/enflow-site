@@ -29,6 +29,7 @@ function renderNav(c, otherHref) {
       </a>
       <nav class="nav-links">${links}</nav>
       <div class="nav-actions">
+        <a class="nav-gh-link" href="${c.hero.githubUrl}" target="_blank" rel="noopener" aria-label="GitHub Repository">${icon('github')}<span>GitHub</span></a>
         <a class="lang-switch" href="${otherHref}" aria-label="${esc(c.nav.langSwitch.label)}">${esc(c.nav.langSwitch.label)}</a>
         <a class="btn btn-primary btn-sm header-cta" href="${home}#cta">${esc(c.nav.cta)}</a>
         <button class="nav-toggle" id="navToggle" aria-label="Menu">${icon('menu')}</button>
@@ -37,6 +38,7 @@ function renderNav(c, otherHref) {
   </header>
   <div class="mobile-nav" id="mobileNav">
     ${c.nav.links.map((l) => `<a href="${l.href}">${esc(l.label)}</a>`).join('')}
+    <a class="mobile-gh-link" href="${c.hero.githubUrl}" target="_blank" rel="noopener">${icon('github')}GitHub Repository</a>
     <a class="btn btn-primary" href="${home}#cta">${esc(c.nav.cta)}</a>
   </div>`;
 }
@@ -54,16 +56,52 @@ function renderHero(c) {
   <section class="hero" id="top">
     <div class="wrap hero-wrap">
       <div class="hero-header reveal">
+        <a href="${c.hero.githubUrl}" target="_blank" rel="noopener" class="hero-version-pill">
+          <span class="pill-dot"></span>
+          <span class="pill-text">${esc(c.hero.versionText)}</span>
+          <span class="pill-arrow">&rarr;</span>
+        </a>
         <h1 class="hero-title">${nl2br(c.hero.title)}</h1>
         <p class="hero-lead">${esc(c.hero.subtitle)}</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#cta">${esc(c.hero.ctaPrimary)}</a>
-          <a class="btn btn-secondary" href="#akis">${esc(c.hero.ctaSecondary)} <span class="btn-arrow">&rarr;</span></a>
+          <a class="btn btn-secondary" href="${c.hero.githubUrl}" target="_blank" rel="noopener">${icon('github')}${esc(c.hero.githubLabel)}</a>
+          <a class="btn btn-ghost" href="#akis">${esc(c.hero.ctaSecondary)} <span class="btn-arrow">&rarr;</span></a>
+        </div>
+        <div class="hero-install-card">
+          <div class="install-bar">
+            <span class="install-prompt">${icon('terminal')}</span>
+            <code class="install-code">${esc(c.hero.installCmd)}</code>
+          </div>
+          <button class="copy-btn" data-copy="${esc(c.hero.installCmd)}" aria-label="Copy install command">${icon('copy')}<span>Kopyala</span></button>
         </div>
       </div>
       <div class="hero-ledger reveal">
         <div class="ledger-track">${chainNodes}</div>
       </div>
+    </div>
+  </section>`;
+}
+
+function renderSpecs(c) {
+  if (!c.specs) return '';
+  const items = c.specs.items
+    .map(
+      (it) => `
+      <div class="spec-card reveal">
+        <span class="spec-label">${esc(it.label)}</span>
+        <h4 class="spec-val">${esc(it.value)}</h4>
+      </div>`
+    )
+    .join('');
+  return `
+  <section class="section section-specs" id="mimari">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="section-title">${esc(c.specs.title)}</h2>
+        <p class="section-subtitle">${esc(c.specs.subtitle)}</p>
+      </div>
+      <div class="specs-grid">${items}</div>
     </div>
   </section>`;
 }
@@ -121,14 +159,21 @@ function renderDiff(c) {
 function renderFlow(c) {
   const steps = c.flow.steps
     .map((step, i) => {
+      const ioInfo = step.input && step.output ? `
+        <div class="flow-io-box">
+          <div class="flow-io-row"><span class="io-lbl">Girdi:</span> <span class="io-val">${esc(step.input)}</span></div>
+          <div class="flow-io-row"><span class="io-lbl">Çıktı:</span> <span class="io-val">${esc(step.output)}</span></div>
+          ${step.role ? `<div class="flow-io-row"><span class="io-lbl">Rol:</span> <span class="io-val io-role">${esc(step.role)}</span></div>` : ''}
+        </div>` : '';
       return `
       <div class="flow-card reveal">
         <div class="flow-card-head">
           <span class="flow-step-num">${String(i + 1).padStart(2, '0')}</span>
-          ${step.auto ? '<span class="auto-tag">Otomatik</span>' : ''}
+          ${step.auto ? '<span class="auto-tag">Otomatik Devir</span>' : '<span class="manual-tag">Aşama</span>'}
         </div>
         <h4 class="flow-step-title">${esc(step.label)}</h4>
         <p class="flow-step-desc">${esc(step.desc)}</p>
+        ${ioInfo}
       </div>`;
     })
     .join('');
@@ -313,7 +358,8 @@ function renderCta(c) {
         <p class="cta-subtitle">${esc(c.cta.subtitle)}</p>
         <div class="cta-btn-group">
           <a class="btn btn-primary" href="mailto:${esc(c.cta.email)}">${icon('mail')}${esc(c.cta.buttonLabel)}</a>
-          <a class="btn btn-secondary" href="mailto:${esc(c.cta.email)}">${esc(c.cta.emailLabel)} &rarr;</a>
+          <a class="btn btn-secondary" href="${c.hero.githubUrl}" target="_blank" rel="noopener">${icon('github')}GitHub</a>
+          <a class="btn btn-ghost" href="mailto:${esc(c.cta.email)}">${esc(c.cta.emailLabel)} &rarr;</a>
         </div>
       </div>
     </div>
@@ -330,9 +376,10 @@ function renderFooter(c) {
       </div>
       <div class="footer-nav-block">
         <div class="footer-links">
+          <a href="${c.hero.githubUrl}" class="footer-link" target="_blank" rel="noopener">${icon('github')}<span>GitHub</span></a>
           <a href="${c.footer.wikiHref}" class="footer-link" target="_blank" rel="noopener">${esc(c.footer.wikiLabel)} &rarr;</a>
         </div>
-        <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems.</p>
+        <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems. Released under Commercial License.</p>
       </div>
     </div>
   </footer>`;
@@ -356,6 +403,7 @@ function renderPage(c, otherHref, scriptSrc, styleSrc) {
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
 ${renderNav(c, otherHref)}
 ${renderHero(c)}
+${renderSpecs(c)}
 ${renderProblem(c)}
 ${renderDiff(c)}
 ${renderFlow(c)}

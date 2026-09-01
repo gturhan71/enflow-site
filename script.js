@@ -20,6 +20,27 @@
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  // ── One-Click Command Copy ────────────────────────────────────
+  var copyBtns = document.querySelectorAll('.copy-btn');
+  copyBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var text = btn.getAttribute('data-copy');
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          var span = btn.querySelector('span');
+          var orig = span ? span.textContent : '';
+          if (span) span.textContent = 'Kopyalandı!';
+          btn.classList.add('is-copied');
+          setTimeout(function () {
+            if (span) span.textContent = orig;
+            btn.classList.remove('is-copied');
+          }, 2000);
+        });
+      }
+    });
+  });
+
   // ── Mobile Nav Toggle ──────────────────────────────────────────
   var toggle = document.getElementById('navToggle');
   var mobileNav = document.getElementById('mobileNav');
