@@ -52,13 +52,13 @@ function renderHero(c) {
     .join('');
   return `
   <section class="hero" id="top">
-    <div class="wrap">
+    <div class="wrap hero-wrap">
       <div class="hero-header reveal">
         <h1 class="hero-title">${nl2br(c.hero.title)}</h1>
         <p class="hero-lead">${esc(c.hero.subtitle)}</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#cta">${esc(c.hero.ctaPrimary)}</a>
-          <a class="btn btn-secondary" href="#akis">${esc(c.hero.ctaSecondary)}</a>
+          <a class="btn btn-secondary" href="#akis">${esc(c.hero.ctaSecondary)} <span class="btn-arrow">&rarr;</span></a>
         </div>
       </div>
       <div class="hero-ledger reveal">
@@ -71,30 +71,21 @@ function renderHero(c) {
 function renderProblem(c) {
   const items = c.problem.items
     .map(
-      (it, idx) => `
-      <div class="problem-row reveal">
-        <div class="problem-idx">${String(idx + 1).padStart(2, '0')}</div>
-        <div class="problem-icon">${icon(it.icon)}</div>
-        <div class="problem-body">
-          <p>${esc(it.text)}</p>
-        </div>
+      (it) => `
+      <div class="problem-card reveal">
+        <div class="card-icon-wrap">${icon(it.icon)}</div>
+        <p class="problem-text">${esc(it.text)}</p>
       </div>`
     )
     .join('');
   return `
   <section class="section section-problem" id="sorun">
     <div class="wrap">
-      <div class="editorial-grid">
-        <div class="editorial-sidebar reveal">
-          <div class="sidebar-sticky">
-            <h2 class="section-title">${esc(c.problem.title)}</h2>
-            <p class="section-subtitle">${esc(c.problem.subtitle)}</p>
-          </div>
-        </div>
-        <div class="editorial-content">
-          <div class="problem-list">${items}</div>
-        </div>
+      <div class="section-head reveal">
+        <h2 class="section-title">${esc(c.problem.title)}</h2>
+        <p class="section-subtitle">${esc(c.problem.subtitle)}</p>
       </div>
+      <div class="problem-grid">${items}</div>
     </div>
   </section>`;
 }
@@ -103,13 +94,13 @@ function renderDiff(c) {
   const cards = c.diff.cards
     .map(
       (card) => `
-      <div class="comparison-row reveal">
-        <div class="comparison-cell old-model">
-          <span class="cell-label">${esc(card.oldLabel)}</span>
+      <div class="diff-card reveal">
+        <div class="diff-side diff-old">
+          <span class="diff-badge diff-badge-old">${esc(card.oldLabel)}</span>
           <p>${esc(card.oldText)}</p>
         </div>
-        <div class="comparison-cell new-model">
-          <span class="cell-label">${esc(card.newLabel)}</span>
+        <div class="diff-side diff-new">
+          <span class="diff-badge diff-badge-new">${esc(card.newLabel)}</span>
           <p>${esc(card.newText)}</p>
         </div>
       </div>`
@@ -118,11 +109,11 @@ function renderDiff(c) {
   return `
   <section class="section section-diff" id="fark">
     <div class="wrap">
-      <div class="section-header-wide reveal">
+      <div class="section-head reveal">
         <h2 class="section-title">${esc(c.diff.title)}</h2>
         <p class="section-subtitle">${esc(c.diff.subtitle)}</p>
       </div>
-      <div class="comparison-table">${cards}</div>
+      <div class="diff-grid">${cards}</div>
     </div>
   </section>`;
 }
@@ -134,7 +125,7 @@ function renderFlow(c) {
       <div class="flow-card reveal">
         <div class="flow-card-head">
           <span class="flow-step-num">${String(i + 1).padStart(2, '0')}</span>
-          ${step.auto ? '<span class="auto-tag">Otomatik Devir</span>' : ''}
+          ${step.auto ? '<span class="auto-tag">Otomatik</span>' : ''}
         </div>
         <h4 class="flow-step-title">${esc(step.label)}</h4>
         <p class="flow-step-desc">${esc(step.desc)}</p>
@@ -144,7 +135,7 @@ function renderFlow(c) {
   return `
   <section class="section section-flow" id="akis">
     <div class="wrap">
-      <div class="section-header-wide reveal">
+      <div class="section-head reveal">
         <h2 class="section-title">${esc(c.flow.title)}</h2>
         <p class="section-subtitle">${esc(c.flow.subtitle)}</p>
       </div>
@@ -156,31 +147,28 @@ function renderFlow(c) {
 function renderValue(c) {
   const cards = c.value.cards
     .map(
-      (v, idx) => `
-      <div class="value-block reveal">
-        <div class="block-idx">${String(idx + 1).padStart(2, '0')}</div>
-        <div class="block-icon">${icon(v.icon)}</div>
-        <h4 class="block-title">${esc(v.title)}</h4>
-        <p class="block-desc">${esc(v.text)}</p>
+      (v) => `
+      <div class="value-card reveal">
+        <div class="card-icon-wrap">${icon(v.icon)}</div>
+        <h4 class="value-title">${esc(v.title)}</h4>
+        <p class="value-desc">${esc(v.text)}</p>
       </div>`
     )
     .join('');
   const cta = c.value.cta
     ? `
-      <div class="value-footer-banner reveal">
-        <div class="banner-text">
-          <p>${esc(c.value.cta.text)}</p>
-        </div>
-        <a class="btn btn-secondary btn-sm" href="${esc(c.value.cta.href)}">${esc(c.value.cta.buttonLabel)}${icon('arrow')}</a>
+      <div class="value-cta-banner reveal">
+        <p class="banner-text">${esc(c.value.cta.text)}</p>
+        <a class="btn btn-secondary btn-sm" href="${esc(c.value.cta.href)}">${esc(c.value.cta.buttonLabel)} &rarr;</a>
       </div>`
     : '';
   return `
   <section class="section section-value" id="deger">
     <div class="wrap">
-      <div class="section-header-wide reveal">
+      <div class="section-head reveal">
         <h2 class="section-title">${esc(c.value.title)}</h2>
       </div>
-      <div class="value-columns">${cards}</div>
+      <div class="value-grid">${cards}</div>
       ${cta}
     </div>
   </section>`;
@@ -190,10 +178,8 @@ function renderTrust(c) {
   const items = c.trust.items
     .map(
       (t) => `
-      <div class="trust-column reveal">
-        <div class="trust-head">
-          <div class="trust-icon">${icon(t.icon)}</div>
-        </div>
+      <div class="trust-card reveal">
+        <div class="card-icon-wrap">${icon(t.icon)}</div>
         <h4 class="trust-title">${esc(t.title)}</h4>
         <p class="trust-desc">${esc(t.text)}</p>
       </div>`
@@ -202,7 +188,7 @@ function renderTrust(c) {
   return `
   <section class="section section-trust" id="guven">
     <div class="wrap">
-      <div class="section-header-wide reveal">
+      <div class="section-head reveal">
         <h2 class="section-title">${esc(c.trust.title)}</h2>
         <p class="section-subtitle">${esc(c.trust.subtitle)}</p>
       </div>
@@ -215,11 +201,11 @@ function renderAudience(c) {
   const cards = c.audience.cards
     .map(
       (a) => `
-      <div class="role-card reveal">
-        <div class="role-icon">${icon(a.icon)}</div>
-        <div class="role-body">
-          <h4 class="role-title">${esc(a.title)}</h4>
-          <p class="role-desc">${esc(a.text)}</p>
+      <div class="audience-card reveal">
+        <div class="card-icon-wrap">${icon(a.icon)}</div>
+        <div class="audience-body">
+          <h4 class="audience-title">${esc(a.title)}</h4>
+          <p class="audience-desc">${esc(a.text)}</p>
         </div>
       </div>`
     )
@@ -227,29 +213,29 @@ function renderAudience(c) {
   return `
   <section class="section section-audience" id="kitle">
     <div class="wrap">
-      <div class="section-header-wide reveal">
+      <div class="section-head reveal">
         <h2 class="section-title">${esc(c.audience.title)}</h2>
       </div>
-      <div class="role-grid">${cards}</div>
+      <div class="audience-grid">${cards}</div>
     </div>
   </section>`;
 }
 
 function renderDocumentCard(doc, labels) {
   const isReady = doc.status === 'ready' && doc.href;
-  const badge = isReady ? '<span class="status-tag status-ready">Hazır</span>' : `<span class="status-tag status-soon">${esc(labels.soonLabel)}</span>`;
+  const badge = isReady ? '<span class="status-badge status-ready">Hazır</span>' : `<span class="status-badge status-soon">${esc(labels.soonLabel)}</span>`;
   const action = isReady
-    ? `<a class="btn btn-secondary btn-sm doc-btn" href="${esc(doc.href)}" target="_blank" rel="noopener">${icon('arrow')}${esc(labels.downloadLabel)}</a>`
+    ? `<a class="btn btn-secondary btn-sm doc-btn" href="${esc(doc.href)}" target="_blank" rel="noopener">${esc(labels.downloadLabel)} &rarr;</a>`
     : `<span class="btn btn-secondary btn-sm doc-btn is-disabled">${icon('clock')}${esc(labels.soonLabel)}</span>`;
   return `
-    <div class="document-entry reveal">
-      <div class="doc-meta-row">
+    <div class="doc-card reveal">
+      <div class="doc-meta-bar">
         <span class="doc-format-tag">${icon('filetext')}${esc(doc.format)}</span>
         ${badge}
       </div>
-      <h4 class="doc-entry-title">${esc(doc.title)}</h4>
-      <p class="doc-entry-desc">${esc(doc.description)}</p>
-      <div class="doc-action-row">${action}</div>
+      <h4 class="doc-card-title">${esc(doc.title)}</h4>
+      <p class="doc-card-desc">${esc(doc.description)}</p>
+      <div class="doc-action-bar">${action}</div>
     </div>`;
 }
 
@@ -258,7 +244,7 @@ function renderDocuments(c) {
   return `
   <section class="section section-documents" id="dokumanlar">
     <div class="wrap">
-      <div class="section-header-wide reveal">
+      <div class="section-head reveal">
         <h2 class="section-title">${esc(c.documents.title)}</h2>
         <p class="section-subtitle">${esc(c.documents.subtitle)}</p>
       </div>
@@ -272,7 +258,7 @@ function renderSubPageHead(c, backLabel) {
   return `
   <section class="page-head">
     <div class="wrap">
-      <a class="back-link reveal" href="${c.nav.home}">${icon('arrow', 'icon icon-flip')}${esc(backLabel)}</a>
+      <a class="back-link reveal" href="${c.nav.home}">&larr; ${esc(backLabel)}</a>
     </div>
   </section>`;
 }
@@ -281,9 +267,9 @@ function renderAnalyticsCategory(cat) {
   const items = cat.items
     .map(
       (it, itemIdx) => `
-      <div class="kpi-item reveal">
-        <div class="kpi-header">
-          <span class="kpi-num">${String(itemIdx + 1).padStart(2, '0')}</span>
+      <div class="kpi-card reveal">
+        <div class="kpi-card-header">
+          <span class="kpi-idx">${String(itemIdx + 1).padStart(2, '0')}</span>
           <h5 class="kpi-name">${esc(it.name)}</h5>
         </div>
         <p class="kpi-desc">${esc(it.desc)}</p>
@@ -291,17 +277,15 @@ function renderAnalyticsCategory(cat) {
     )
     .join('');
   return `
-    <div class="kpi-category-section">
-      <div class="kpi-category-header">
-        <div class="kpi-cat-info">
-          <h3 class="cat-title">${esc(cat.title)}</h3>
-          <p class="cat-intro">${esc(cat.intro)}</p>
+    <div class="kpi-category-group">
+      <div class="kpi-category-head">
+        <div>
+          <h3 class="kpi-cat-title">${esc(cat.title)}</h3>
+          <p class="kpi-cat-intro">${esc(cat.intro)}</p>
         </div>
-        <div class="cat-count-badge">
-          <span class="cat-count">${cat.items.length}</span>
-        </div>
+        <div class="kpi-count-pill">${cat.items.length}</div>
       </div>
-      <div class="kpi-matrix">${items}</div>
+      <div class="kpi-grid">${items}</div>
     </div>`;
 }
 
@@ -311,11 +295,11 @@ function renderAnalytics(c) {
   return `
   <section class="section section-analytics" id="analitik-icerik">
     <div class="wrap">
-      <div class="section-header-wide reveal">
-        <h2 class="section-title">${esc(c.analytics.title)} <span class="total-metrics-badge">(${total})</span></h2>
+      <div class="section-head reveal">
+        <h2 class="section-title">${esc(c.analytics.title)} <span class="kpi-total-pill">(${total})</span></h2>
         <p class="section-subtitle">${esc(c.analytics.subtitle)}</p>
       </div>
-      <div class="kpi-categories-list">${categories}</div>
+      <div class="kpi-categories-deck">${categories}</div>
     </div>
   </section>`;
 }
@@ -324,14 +308,12 @@ function renderCta(c) {
   return `
   <section class="section section-cta" id="cta">
     <div class="wrap">
-      <div class="cta-editorial-box reveal">
-        <div class="cta-main-content">
-          <h2 class="cta-headline">${esc(c.cta.title)}</h2>
-          <p class="cta-sub">${esc(c.cta.subtitle)}</p>
-        </div>
-        <div class="cta-buttons-block">
+      <div class="cta-card reveal">
+        <h2 class="cta-title">${esc(c.cta.title)}</h2>
+        <p class="cta-subtitle">${esc(c.cta.subtitle)}</p>
+        <div class="cta-btn-group">
           <a class="btn btn-primary" href="mailto:${esc(c.cta.email)}">${icon('mail')}${esc(c.cta.buttonLabel)}</a>
-          <a class="btn btn-secondary" href="mailto:${esc(c.cta.email)}">${esc(c.cta.emailLabel)}</a>
+          <a class="btn btn-secondary" href="mailto:${esc(c.cta.email)}">${esc(c.cta.emailLabel)} &rarr;</a>
         </div>
       </div>
     </div>
@@ -342,13 +324,13 @@ function renderFooter(c) {
   return `
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <div class="footer-brand-side">
+      <div class="footer-brand-block">
         <div class="brand brand-sm"><span class="brand-symbol">E</span>${esc(c.nav.brand)}</div>
         <p class="footer-desc">${esc(c.footer.text)}</p>
       </div>
-      <div class="footer-meta-side">
+      <div class="footer-nav-block">
         <div class="footer-links">
-          <a href="${c.footer.wikiHref}" class="footer-wiki-link" target="_blank" rel="noopener">${esc(c.footer.wikiLabel)}${icon('arrow')}</a>
+          <a href="${c.footer.wikiHref}" class="footer-link" target="_blank" rel="noopener">${esc(c.footer.wikiLabel)} &rarr;</a>
         </div>
         <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems.</p>
       </div>
@@ -368,13 +350,9 @@ function renderPage(c, otherHref, scriptSrc, styleSrc) {
 <meta property="og:description" content="${esc(c.meta.description)}" />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
-<div class="bg-base"></div>
 ${renderNav(c, otherHref)}
 ${renderHero(c)}
 ${renderProblem(c)}
@@ -402,13 +380,9 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc) {
 <meta property="og:description" content="${esc(c.documents.subtitle)}" />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
-<div class="bg-base"></div>
 ${renderNav(c, otherHref)}
 ${renderSubPageHead(c, c.documents.backLabel)}
 ${renderDocuments(c)}
@@ -430,13 +404,9 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc) {
 <meta property="og:description" content="${esc(c.analytics.subtitle)}" />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
-<div class="bg-base"></div>
 ${renderNav(c, otherHref)}
 ${renderSubPageHead(c, c.analytics.backLabel)}
 ${renderAnalytics(c)}
