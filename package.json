@@ -1,0 +1,9 @@
+{
+  "name": "enflow-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Enflow tanıtım sitesi — karar vericilere yönelik, tek sayfa TR/EN landing page.",
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}

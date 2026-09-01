@@ -1,0 +1,44 @@
+# Enflow — Tanıtım Sitesi
+
+Karar vericiye (şirket sahibi/üst yönetim) yönelik, kısa-çarpıcı tek sayfalık
+tanıtım (landing) sitesi. Enflow ana uygulama reposundan **bağımsız** — kendi
+git geçmişi, kendi deploy'u.
+
+**Tek doğruluk kaynağı:** `content.mjs` (TR + EN metin, tek yerde).
+
+## Üretim
+```bash
+node build.mjs
+# → dist/index.html    (TR, kök)
+# → dist/en/index.html (EN)
+```
+Bağımlılık yok (`node_modules` gerekmez). Metni değiştirmek için **sadece
+`content.mjs`**'i düzenle, sonra bu komutu çalıştır.
+
+- `styles.css` — görsel tasarım (tek dosya)
+- `icons.mjs` — elle yazılmış SVG ikon seti (harici kütüphane yok)
+- `script.js` — scroll-reveal + mobil menü
+- `assets/` — favicon dosyaları
+
+## Lokal önizleme
+```bash
+python3 -m http.server 4300 --directory dist
+```
+
+## Yayın (Vercel)
+`vercel.json` build komutunu (`node build.mjs`) ve çıktı dizinini (`dist`)
+tanımlıyor. GitHub reposu Vercel'e bağlı (Import Git Repository) — `main`'e her
+push otomatik yeniden deploy tetikler, ayrı bir CI adımı gerekmez.
+
+Başka bir statik host (Netlify/Cloudflare Pages/GitHub Pages) kullanmak
+istersen aynı ayar geçerli: build komutu `node build.mjs`, çıktı dizini `dist/`.
+
+## İçerik değiştirirken dikkat
+- Sahte müşteri logosu/testimonial/uydurma sayı **eklenmez** — ürünün henüz
+  yayınlanabilir referansı yok; güven, mekanik kanıtla (otomatik zincir,
+  denetim izi, danışman-modu güvencesi) kurulur.
+- Her yeni bölüm hem `content.mjs`'teki `tr` hem `en` objesine eklenmeli (aynı
+  anahtar şekli).
+- Footer'daki "Ürün Wiki" linki Enflow ana reposundaki
+  `https://gturhan71.github.io/Enflow/wiki/` adresine işaret eder (bu site ayrı
+  deploy edildiği için göreli yol kullanılmaz).
