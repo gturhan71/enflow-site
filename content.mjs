@@ -26,7 +26,6 @@ export const content = {
       home: '/',
     },
     hero: {
-      badge: 'Kurumsal Süreç & Satış Yaşam Döngüsü Platformu',
       title: 'Süreçleriniz artık\nbirbirini beklemesin.',
       subtitle:
         'Ziyaretten tahsilata kadar tüm B2B sürecinizi tek zincirde otomatikleştiren platform. Bir adım biter, bir sonraki kendiliğinden açılır — hiçbir şey birimler arasında kaybolmaz.',
@@ -363,7 +362,7 @@ export const content = {
       emailLabel: 'E-posta gönder',
     },
     footer: {
-      text: 'Enflow — Uçtan Uca Kurumsal Süreç & Satış Yaşam Döngüsü Platformu',
+      text: 'Enflow — B2B Süreç ve Operasyon Platformu',
       wikiLabel: 'Ürün Wiki',
       wikiHref: 'https://gturhan71.github.io/Enflow/wiki/',
     },
@@ -393,7 +392,6 @@ export const content = {
       home: '/en/',
     },
     hero: {
-      badge: 'Enterprise Process & Sales Lifecycle Platform',
       title: 'Your processes stop\nwaiting on each other.',
       subtitle:
         'One chain that automates your entire B2B process — from the first field visit to the final payment. One step closes, the next opens itself. Nothing gets lost between departments.',
@@ -728,7 +726,7 @@ export const content = {
       emailLabel: 'Send an email',
     },
     footer: {
-      text: 'Enflow — End-to-End Enterprise Process & Sales Lifecycle Platform',
+      text: 'Enflow — B2B Process & Operations Platform',
       wikiLabel: 'Product Wiki',
       wikiHref: 'https://gturhan71.github.io/Enflow/wiki/',
     },

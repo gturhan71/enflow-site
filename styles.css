@@ -64,17 +64,6 @@ button { font: inherit; }
 .section { padding: 112px 0; position: relative; border-bottom: 1px solid var(--line-subtle); }
 .section:last-of-type { border-bottom: none; }
 
-.section-num {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--primary);
-  display: inline-block;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-}
-
 .section-title {
   font-family: var(--font-serif);
   font-size: clamp(30px, 3.8vw, 44px);
@@ -169,13 +158,6 @@ button { font: inherit; }
 /* ── Hero Section ────────────────────────────────────────────── */
 .hero { padding: 96px 0 88px; position: relative; border-bottom: 1px solid var(--line-subtle); }
 .hero-header { max-width: 880px; }
-.meta-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
-  color: var(--muted); text-transform: uppercase; margin-bottom: 24px;
-  padding: 4px 10px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-sm);
-}
-.tag-bullet { width: 6px; height: 6px; border-radius: 1px; background: var(--primary); }
 .hero-title {
   font-family: var(--font-serif);
   font-size: clamp(38px, 6vw, 68px);
@@ -194,16 +176,9 @@ button { font: inherit; }
 .hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
 
 .hero-ledger {
-  margin-top: 72px;
+  margin-top: 64px;
   border-top: 1px solid var(--line);
-  padding-top: 24px;
-}
-.ledger-label {
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--muted-2);
-  margin-bottom: 16px;
+  padding-top: 28px;
 }
 .ledger-track {
   display: grid;
@@ -336,14 +311,6 @@ button { font: inherit; }
   gap: 24px;
   flex-wrap: wrap;
 }
-.banner-tag {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: var(--accent-gold);
-  display: block;
-  margin-bottom: 4px;
-}
 .banner-text p { font-size: 14.5px; color: var(--txt); font-weight: 500; }
 
 /* ── 05 / Integrity & Governance (Trust Grid) ────────────────── */
@@ -361,10 +328,8 @@ button { font: inherit; }
 .trust-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 18px;
 }
-.trust-idx { font-size: 11px; font-weight: 700; color: var(--accent-gold); font-variant-numeric: tabular-nums; }
 .trust-icon { font-size: 20px; color: var(--txt); }
 .trust-title { font-size: 16px; font-weight: 600; color: var(--txt-pure); margin-bottom: 8px; }
 .trust-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
@@ -459,15 +424,6 @@ button { font: inherit; }
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 24px;
-}
-.cat-idx {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--accent-gold);
-  display: block;
-  margin-bottom: 4px;
-  font-variant-numeric: tabular-nums;
 }
 .cat-title {
   font-family: var(--font-serif);

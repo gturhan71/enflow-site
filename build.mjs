@@ -54,7 +54,6 @@ function renderHero(c) {
   <section class="hero" id="top">
     <div class="wrap">
       <div class="hero-header reveal">
-        <div class="meta-tag"><span class="tag-bullet"></span>${esc(c.hero.badge)}</div>
         <h1 class="hero-title">${nl2br(c.hero.title)}</h1>
         <p class="hero-lead">${esc(c.hero.subtitle)}</p>
         <div class="hero-actions">
@@ -63,7 +62,6 @@ function renderHero(c) {
         </div>
       </div>
       <div class="hero-ledger reveal">
-        <div class="ledger-label">PROCESS CONTINUUM</div>
         <div class="ledger-track">${chainNodes}</div>
       </div>
     </div>
@@ -89,7 +87,6 @@ function renderProblem(c) {
       <div class="editorial-grid">
         <div class="editorial-sidebar reveal">
           <div class="sidebar-sticky">
-            <span class="section-num">01 / DIAGNOSIS</span>
             <h2 class="section-title">${esc(c.problem.title)}</h2>
             <p class="section-subtitle">${esc(c.problem.subtitle)}</p>
           </div>
@@ -105,7 +102,7 @@ function renderProblem(c) {
 function renderDiff(c) {
   const cards = c.diff.cards
     .map(
-      (card, idx) => `
+      (card) => `
       <div class="comparison-row reveal">
         <div class="comparison-cell old-model">
           <span class="cell-label">${esc(card.oldLabel)}</span>
@@ -122,7 +119,6 @@ function renderDiff(c) {
   <section class="section section-diff" id="fark">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">02 / ARCHITECTURE</span>
         <h2 class="section-title">${esc(c.diff.title)}</h2>
         <p class="section-subtitle">${esc(c.diff.subtitle)}</p>
       </div>
@@ -137,8 +133,8 @@ function renderFlow(c) {
       return `
       <div class="flow-card reveal">
         <div class="flow-card-head">
-          <span class="flow-step-num">STAGE ${String(i + 1).padStart(2, '0')}</span>
-          ${step.auto ? '<span class="auto-tag">AUTO-HANDOFF</span>' : '<span class="manual-tag">STAGE</span>'}
+          <span class="flow-step-num">${String(i + 1).padStart(2, '0')}</span>
+          ${step.auto ? '<span class="auto-tag">Otomatik Devir</span>' : ''}
         </div>
         <h4 class="flow-step-title">${esc(step.label)}</h4>
         <p class="flow-step-desc">${esc(step.desc)}</p>
@@ -149,14 +145,10 @@ function renderFlow(c) {
   <section class="section section-flow" id="akis">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">03 / LIFECYCLE</span>
         <h2 class="section-title">${esc(c.flow.title)}</h2>
         <p class="section-subtitle">${esc(c.flow.subtitle)}</p>
       </div>
       <div class="flow-pipeline">${steps}</div>
-      <div class="flow-legend reveal">
-        <span class="legend-note"><span class="legend-key">AUTO-HANDOFF</span> = Otomatik tetiklenen birimler arası devir halkası</span>
-      </div>
     </div>
   </section>`;
 }
@@ -177,7 +169,6 @@ function renderValue(c) {
     ? `
       <div class="value-footer-banner reveal">
         <div class="banner-text">
-          <span class="banner-tag">FULL SPECTRUM</span>
           <p>${esc(c.value.cta.text)}</p>
         </div>
         <a class="btn btn-secondary btn-sm" href="${esc(c.value.cta.href)}">${esc(c.value.cta.buttonLabel)}${icon('arrow')}</a>
@@ -187,7 +178,6 @@ function renderValue(c) {
   <section class="section section-value" id="deger">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">04 / EXECUTIVE VISIBILITY</span>
         <h2 class="section-title">${esc(c.value.title)}</h2>
       </div>
       <div class="value-columns">${cards}</div>
@@ -199,10 +189,9 @@ function renderValue(c) {
 function renderTrust(c) {
   const items = c.trust.items
     .map(
-      (t, idx) => `
+      (t) => `
       <div class="trust-column reveal">
         <div class="trust-head">
-          <span class="trust-idx">RULE 0${idx + 1}</span>
           <div class="trust-icon">${icon(t.icon)}</div>
         </div>
         <h4 class="trust-title">${esc(t.title)}</h4>
@@ -214,7 +203,6 @@ function renderTrust(c) {
   <section class="section section-trust" id="guven">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">05 / INTEGRITY &amp; GOVERNANCE</span>
         <h2 class="section-title">${esc(c.trust.title)}</h2>
         <p class="section-subtitle">${esc(c.trust.subtitle)}</p>
       </div>
@@ -240,7 +228,6 @@ function renderAudience(c) {
   <section class="section section-audience" id="kitle">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">06 / OPERATIONAL SCOPE</span>
         <h2 class="section-title">${esc(c.audience.title)}</h2>
       </div>
       <div class="role-grid">${cards}</div>
@@ -250,7 +237,7 @@ function renderAudience(c) {
 
 function renderDocumentCard(doc, labels) {
   const isReady = doc.status === 'ready' && doc.href;
-  const badge = isReady ? '<span class="status-tag status-ready">READY</span>' : `<span class="status-tag status-soon">${esc(labels.soonLabel)}</span>`;
+  const badge = isReady ? '<span class="status-tag status-ready">Hazır</span>' : `<span class="status-tag status-soon">${esc(labels.soonLabel)}</span>`;
   const action = isReady
     ? `<a class="btn btn-secondary btn-sm doc-btn" href="${esc(doc.href)}" target="_blank" rel="noopener">${icon('arrow')}${esc(labels.downloadLabel)}</a>`
     : `<span class="btn btn-secondary btn-sm doc-btn is-disabled">${icon('clock')}${esc(labels.soonLabel)}</span>`;
@@ -272,7 +259,6 @@ function renderDocuments(c) {
   <section class="section section-documents" id="dokumanlar">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">ARCHIVE / RESOURCES</span>
         <h2 class="section-title">${esc(c.documents.title)}</h2>
         <p class="section-subtitle">${esc(c.documents.subtitle)}</p>
       </div>
@@ -291,7 +277,7 @@ function renderSubPageHead(c, backLabel) {
   </section>`;
 }
 
-function renderAnalyticsCategory(cat, idx) {
+function renderAnalyticsCategory(cat) {
   const items = cat.items
     .map(
       (it, itemIdx) => `
@@ -308,13 +294,11 @@ function renderAnalyticsCategory(cat, idx) {
     <div class="kpi-category-section">
       <div class="kpi-category-header">
         <div class="kpi-cat-info">
-          <span class="cat-idx">CAT 0${idx + 1}</span>
           <h3 class="cat-title">${esc(cat.title)}</h3>
           <p class="cat-intro">${esc(cat.intro)}</p>
         </div>
         <div class="cat-count-badge">
           <span class="cat-count">${cat.items.length}</span>
-          <span class="cat-count-lbl">METRICS</span>
         </div>
       </div>
       <div class="kpi-matrix">${items}</div>
@@ -323,13 +307,12 @@ function renderAnalyticsCategory(cat, idx) {
 
 function renderAnalytics(c) {
   const total = c.analytics.categories.reduce((sum, cat) => sum + cat.items.length, 0);
-  const categories = c.analytics.categories.map((cat, idx) => renderAnalyticsCategory(cat, idx)).join('');
+  const categories = c.analytics.categories.map((cat) => renderAnalyticsCategory(cat)).join('');
   return `
   <section class="section section-analytics" id="analitik-icerik">
     <div class="wrap">
       <div class="section-header-wide reveal">
-        <span class="section-num">CATALOGUE / MATRIX</span>
-        <h2 class="section-title">${esc(c.analytics.title)} <span class="total-metrics-badge">[ ${total} METRICS ]</span></h2>
+        <h2 class="section-title">${esc(c.analytics.title)} <span class="total-metrics-badge">(${total})</span></h2>
         <p class="section-subtitle">${esc(c.analytics.subtitle)}</p>
       </div>
       <div class="kpi-categories-list">${categories}</div>
@@ -367,7 +350,7 @@ function renderFooter(c) {
         <div class="footer-links">
           <a href="${c.footer.wikiHref}" class="footer-wiki-link" target="_blank" rel="noopener">${esc(c.footer.wikiLabel)}${icon('arrow')}</a>
         </div>
-        <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems. All rights reserved.</p>
+        <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems.</p>
       </div>
     </div>
   </footer>`;
@@ -449,7 +432,7 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc) {
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
