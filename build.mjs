@@ -353,6 +353,7 @@ function renderPage(c, otherHref, scriptSrc, styleSrc) {
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
 ${renderNav(c, otherHref)}
 ${renderHero(c)}
 ${renderProblem(c)}
@@ -383,6 +384,7 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc) {
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
 ${renderNav(c, otherHref)}
 ${renderSubPageHead(c, c.documents.backLabel)}
 ${renderDocuments(c)}
@@ -407,6 +409,7 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc) {
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
 <body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
 ${renderNav(c, otherHref)}
 ${renderSubPageHead(c, c.analytics.backLabel)}
 ${renderAnalytics(c)}

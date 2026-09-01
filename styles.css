@@ -61,6 +61,15 @@ button { font: inherit; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
+.bg-wave-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* ── Section Structure ────────────────────────────────────────── */
 .section { padding: 112px 0; position: relative; border-bottom: 1px solid var(--line-subtle); }
 .section:last-of-type { border-bottom: none; }
