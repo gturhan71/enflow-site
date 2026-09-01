@@ -31,3 +31,4 @@
 - [2026-09-01] [Antigravity Kaira]: Integrated Anime.js animation engine (local zero-dependency bundle) to orchestrate smooth hero entrance timelines, staggered scroll-triggered grid reveals, continuous sequential pulse on the 8-stage chain nodes, and elastic card hover physics.
 - [2026-09-01] [Antigravity Kaira]: Fixed hero visibility by removing hiding reveal classes from above-the-fold elements and ensuring instant, resilient initialization on DOM ready.
 - [2026-09-01] [Antigravity Kaira]: Successfully pushed all refactored code and assets to remote GitHub repository (gturhan71/enflow-site @ main).
+- [2026-09-01] [Antigravity Kaira]: Restored the original Enflow color identity and structured it around the 60-30-10 UI rule (60% Deep Navy base #0a0f1c, 30% structured panels/surfaces #0f1828 & lines #1e2c44, 10% energetic green #22c55e & cyan #38bdf8 accents). Synchronized fluid wave canvas and chain pulse animations.

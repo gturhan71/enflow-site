@@ -45,8 +45,8 @@
           window.anime({
             targets: chainNodes,
             borderColor: [
-              { value: 'rgba(41, 151, 255, 0.4)', duration: 400, easing: 'easeOutQuad' },
-              { value: 'rgba(255, 255, 255, 0.08)', duration: 600, easing: 'easeInQuad' }
+              { value: 'rgba(56, 189, 248, 0.45)', duration: 400, easing: 'easeOutQuad' },
+              { value: '#1e2c44', duration: 600, easing: 'easeInQuad' }
             ],
             delay: window.anime.stagger(180),
             loop: true,
@@ -144,12 +144,12 @@
     window.addEventListener('resize', resize);
     resize();
 
-    // 4 harmonic wave layers
+    // 4 harmonic wave layers: [baseYRatio, amplitude, wavelength, speed, colorStopA, colorStopB]
     var waves = [
-      { y: 0.45, amp: 55, freq: 0.0018, speed: 0.008, colorA: 'rgba(41, 151, 255, 0.14)', colorB: 'rgba(0, 0, 0, 0)' },
-      { y: 0.52, amp: 70, freq: 0.0014, speed: 0.006, colorA: 'rgba(48, 209, 88, 0.09)', colorB: 'rgba(0, 0, 0, 0)' },
-      { y: 0.58, amp: 85, freq: 0.0011, speed: 0.004, colorA: 'rgba(94, 92, 230, 0.08)', colorB: 'rgba(0, 0, 0, 0)' },
-      { y: 0.65, amp: 60, freq: 0.0022, speed: 0.007, colorA: 'rgba(41, 151, 255, 0.06)', colorB: 'rgba(0, 0, 0, 0)' }
+      { y: 0.45, amp: 55, freq: 0.0018, speed: 0.008, colorA: 'rgba(56, 189, 248, 0.13)', colorB: 'rgba(10, 15, 28, 0)' },
+      { y: 0.52, amp: 70, freq: 0.0014, speed: 0.006, colorA: 'rgba(34, 197, 94, 0.09)', colorB: 'rgba(10, 15, 28, 0)' },
+      { y: 0.58, amp: 85, freq: 0.0011, speed: 0.004, colorA: 'rgba(124, 127, 242, 0.08)', colorB: 'rgba(10, 15, 28, 0)' },
+      { y: 0.65, amp: 60, freq: 0.0022, speed: 0.007, colorA: 'rgba(56, 189, 248, 0.06)', colorB: 'rgba(10, 15, 28, 0)' }
     ];
 
     function draw() {

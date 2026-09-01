@@ -1,36 +1,41 @@
-/* ── Enflow — Apple Human Interface Guidelines (HIG) Design System ───────── */
-/* Refined for crisp readability, high contrast, smooth materials, and precision typography. */
+/* ── Enflow Design System — 60-30-10 Color Architecture ─────────────────── */
+/* 60% Base Canvas (#0a0f1c) · 30% Structured Surfaces (#0f1828 / #1e2c44) · 10% Energetic Accent (#22c55e / #38bdf8) */
 
 :root {
-  /* Apple System Color Tokens (Dark Mode Pro) */
-  --bg: #000000;
-  --bg-secondary: #0a0a0c;
-  --surface: #141416;
-  --surface-hover: #1c1c1f;
-  --surface-elevated: #222227;
+  /* ── 60% Dominant Base Colors ────────────────────────────────── */
+  --bg: #0a0f1c;
+  --bg-secondary: #0d1527;
   
-  --line: rgba(255, 255, 255, 0.08);
-  --line-subtle: rgba(255, 255, 255, 0.04);
-  --line-focus: rgba(255, 255, 255, 0.18);
+  /* ── 30% Structural Surfaces & Neutral Typography ────────────── */
+  --surface: #0f1828;
+  --surface-hover: #142238;
+  --surface-elevated: #17263e;
   
-  --txt-primary: #f5f5f7;
-  --txt-secondary: #86868b;
-  --txt-tertiary: #6e6e73;
-  --txt-body: #a1a1a6;
+  --line: #1e2c44;
+  --line-subtle: #152033;
+  --line-focus: #2d4268;
   
-  --accent: #2997ff;
-  --accent-hover: #0077ed;
-  --accent-green: #30d158;
-  --accent-amber: #ff9f0a;
+  --txt-primary: #e9eff8;
+  --txt-secondary: #92a3bf;
+  --txt-tertiary: #6d7fa0;
+  --txt-body: #a5b4cb;
   
-  /* Radii — Apple Continuous Squircle Scale */
+  /* ── 10% High-Impact Accent Tokens ───────────────────────────── */
+  --primary: #22c55e;
+  --primary-hover: #16a34a;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-violet: #7c7ff2;
+  --accent-amber: #f59e0b;
+  
+  /* Radii */
   --radius-pill: 980px;
-  --radius-xl: 22px;
-  --radius-lg: 16px;
-  --radius-md: 12px;
+  --radius-xl: 20px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
   --radius-sm: 8px;
   
-  /* Typography — SF Pro Native Stack */
+  /* Typography */
   --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Segoe UI", Arial, sans-serif;
   
   --maxw: 1160px;
@@ -95,10 +100,10 @@ button { font: inherit; }
   letter-spacing: -0.012em;
 }
 
-/* ── Buttons & Interactive Elements ───────────────────────────── */
+/* ── Buttons & Interactive Elements (10% Focus) ──────────────── */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 12px 24px; border-radius: var(--radius-pill); font-weight: 500; font-size: 14px;
+  padding: 12px 24px; border-radius: var(--radius-pill); font-weight: 600; font-size: 14px;
   letter-spacing: -0.01em; border: 1px solid transparent; cursor: pointer;
   transition: transform 0.15s var(--ease), background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease), opacity 0.15s var(--ease);
   white-space: nowrap; text-align: center;
@@ -106,33 +111,33 @@ button { font: inherit; }
 .btn:active { transform: scale(0.98); }
 
 .btn-primary {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
+  background: var(--primary);
+  color: #06110a;
+  border-color: var(--primary);
 }
 .btn-primary:hover {
-  background: #f0f0f2;
-  border-color: #f0f0f2;
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(233, 239, 248, 0.06);
+  border-color: var(--line);
   color: var(--txt-primary);
 }
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(233, 239, 248, 0.1);
+  border-color: var(--line-focus);
 }
-.btn-secondary .btn-arrow { transition: transform 0.2s var(--ease); display: inline-block; }
+.btn-secondary .btn-arrow { transition: transform 0.2s var(--ease); display: inline-block; color: var(--accent); }
 .btn-secondary:hover .btn-arrow { transform: translateX(3px); }
 
 .btn-sm { padding: 8px 18px; font-size: 13px; }
 
-/* ── Site Header (Apple Frosted Glass) ────────────────────────── */
+/* ── Site Header (30% Surface Frosted Glass) ─────────────────── */
 .site-header {
   position: sticky; top: 0; z-index: 99;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(10, 15, 28, 0.82);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--line);
@@ -141,9 +146,9 @@ button { font: inherit; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; letter-spacing: -0.02em; }
 .brand-symbol {
   width: 28px; height: 28px; border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.28);
   display: flex; align-items: center; justify-content: center;
-  color: #ffffff; font-weight: 700; font-size: 14px;
+  color: var(--primary); font-weight: 700; font-size: 14px;
 }
 .brand-name { color: var(--txt-primary); }
 .nav-links { display: flex; align-items: center; gap: 28px; }
@@ -174,7 +179,7 @@ button { font: inherit; }
 /* ── Hero Section ────────────────────────────────────────────── */
 .hero { padding: 96px 0 88px; position: relative; border-bottom: 1px solid var(--line-subtle); }
 .hero-wrap { max-width: 960px; }
-.hero-header { text-align: left; }
+.hero-header { text-align: left; opacity: 1; transform: none; }
 
 .hero-title {
   font-size: clamp(40px, 6.4vw, 70px);
@@ -207,8 +212,8 @@ button { font: inherit; }
   align-items: center;
 }
 .chain-node {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line-subtle);
+  background: rgba(233, 239, 248, 0.03);
+  border: 1px solid var(--line);
   border-radius: var(--radius-md);
   padding: 10px 12px;
   display: flex;
@@ -216,9 +221,9 @@ button { font: inherit; }
   gap: 3px;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
-.chain-node:hover { background: rgba(255, 255, 255, 0.07); border-color: var(--line); }
-.chain-node.is-first { border-color: rgba(41, 151, 255, 0.35); }
-.chain-node.is-last { border-color: rgba(48, 209, 88, 0.35); }
+.chain-node:hover { background: var(--surface-hover); border-color: var(--line-focus); }
+.chain-node.is-first { border-color: rgba(56, 189, 248, 0.4); }
+.chain-node.is-last { border-color: rgba(34, 197, 94, 0.4); }
 .chain-idx { font-size: 10px; color: var(--txt-tertiary); font-weight: 600; font-variant-numeric: tabular-nums; }
 .chain-text { font-size: 13px; font-weight: 500; color: var(--txt-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .chain-divider { display: none; }
@@ -235,14 +240,16 @@ button { font: inherit; }
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 22px 20px;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
+.spec-card:hover { background: var(--surface-hover); border-color: var(--line-focus); }
 .spec-label {
   font-size: 12px; font-weight: 600; color: var(--accent);
   display: block; margin-bottom: 8px; letter-spacing: 0.02em;
 }
 .spec-val { font-size: 14px; font-weight: 500; color: var(--txt-primary); line-height: 1.45; }
 
-/* ── 01 / Problem (Apple Bento Grid) ─────────────────────────── */
+/* ── 01 / Problem (30% Surfaces Bento Grid) ──────────────────── */
 .problem-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -261,13 +268,13 @@ button { font: inherit; }
 }
 .card-icon-wrap {
   width: 44px; height: 44px; border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.06); border: 1px solid var(--line-subtle);
+  background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
   display: flex; align-items: center; justify-content: center;
   color: var(--accent); margin-bottom: 22px;
 }
 .problem-text { font-size: 15px; color: var(--txt-primary); line-height: 1.5; font-weight: 400; }
 
-/* ── 02 / Diff (Apple Comparison Deck) ────────────────────────── */
+/* ── 02 / Diff (Comparison Deck) ──────────────────────────────── */
 .diff-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -282,14 +289,14 @@ button { font: inherit; }
   grid-template-rows: 1fr 1fr;
 }
 .diff-side { padding: 28px; }
-.diff-old { background: rgba(0, 0, 0, 0.3); border-bottom: 1px solid var(--line); }
-.diff-new { background: rgba(255, 255, 255, 0.02); }
+.diff-old { background: rgba(10, 15, 28, 0.6); border-bottom: 1px solid var(--line); }
+.diff-new { background: rgba(56, 189, 248, 0.03); }
 .diff-badge {
   display: inline-block; font-size: 12px; font-weight: 600;
   margin-bottom: 8px;
 }
 .diff-badge-old { color: var(--txt-tertiary); }
-.diff-badge-new { color: var(--accent); }
+.diff-badge-new { color: var(--primary); }
 .diff-old p { font-size: 14px; color: var(--txt-secondary); line-height: 1.5; }
 .diff-new p { font-size: 15px; color: var(--txt-primary); font-weight: 500; line-height: 1.5; }
 
@@ -398,7 +405,7 @@ button { font: inherit; }
   align-items: flex-start;
   transition: background 0.2s var(--ease);
 }
-.audience-card:hover { background: var(--surface-hover); }
+.audience-card:hover { background: var(--surface-hover); border-color: var(--line-focus); }
 .audience-title { font-size: 15px; font-weight: 600; color: var(--txt-primary); margin-bottom: 4px; }
 .audience-desc { font-size: 13.5px; color: var(--txt-secondary); line-height: 1.45; }
 
@@ -445,7 +452,7 @@ button { font: inherit; }
   color: var(--txt-tertiary); text-align: center;
 }
 
-/* ── Analytics & KPI Matrix (Apple Grouped Directory) ────────── */
+/* ── Analytics & KPI Matrix ──────────────────────────────────── */
 .kpi-category-group {
   margin-top: 56px;
   padding-top: 40px;
@@ -482,7 +489,7 @@ button { font: inherit; }
 }
 .kpi-card:hover { border-color: var(--line-focus); background: var(--surface-hover); }
 .kpi-card-header { display: flex; gap: 8px; align-items: baseline; margin-bottom: 6px; }
-.kpi-idx { font-size: 11px; font-weight: 600; color: var(--txt-tertiary); font-variant-numeric: tabular-nums; }
+.kpi-idx { font-size: 11px; font-weight: 600; color: var(--accent); font-variant-numeric: tabular-nums; }
 .kpi-name { font-size: 14px; font-weight: 600; color: var(--txt-primary); }
 .kpi-desc { font-size: 13px; color: var(--txt-secondary); line-height: 1.45; }
 
