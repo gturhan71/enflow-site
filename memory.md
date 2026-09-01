@@ -30,3 +30,4 @@
 - [2026-09-01] [Antigravity Kaira]: Removed all badges, indicator pills (version pill, auto-tags, count badges), and all GitHub links/buttons across navigation, hero, CTA, and footer per user directive.
 - [2026-09-01] [Antigravity Kaira]: Integrated Anime.js animation engine (local zero-dependency bundle) to orchestrate smooth hero entrance timelines, staggered scroll-triggered grid reveals, continuous sequential pulse on the 8-stage chain nodes, and elastic card hover physics.
 - [2026-09-01] [Antigravity Kaira]: Fixed hero visibility by removing hiding reveal classes from above-the-fold elements and ensuring instant, resilient initialization on DOM ready.
+- [2026-09-01] [Antigravity Kaira]: Successfully pushed all refactored code and assets to remote GitHub repository (gturhan71/enflow-site @ main).
