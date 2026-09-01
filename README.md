@@ -20,6 +20,11 @@ Bağımlılık yok (`node_modules` gerekmez). Metni değiştirmek için **sadece
 - `script.js` — scroll-reveal + mobil menü
 - `assets/` — favicon dosyaları
 
+## Sayfalar
+- `/` (TR) / `/en/` (EN) — ana landing, tek sayfa akışı
+- `/dokumanlar/` / `/en/documents/` — satış & pazarlama dokümanları (PPT/PDF, hazır olduklarında)
+- `/analitik/` / `/en/analytics/` — Enflow'da yönetime sunulan **her** KPI/analitik/süreç-şeffaflığı özelliğinin eksiksiz kataloğu (109 madde, 10 kategori); içerik ana Enflow reposundaki gerçek kod/UI etiketlerinden derlenmiştir, uydurma madde yok
+
 ## Lokal önizleme
 ```bash
 python3 -m http.server 4300 --directory dist

@@ -157,6 +157,13 @@ function renderValue(c) {
       </div>`
     )
     .join('');
+  const cta = c.value.cta
+    ? `
+      <div class="value-cta reveal">
+        <p>${esc(c.value.cta.text)}</p>
+        <a class="btn btn-ghost btn-sm" href="${esc(c.value.cta.href)}">${esc(c.value.cta.buttonLabel)}${icon('arrow')}</a>
+      </div>`
+    : '';
   return `
   <section class="section" id="deger">
     <div class="wrap">
@@ -165,6 +172,7 @@ function renderValue(c) {
         <h2 class="section-title">${esc(c.value.title)}</h2>
       </div>
       <div class="value-grid">${cards}</div>
+      ${cta}
     </div>
   </section>`;
 }
@@ -248,11 +256,45 @@ function renderDocuments(c) {
   </section>`;
 }
 
-function renderDocumentsPageHead(c) {
+function renderSubPageHead(c, backLabel) {
   return `
   <section class="page-head">
     <div class="wrap">
-      <a class="back-link reveal" href="${c.nav.home}">${icon('arrow', 'icon icon-flip')}${esc(c.documents.backLabel)}</a>
+      <a class="back-link reveal" href="${c.nav.home}">${icon('arrow', 'icon icon-flip')}${esc(backLabel)}</a>
+    </div>
+  </section>`;
+}
+
+function renderAnalyticsCategory(cat) {
+  const items = cat.items
+    .map(
+      (it) => `
+      <div class="analytics-item reveal">
+        <h5>${esc(it.name)}</h5>
+        <p>${esc(it.desc)}</p>
+      </div>`
+    )
+    .join('');
+  return `
+    <div class="analytics-category">
+      <h3>${esc(cat.title)} <span class="analytics-count">${cat.items.length}</span></h3>
+      <p class="analytics-intro">${esc(cat.intro)}</p>
+      <div class="analytics-item-grid">${items}</div>
+    </div>`;
+}
+
+function renderAnalytics(c) {
+  const total = c.analytics.categories.reduce((sum, cat) => sum + cat.items.length, 0);
+  const categories = c.analytics.categories.map((cat) => renderAnalyticsCategory(cat)).join('');
+  return `
+  <section class="section" id="analitik-icerik">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">${esc(c.analytics.eyebrow)}</div>
+        <h2 class="section-title">${esc(c.analytics.title)} <span class="analytics-count analytics-count-lg">${total}</span></h2>
+        <p class="section-subtitle">${esc(c.analytics.subtitle)}</p>
+      </div>
+      ${categories}
     </div>
   </section>`;
 }
@@ -341,8 +383,38 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc) {
 <div class="bg-glow"></div>
 <div class="bg-grid"></div>
 ${renderNav(c, otherHref)}
-${renderDocumentsPageHead(c)}
+${renderSubPageHead(c, c.documents.backLabel)}
 ${renderDocuments(c)}
+${renderFooter(c)}
+<script src="${scriptSrc}"></script>
+</body>
+</html>`;
+}
+
+function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc) {
+  return `<!doctype html>
+<html lang="${c.htmlLang}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>${esc(c.analytics.title)} — Enflow</title>
+<meta name="description" content="${esc(c.analytics.subtitle)}" />
+<meta property="og:title" content="${esc(c.analytics.title)} — Enflow" />
+<meta property="og:description" content="${esc(c.analytics.subtitle)}" />
+<meta property="og:type" content="website" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${styleSrc}" />
+</head>
+<body>
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+${renderNav(c, otherHref)}
+${renderSubPageHead(c, c.analytics.backLabel)}
+${renderAnalytics(c)}
+${renderCta(c)}
 ${renderFooter(c)}
 <script src="${scriptSrc}"></script>
 </body>
@@ -354,6 +426,8 @@ mkdirSync(DIST, { recursive: true });
 mkdirSync(join(DIST, 'en'), { recursive: true });
 mkdirSync(join(DIST, 'dokumanlar'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'documents'), { recursive: true });
+mkdirSync(join(DIST, 'analitik'), { recursive: true });
+mkdirSync(join(DIST, 'en', 'analytics'), { recursive: true });
 
 writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css'));
 writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css'));
@@ -367,6 +441,15 @@ writeFileSync(
   renderDocumentsPage(content.en, '/dokumanlar/', '../../script.js', '../../styles.css')
 );
 
+writeFileSync(
+  join(DIST, 'analitik', 'index.html'),
+  renderAnalyticsPage(content.tr, '/en/analytics/', '../script.js', '../styles.css')
+);
+writeFileSync(
+  join(DIST, 'en', 'analytics', 'index.html'),
+  renderAnalyticsPage(content.en, '/analitik/', '../../script.js', '../../styles.css')
+);
+
 copyFileSync(join(HERE, 'styles.css'), join(DIST, 'styles.css'));
 copyFileSync(join(HERE, 'script.js'), join(DIST, 'script.js'));
 if (existsSync(join(HERE, 'robots.txt'))) copyFileSync(join(HERE, 'robots.txt'), join(DIST, 'robots.txt'));
@@ -377,4 +460,4 @@ for (const f of ['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png']) {
   if (existsSync(src)) copyFileSync(src, join(DIST, f));
 }
 
-console.log('✓ dist/index.html (TR) + dist/en/index.html (EN) + dokumanlar/documents sayfaları üretildi.');
+console.log('✓ dist/index.html (TR) + dist/en/index.html (EN) + dokumanlar/documents + analitik/analytics sayfaları üretildi.');
