@@ -4,119 +4,82 @@
   var hasAnime = typeof window.anime === 'function';
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── 01 / Hero Load Choreography (Anime.js) ─────────────────────
-  if (hasAnime && !reducedMotion) {
-    window.addEventListener('DOMContentLoaded', function () {
-      var heroHeader = document.querySelector('.hero-header');
-      if (heroHeader) {
-        var tl = window.anime.timeline({
+  // ── 01 / Hero Load Choreography ────────────────────────────────
+  function initHeroAnimation() {
+    if (hasAnime && !reducedMotion) {
+      try {
+        window.anime.timeline({
           easing: 'easeOutExpo',
           duration: 900
-        });
-
-        tl.add({
+        })
+        .add({
           targets: '.hero-title',
-          opacity: [0, 1],
-          translateY: [24, 0],
-          duration: 800
+          opacity: [0.3, 1],
+          translateY: [16, 0],
+          duration: 700
         })
         .add({
           targets: '.hero-lead',
-          opacity: [0, 1],
-          translateY: [18, 0],
-          duration: 700
-        }, '-=600')
-        .add({
-          targets: '.hero-actions .btn',
-          opacity: [0, 1],
-          translateY: [14, 0],
-          delay: window.anime.stagger(100),
+          opacity: [0.3, 1],
+          translateY: [12, 0],
           duration: 600
         }, '-=500')
         .add({
+          targets: '.hero-actions .btn',
+          opacity: [0.3, 1],
+          translateY: [10, 0],
+          delay: window.anime.stagger(80),
+          duration: 500
+        }, '-=400')
+        .add({
           targets: '.ledger-track .chain-node',
-          opacity: [0, 1],
-          translateY: [14, 0],
-          scale: [0.96, 1],
-          delay: window.anime.stagger(60),
-          duration: 600
-        }, '-=400');
-      }
+          opacity: [0.4, 1],
+          translateY: [10, 0],
+          delay: window.anime.stagger(50),
+          duration: 500
+        }, '-=350');
 
-      // Continuous subtle energy ripple across the 8-stage enterprise chain
-      var chainNodes = document.querySelectorAll('.ledger-track .chain-node');
-      if (chainNodes.length) {
-        window.anime({
-          targets: chainNodes,
-          borderColor: [
-            { value: 'rgba(41, 151, 255, 0.4)', duration: 400, easing: 'easeOutQuad' },
-            { value: 'rgba(255, 255, 255, 0.08)', duration: 600, easing: 'easeInQuad' }
-          ],
-          delay: window.anime.stagger(200),
-          loop: true,
-          autoplay: true,
-          endDelay: 3500
-        });
+        // Continuous energy ripple across the 8-stage chain
+        var chainNodes = document.querySelectorAll('.ledger-track .chain-node');
+        if (chainNodes.length) {
+          window.anime({
+            targets: chainNodes,
+            borderColor: [
+              { value: 'rgba(41, 151, 255, 0.4)', duration: 400, easing: 'easeOutQuad' },
+              { value: 'rgba(255, 255, 255, 0.08)', duration: 600, easing: 'easeInQuad' }
+            ],
+            delay: window.anime.stagger(180),
+            loop: true,
+            autoplay: true,
+            endDelay: 3500
+          });
+        }
+      } catch (e) {
+        console.warn('Hero animation fallback:', e);
       }
-    });
+    }
   }
 
-  // ── 02 / Staggered Scroll-Reveal (Anime.js + IntersectionObserver)
-  var gridContainers = document.querySelectorAll(
-    '.specs-grid, .problem-grid, .diff-grid, .flow-pipeline, .value-grid, .trust-grid, .audience-grid, .kpi-grid, .documents-grid'
-  );
-
-  if ('IntersectionObserver' in window && gridContainers.length && hasAnime && !reducedMotion) {
-    var gridObserver = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            var items = entry.target.querySelectorAll('.reveal');
-            if (items.length) {
-              window.anime({
-                targets: items,
-                opacity: [0, 1],
-                translateY: [28, 0],
-                delay: window.anime.stagger(70, { start: 100 }),
-                easing: 'easeOutCubic',
-                duration: 750,
-                complete: function () {
-                  items.forEach(function (el) { el.classList.add('is-visible'); });
-                }
-              });
-            }
-            gridObserver.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-    );
-
-    gridContainers.forEach(function (c) { gridObserver.observe(c); });
+  // Execute hero animation immediately
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroAnimation);
+  } else {
+    initHeroAnimation();
   }
 
-  // Fallback Scroll-reveal for non-grid elements or fallback mode
-  var revealEls = document.querySelectorAll('.section-head.reveal, .cta-card.reveal, .value-cta-banner.reveal, .hero-ledger.reveal');
+  // ── 02 / Reliable Scroll Reveal ───────────────────────────────
+  var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
     var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            if (hasAnime && !reducedMotion) {
-              window.anime({
-                targets: entry.target,
-                opacity: [0, 1],
-                translateY: [20, 0],
-                easing: 'easeOutQuad',
-                duration: 650
-              });
-            }
             entry.target.classList.add('is-visible');
             io.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
     );
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
@@ -125,14 +88,14 @@
 
   // ── 03 / Interactive Card Micro-Physics (Anime.js) ─────────────
   if (hasAnime && !reducedMotion) {
-    var hoverCards = document.querySelectorAll('.problem-card, .value-card, .trust-card, .spec-card, .flow-card');
+    var hoverCards = document.querySelectorAll('.problem-card, .value-card, .trust-card, .spec-card, .flow-card, .diff-card');
     hoverCards.forEach(function (card) {
       card.addEventListener('mouseenter', function () {
         window.anime.remove(card);
         window.anime({
           targets: card,
           translateY: -4,
-          duration: 220,
+          duration: 200,
           easing: 'easeOutQuad'
         });
       });
@@ -141,7 +104,7 @@
         window.anime({
           targets: card,
           translateY: 0,
-          duration: 340,
+          duration: 300,
           easing: 'easeOutElastic(1, 0.8)'
         });
       });

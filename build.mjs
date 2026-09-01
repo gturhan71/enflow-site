@@ -53,7 +53,7 @@ function renderHero(c) {
   return `
   <section class="hero" id="top">
     <div class="wrap hero-wrap">
-      <div class="hero-header reveal">
+      <div class="hero-header">
         <h1 class="hero-title">${nl2br(c.hero.title)}</h1>
         <p class="hero-lead">${esc(c.hero.subtitle)}</p>
         <div class="hero-actions">
@@ -61,7 +61,7 @@ function renderHero(c) {
           <a class="btn btn-secondary" href="#akis">${esc(c.hero.ctaSecondary)} <span class="btn-arrow">&rarr;</span></a>
         </div>
       </div>
-      <div class="hero-ledger reveal">
+      <div class="hero-ledger">
         <div class="ledger-track">${chainNodes}</div>
       </div>
     </div>
