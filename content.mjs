@@ -31,10 +31,6 @@ export const content = {
         'Ziyaretten tahsilata kadar tüm B2B sürecinizi tek zincirde otomatikleştiren platform. Bir adım biter, bir sonraki kendiliğinden açılır — hiçbir şey birimler arasında kaybolmaz.',
       ctaPrimary: 'Demo Talep Et',
       ctaSecondary: 'Nasıl çalıştığını gör',
-      githubUrl: 'https://github.com/gturhan71/Enflow',
-      githubLabel: 'GitHub Repo',
-      versionText: 'v2.3 · React 19 · Express 5 · Prisma 7',
-      installCmd: 'curl -fsSL https://raw.githubusercontent.com/gturhan71/Enflow/main/install/install.sh | bash',
       chain: ['Ziyaret', 'CRM', 'Presales', 'Teklif', 'Sözleşme', 'Proje', 'Satınalma', 'Finans'],
     },
     problem: {
@@ -411,10 +407,6 @@ export const content = {
         'One chain that automates your entire B2B process — from the first field visit to the final payment. One step closes, the next opens itself. Nothing gets lost between departments.',
       ctaPrimary: 'Request a Demo',
       ctaSecondary: 'See how it works',
-      githubUrl: 'https://github.com/gturhan71/Enflow',
-      githubLabel: 'GitHub Repo',
-      versionText: 'v2.3 Core · React 19 · Express 5 · Prisma 7',
-      installCmd: 'curl -fsSL https://raw.githubusercontent.com/gturhan71/Enflow/main/install/install.sh | bash',
       chain: ['Visit', 'CRM', 'Presales', 'Proposal', 'Contract', 'Project', 'Procurement', 'Finance'],
     },
     specs: {

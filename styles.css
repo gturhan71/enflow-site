@@ -127,17 +127,6 @@ button { font: inherit; }
 .btn-secondary .btn-arrow { transition: transform 0.2s var(--ease); display: inline-block; }
 .btn-secondary:hover .btn-arrow { transform: translateX(3px); }
 
-.btn-ghost {
-  background: transparent;
-  color: var(--accent);
-  padding: 12px 18px;
-}
-.btn-ghost:hover {
-  opacity: 0.8;
-}
-.btn-ghost .btn-arrow { transition: transform 0.2s var(--ease); display: inline-block; }
-.btn-ghost:hover .btn-arrow { transform: translateX(3px); }
-
 .btn-sm { padding: 8px 18px; font-size: 13px; }
 
 /* ── Site Header (Apple Frosted Glass) ────────────────────────── */
@@ -161,13 +150,6 @@ button { font: inherit; }
 .nav-link { font-size: 13px; color: var(--txt-secondary); font-weight: 400; transition: color 0.15s ease; }
 .nav-link:hover { color: var(--txt-primary); }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
-.nav-gh-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; color: var(--txt-secondary); padding: 6px 12px;
-  border-radius: var(--radius-pill); border: 1px solid var(--line);
-  transition: all 0.15s ease;
-}
-.nav-gh-link:hover { color: var(--txt-primary); border-color: var(--line-focus); }
 .lang-switch {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--line);
@@ -187,24 +169,12 @@ button { font: inherit; }
   padding: 14px 0; font-size: 17px; font-weight: 400; color: var(--txt-primary);
   border-bottom: 1px solid var(--line-subtle);
 }
-.mobile-gh-link { display: flex; align-items: center; gap: 8px; color: var(--accent) !important; }
 .mobile-nav .btn { margin-top: 20px; }
 
 /* ── Hero Section ────────────────────────────────────────────── */
 .hero { padding: 96px 0 88px; position: relative; border-bottom: 1px solid var(--line-subtle); }
 .hero-wrap { max-width: 960px; }
 .hero-header { text-align: left; }
-.hero-version-pill {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line);
-  padding: 6px 14px; border-radius: var(--radius-pill);
-  font-size: 12.5px; font-weight: 500; color: var(--txt-secondary);
-  margin-bottom: 24px; transition: all 0.2s ease;
-}
-.hero-version-pill:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--line-focus); color: var(--txt-primary); }
-.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); }
-.pill-arrow { transition: transform 0.2s ease; display: inline-block; color: var(--accent); }
-.hero-version-pill:hover .pill-arrow { transform: translateX(3px); }
 
 .hero-title {
   font-size: clamp(40px, 6.4vw, 70px);
@@ -222,33 +192,6 @@ button { font: inherit; }
   letter-spacing: -0.012em;
 }
 .hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 36px; flex-wrap: wrap; }
-
-.hero-install-card {
-  margin-top: 32px;
-  max-width: 640px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.install-bar { display: flex; align-items: center; gap: 10px; overflow: hidden; }
-.install-prompt { color: var(--accent); display: flex; }
-.install-code {
-  font-family: inherit; font-size: 13px; color: var(--txt-primary);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.copy-btn {
-  background: rgba(255, 255, 255, 0.08); border: 1px solid var(--line);
-  color: var(--txt-primary); padding: 6px 12px; border-radius: var(--radius-sm);
-  font-size: 12px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 6px;
-  transition: all 0.15s ease; flex-shrink: 0;
-}
-.copy-btn:hover { background: rgba(255, 255, 255, 0.14); }
-.copy-btn.is-copied { background: rgba(48, 209, 88, 0.15); border-color: rgba(48, 209, 88, 0.3); color: var(--accent-green); }
 
 .hero-ledger {
   margin-top: 56px;
@@ -350,7 +293,7 @@ button { font: inherit; }
 .diff-old p { font-size: 14px; color: var(--txt-secondary); line-height: 1.5; }
 .diff-new p { font-size: 15px; color: var(--txt-primary); font-weight: 500; line-height: 1.5; }
 
-/* ── 03 / Flow Pipeline (Interactive Stages) ─────────────────── */
+/* ── 03 / Flow Pipeline ──────────────────────────────────────── */
 .flow-pipeline {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -369,21 +312,11 @@ button { font: inherit; }
 .flow-card-head {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 14px;
 }
 .flow-step-num {
-  font-size: 11px; font-weight: 600; color: var(--txt-tertiary);
+  font-size: 12px; font-weight: 600; color: var(--accent);
   font-variant-numeric: tabular-nums;
-}
-.auto-tag {
-  font-size: 10px; font-weight: 600; color: var(--accent);
-  background: rgba(41, 151, 255, 0.1); border: 1px solid rgba(41, 151, 255, 0.22);
-  padding: 2px 8px; border-radius: var(--radius-pill);
-}
-.manual-tag {
-  font-size: 10px; font-weight: 500; color: var(--txt-tertiary);
-  padding: 2px 6px;
 }
 .flow-step-title { font-size: 16px; font-weight: 600; color: var(--txt-primary); margin-bottom: 6px; }
 .flow-step-desc { font-size: 13.5px; color: var(--txt-secondary); line-height: 1.45; }
@@ -502,12 +435,6 @@ button { font: inherit; }
   font-size: 12px; font-weight: 600;
   color: var(--accent);
 }
-.status-badge {
-  font-size: 10.5px; font-weight: 600; letter-spacing: 0.04em;
-  padding: 3px 8px; border-radius: var(--radius-pill);
-}
-.status-ready { background: rgba(48, 209, 88, 0.12); color: var(--accent-green); }
-.status-soon { background: rgba(255, 255, 255, 0.06); color: var(--txt-tertiary); }
 .doc-card-title { font-size: 17px; font-weight: 600; color: var(--txt-primary); margin-bottom: 8px; }
 .doc-card-desc { font-size: 14px; color: var(--txt-secondary); line-height: 1.5; margin-bottom: 24px; flex-grow: 1; }
 .doc-btn { width: 100%; }
@@ -519,13 +446,6 @@ button { font: inherit; }
 }
 
 /* ── Analytics & KPI Matrix (Apple Grouped Directory) ────────── */
-.kpi-total-pill {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--accent);
-  vertical-align: middle;
-  margin-left: 8px;
-}
 .kpi-category-group {
   margin-top: 56px;
   padding-top: 40px;
@@ -547,16 +467,6 @@ button { font: inherit; }
   letter-spacing: -0.02em;
 }
 .kpi-cat-intro { font-size: 14.5px; color: var(--txt-secondary); max-width: 680px; }
-.kpi-count-pill {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  padding: 6px 14px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent);
-  flex-shrink: 0;
-}
 
 .kpi-grid {
   display: grid;
@@ -671,7 +581,6 @@ button { font: inherit; }
   .page-head { padding: 80px 0 0; }
   .hero-actions { flex-direction: column; width: 100%; }
   .hero-actions .btn { width: 100%; }
-  .hero-install-card { flex-direction: column; align-items: stretch; }
   .cta-btn-group { flex-direction: column; width: 100%; }
   .cta-btn-group .btn { width: 100%; }
 }
