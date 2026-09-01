@@ -48,9 +48,8 @@ function renderHero(c) {
     .join('');
   return `
   <section class="hero" id="top">
-    <div class="hero-mesh"></div>
     <div class="wrap hero-inner">
-      <div class="hero-badge reveal"><span class="dot"></span>${esc(c.hero.eyebrow)}</div>
+      <div class="hero-badge reveal"><span class="dot"></span>${esc(c.hero.badge)}</div>
       <h1 class="reveal">${nl2br(c.hero.title)}</h1>
       <p class="hero-subtitle reveal">${esc(c.hero.subtitle)}</p>
       <div class="hero-actions reveal">
@@ -78,7 +77,6 @@ function renderProblem(c) {
   <section class="section" id="sorun">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.problem.eyebrow)}</div>
         <h2 class="section-title">${esc(c.problem.title)}</h2>
         <p class="section-subtitle">${esc(c.problem.subtitle)}</p>
       </div>
@@ -107,7 +105,6 @@ function renderDiff(c) {
   <section class="section" id="fark">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.diff.eyebrow)}</div>
         <h2 class="section-title">${esc(c.diff.title)}</h2>
         <p class="section-subtitle">${esc(c.diff.subtitle)}</p>
       </div>
@@ -136,7 +133,6 @@ function renderFlow(c) {
   <section class="section" id="akis">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.flow.eyebrow)}</div>
         <h2 class="section-title">${esc(c.flow.title)}</h2>
         <p class="section-subtitle">${esc(c.flow.subtitle)}</p>
       </div>
@@ -168,7 +164,6 @@ function renderValue(c) {
   <section class="section" id="deger">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.value.eyebrow)}</div>
         <h2 class="section-title">${esc(c.value.title)}</h2>
       </div>
       <div class="value-grid">${cards}</div>
@@ -192,7 +187,6 @@ function renderTrust(c) {
   <section class="section" id="guven">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.trust.eyebrow)}</div>
         <h2 class="section-title">${esc(c.trust.title)}</h2>
         <p class="section-subtitle">${esc(c.trust.subtitle)}</p>
       </div>
@@ -216,7 +210,6 @@ function renderAudience(c) {
   <section class="section" id="kitle">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.audience.eyebrow)}</div>
         <h2 class="section-title">${esc(c.audience.title)}</h2>
       </div>
       <div class="audience-grid">${cards}</div>
@@ -246,7 +239,6 @@ function renderDocuments(c) {
   <section class="section" id="dokumanlar">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.documents.eyebrow)}</div>
         <h2 class="section-title">${esc(c.documents.title)}</h2>
         <p class="section-subtitle">${esc(c.documents.subtitle)}</p>
       </div>
@@ -290,7 +282,6 @@ function renderAnalytics(c) {
   <section class="section" id="analitik-icerik">
     <div class="wrap">
       <div class="section-head reveal">
-        <div class="eyebrow">${esc(c.analytics.eyebrow)}</div>
         <h2 class="section-title">${esc(c.analytics.title)} <span class="analytics-count analytics-count-lg">${total}</span></h2>
         <p class="section-subtitle">${esc(c.analytics.subtitle)}</p>
       </div>

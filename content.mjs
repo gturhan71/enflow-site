@@ -26,7 +26,7 @@ export const content = {
       home: '/',
     },
     hero: {
-      eyebrow: 'Kurumsal Süreç & Satış Yaşam Döngüsü Platformu',
+      badge: 'Kurumsal Süreç & Satış Yaşam Döngüsü Platformu',
       title: 'Süreçleriniz artık\nbirbirini beklemesin.',
       subtitle:
         'Ziyaretten tahsilata kadar tüm B2B sürecinizi tek zincirde otomatikleştiren platform. Bir adım biter, bir sonraki kendiliğinden açılır — hiçbir şey birimler arasında kaybolmaz.',
@@ -35,7 +35,6 @@ export const content = {
       chain: ['Ziyaret', 'CRM', 'Teklif', 'Sözleşme', 'Proje', 'Tahsilat'],
     },
     problem: {
-      eyebrow: 'Tanıdık geliyor mu?',
       title: 'Büyüyen her şirket aynı noktada tıkanır.',
       subtitle:
         'Süreç sayısı arttıkça sorumluluk dağılır. Enflow olmadan çoğu şirket şunlardan en az üçünü yaşıyor:',
@@ -49,7 +48,6 @@ export const content = {
       ],
     },
     diff: {
-      eyebrow: 'Neden Enflow',
       title: 'Kopuk araçlar değil, tek bir zincir.',
       subtitle:
         'Piyasadaki çoğu çözüm satışta biter ya da genel amaçlı bir ERP\'yi size uydurmanızı bekler. Enflow, B2B\'nin gerçek yaşam döngüsü için baştan tasarlandı.',
@@ -81,7 +79,6 @@ export const content = {
       ],
     },
     flow: {
-      eyebrow: 'Uçtan Uca Akış',
       title: 'Bir zincir, sekiz birim, tek kayıt.',
       subtitle: 'Her ok, elle takip etmeniz gerekmeyen otomatik bir devri temsil eder.',
       steps: [
@@ -97,7 +94,6 @@ export const content = {
       autoNote: 'auto = otomatik devir',
     },
     value: {
-      eyebrow: 'Karar Vericiye Değer',
       title: 'Şirketinizin nabzını gerçek zamanlı tutun.',
       cards: [
         {
@@ -128,7 +124,6 @@ export const content = {
       },
     },
     trust: {
-      eyebrow: 'Güven & Güvenlik',
       title: 'Otomasyon, kontrolü elinizden almaz.',
       subtitle:
         'Bir platforma tüm satış ve finans verinizi emanet ederken güven şart. Enflow\'da otomasyonun sınırları nettir.',
@@ -151,7 +146,6 @@ export const content = {
       ],
     },
     audience: {
-      eyebrow: 'Kimler İçin',
       title: 'Birden fazla birimin ortak bir süreçte buluşması gereken her kurum için.',
       cards: [
         { icon: 'building', title: 'KOBİ ve kurumlar', text: 'Satış, ihale, sözleşme, proje ve finansı tek platformda; Excel + e-posta dağınıklığına son.' },
@@ -163,7 +157,6 @@ export const content = {
       ],
     },
     documents: {
-      eyebrow: 'Kaynaklar',
       title: 'Satış & Pazarlama Dokümanları',
       subtitle: 'Enflow\'ün imkan ve kabiliyetlerini karar vericiye anlatan sunum ve referans dokümanları burada yayınlanır.',
       emptyNote: 'Dokümanlar hazırlanıyor — hazır olduklarında bu sayfadan indirilebilecek.',
@@ -186,7 +179,6 @@ export const content = {
       ],
     },
     analytics: {
-      eyebrow: 'Kaynaklar',
       title: 'KPI & Monitör Panelleri',
       subtitle:
         'Enflow\'da yönetime sunulan her kokpit kartı, analitik rapor ve süreç-şeffaflığı özelliği — tek sayfada, olduğu gibi.',
@@ -320,7 +312,7 @@ export const content = {
             { name: 'Otomatik Arşivleme', desc: '180 günden eski loglar sha256 mühürlü dosyaya arşivlenir.' },
             { name: 'İnsan/Agent Aktör Ayrımı', desc: 'Her kayıt hangi kişi ya da hangi sanal agent tarafından yapıldığını taşır.' },
             { name: 'Kalıcı Anlık Görüntü', desc: 'Kayıt silinse veya adı değişse bile denetim izi anlamını korur.' },
-            { name: 'Agent Köken Rozeti', desc: '"🤖 X tarafından yapıldı" rozetine tıklanınca gerekçe ve itiraz/geri-alma kontrolü açılır.' },
+            { name: 'Agent Köken Rozeti', desc: '"Agent: X tarafından yapıldı" rozetine tıklanınca gerekçe ve itiraz/geri-alma kontrolü açılır.' },
           ],
         },
         {
@@ -401,7 +393,7 @@ export const content = {
       home: '/en/',
     },
     hero: {
-      eyebrow: 'Enterprise Process & Sales Lifecycle Platform',
+      badge: 'Enterprise Process & Sales Lifecycle Platform',
       title: 'Your processes stop\nwaiting on each other.',
       subtitle:
         'One chain that automates your entire B2B process — from the first field visit to the final payment. One step closes, the next opens itself. Nothing gets lost between departments.',
@@ -410,7 +402,6 @@ export const content = {
       chain: ['Visit', 'CRM', 'Proposal', 'Contract', 'Project', 'Collection'],
     },
     problem: {
-      eyebrow: 'Sound familiar?',
       title: 'Every growing company hits the same wall.',
       subtitle: 'As process count grows, ownership gets diffuse. Without Enflow, most companies live at least three of these:',
       items: [
@@ -423,7 +414,6 @@ export const content = {
       ],
     },
     diff: {
-      eyebrow: 'Why Enflow',
       title: 'Not disconnected tools — one chain.',
       subtitle:
         'Most solutions on the market stop at the sale, or expect you to bend a generic ERP into shape. Enflow was designed from the ground up for the real B2B lifecycle.',
@@ -455,7 +445,6 @@ export const content = {
       ],
     },
     flow: {
-      eyebrow: 'End-to-End Flow',
       title: 'One chain, eight departments, one record.',
       subtitle: 'Every arrow is an automatic hand-off you no longer have to chase.',
       steps: [
@@ -471,7 +460,6 @@ export const content = {
       autoNote: 'auto = automatic hand-off',
     },
     value: {
-      eyebrow: 'Value for Decision-Makers',
       title: 'Keep a live pulse on your company.',
       cards: [
         {
@@ -502,7 +490,6 @@ export const content = {
       },
     },
     trust: {
-      eyebrow: 'Trust & Security',
       title: 'Automation never takes control away from you.',
       subtitle: 'Handing a platform your entire sales and finance data demands trust. In Enflow, automation has clear limits.',
       items: [
@@ -524,7 +511,6 @@ export const content = {
       ],
     },
     audience: {
-      eyebrow: 'Who It\'s For',
       title: 'For any organization where multiple departments must meet on one shared process.',
       cards: [
         { icon: 'building', title: 'SMEs and enterprises', text: 'Sales, tendering, contracts, projects and finance in one platform — no more Excel and email sprawl.' },
@@ -536,7 +522,6 @@ export const content = {
       ],
     },
     documents: {
-      eyebrow: 'Resources',
       title: 'Sales & Marketing Documents',
       subtitle: 'Presentations and reference documents explaining Enflow\'s capabilities to decision-makers, published here.',
       emptyNote: 'Documents are in preparation — they\'ll be downloadable from this page once ready.',
@@ -559,7 +544,6 @@ export const content = {
       ],
     },
     analytics: {
-      eyebrow: 'Resources',
       title: 'KPI & Monitoring Dashboards',
       subtitle:
         'Every cockpit card, analytics report and process-transparency feature Enflow puts in front of management — on one page, as-is.',
@@ -680,7 +664,7 @@ export const content = {
             { name: 'Delegation Visibility', desc: 'Time-boxed or indefinite delegation of approvals.' },
             { name: 'Multi-Approver ANY/ALL Resolution', desc: 'Transparent logic for parallel stages — any one, or everyone, must approve.' },
             { name: 'Approval SLA & Auto-Escalation', desc: 'Overdue approvals automatically escalate to executive management.' },
-            { name: 'Task SLA Escalation', desc: 'Overdue tasks are flagged to the next-level unit manager.' },
+            { name: 'Task SLA Escalation', desc: 'Overdue tasks escalate to the direct department manager.' },
           ],
         },
         {
@@ -693,7 +677,7 @@ export const content = {
             { name: 'Automatic Archiving', desc: 'Logs older than 180 days are archived to a sha256-sealed file.' },
             { name: 'Human/Agent Actor Tagging', desc: 'Every record carries which person — or which virtual agent — performed it.' },
             { name: 'Permanent Snapshot', desc: 'The audit trail stays meaningful even if the underlying record is deleted or renamed.' },
-            { name: 'Agent Provenance Badge', desc: 'Click "🤖 Done by X" to see the rationale and a dispute/undo control.' },
+            { name: 'Agent Provenance Badge', desc: 'Click "Agent: Done by X" to see the rationale and a dispute/undo control.' },
           ],
         },
         {
