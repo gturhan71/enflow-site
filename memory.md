@@ -23,3 +23,4 @@
 
 ## Change Log & Agent Trail
 - [2026-09-01] [Antigravity Kaira]: Refactored styling and copy using kill-ai-slop standards. Removed gradient-clip headline text, atmospheric 3-color mesh blur, repetitive kicker elements, glowing drop shadows, and robot emoji. Enforced solid surfaces, clean 6-8px border radius, and high-contrast B2B aesthetic. Rebuilt static HTML pages.
+- [2026-09-01] [Antigravity Kaira]: Elevated visual identity to a premium editorial architecture design system. Replaced Inter with a Newsreader display serif and Plus Jakarta Sans pairing. Implemented asymmetric editorial layouts, comparative ledger components, and grounded carbon/parchment color tokens.
