@@ -13,7 +13,7 @@ import { icons } from './icons.mjs';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DIST = join(HERE, 'dist');
 const SHOTS_SRC = join(HERE, 'assets', 'screenshots');
-const hasShot = (slot) => existsSync(join(SHOTS_SRC, `${slot}.png`));
+const hasShot = (slot) => existsSync(join(SHOTS_SRC, `${slot}.jpg`));
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const nl2br = (s) => esc(s).replace(/\n/g, '<br/>');
@@ -334,8 +334,8 @@ function renderAnalytics(c) {
 
 function renderTourShot(shot, pendingLabel) {
   const media = hasShot(shot.slot)
-    ? `<img src="/screenshots/${shot.slot}.png" alt="${esc(shot.title)}" loading="lazy" />`
-    : `<div class="tour-shot-pending"><span>${esc(pendingLabel)}</span><code>${esc(shot.slot)}.png</code></div>`;
+    ? `<img src="/screenshots/${shot.slot}.jpg" alt="${esc(shot.title)}" loading="lazy" />`
+    : `<div class="tour-shot-pending"><span>${esc(pendingLabel)}</span><code>${esc(shot.slot)}.jpg</code></div>`;
   return `
       <figure class="tour-shot${hasShot(shot.slot) ? '' : ' is-pending'} reveal">
         <div class="tour-shot-frame">${media}</div>

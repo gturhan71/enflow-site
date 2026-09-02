@@ -2,8 +2,9 @@
  * Ekran Turu — ekran görüntüsü yakalama (yerel, tek seferlik dev aracı).
  *
  * Enflow uygulamasını (varsayılan http://localhost:3000) tenant / rol oturumuyla
- * gezip her ekranı PNG olarak `assets/screenshots/`'a kaydeder. Uygulamada URL
- * yönlendirme yok (activeTab React state), bu yüzden sidebar/tab'lara tıklar.
+ * gezip her ekranı JPEG (q82, 1x/1440×1024) olarak `assets/screenshots/`'a
+ * kaydeder. Uygulamada URL yönlendirme yok (activeTab React state), bu yüzden
+ * sidebar/tab'lara tıklar.
  *
  * ÖN KOŞUL — demo verisi temiz olmalı:
  *   Yakalamadan önce Enflow seed'indeki kurum/müşteri/ihale adları ve İKN
@@ -67,7 +68,19 @@ const STEPS = [
   ['04-karlilik',         async (p) => { await clickNav(p, 'Kârlılık'); }],
   ['05-crm-genel-bakis',  async (p) => { await clickNav(p, 'Genel Bakış', { expandFirst: 'CRM & Müşteri' }); }],
   ['06-crm-firsatlar',    async (p) => { await clickNav(p, 'Fırsatlar', { expandFirst: 'CRM & Müşteri' }); }],
-  ['07-presales-bom',     async (p) => { await clickNav(p, 'BoM & Tasarım', { expandFirst: 'Presales & Dizayn' }); }],
+  ['07-presales-bom',     async (p) => {
+    await clickNav(p, 'BoM & Tasarım', { expandFirst: 'Presales & Dizayn' });
+    await settle(p, 1500);
+    const oppId = 'cmtk7jp6s0028o9w3q6jofinn';
+    // Fırsat listesi ayrı bir fetch ile async dolduğu için hedef <option>
+    // DOM'a geç eklenebilir — accessible-name yerine doğrudan option'ı
+    // içeren <select>'i bekleyip seç (isim eşleşmesi seçili değere göre
+    // değiştiğinden getByRole('combobox', {name}) kırılgan).
+    const sel = p.locator(`select:has(option[value="${oppId}"])`);
+    await sel.waitFor({ state: 'attached', timeout: 20000 });
+    await sel.selectOption(oppId);
+    await settle(p, 1200);
+  }],
   ['08-satinalma',        async (p) => { await clickNav(p, 'Satın Alma'); }],
   ['09-finans',           async (p) => { await clickNav(p, 'Finans'); }],
   ['10-sozlesme-yonetimi', async (p) => { await clickNav(p, 'Sözleşme Yönetimi'); }],
@@ -79,7 +92,7 @@ const STEPS = [
 ];
 
 const browser = await chromium.launch();
-const ctx = await browser.newContext({ viewport: { width: 1440, height: 1024 }, deviceScaleFactor: 2, locale: 'tr-TR' });
+const ctx = await browser.newContext({ viewport: { width: 1440, height: 1024 }, deviceScaleFactor: 1, locale: 'tr-TR' });
 const page = await ctx.newPage();
 await page.addInitScript((seed) => {
   for (const [k, v] of Object.entries(seed)) localStorage.setItem(k, v);
@@ -94,7 +107,9 @@ for (const [name, fn] of STEPS) {
     await settle(page);
     await page.evaluate(() => window.scrollTo(0, 0)).catch(() => {});
     await sleep(300);
-    await page.screenshot({ path: join(OUT, `${name}.png`) });
+    // JPEG q82 @1x — site'da retina'ya gerek yok (tour-shot-frame ~700px CSS
+    // genişlik), dosya boyutu PNG@2x'e göre ~%75 daha küçük (bkz. README).
+    await page.screenshot({ path: join(OUT, `${name}.jpg`), type: 'jpeg', quality: 82 });
     results.push(`  OK   ${name}`);
   } catch (e) {
     results.push(`  FAIL ${name}  — ${e.message.split('\n')[0]}`);

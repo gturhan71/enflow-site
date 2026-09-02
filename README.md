@@ -32,8 +32,9 @@ Bağımlılık yok (`node_modules` gerekmez). Metni değiştirmek için **sadece
    veri!) uygun rolle giriş yap.
 2. Tarayıcı konsolunda `copy(JSON.stringify(Object.fromEntries(Object.entries(localStorage))))`
    çalıştır, çıktıyı `scripts/ls-seed.json`'a kaydet (gitignore'da — asla commit edilmez).
-3. `node scripts/capture-screenshots.mjs` → `assets/screenshots/{slot}.png` (16 slot,
-   `content.mjs`'teki `productTour.groups[].shots[].slot` ile birebir eşleşir).
+3. `node scripts/capture-screenshots.mjs` → `assets/screenshots/{slot}.jpg` (JPEG
+   q82, 1x/1440×1024 — 16 slot, `content.mjs`'teki `productTour.groups[].shots[].slot`
+   ile birebir eşleşir).
 4. `node build.mjs` — `hasShot()` kontrolü var olan slotları otomatik görsele bağlar,
    eksik olan slotlar "hazırlanıyor" yer tutucusuyla gösterilir.
 5. **Commit etmeden önce mutlaka görsel olarak gözden geçir** — gerçek müşteri/ihale
