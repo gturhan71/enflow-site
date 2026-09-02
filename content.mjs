@@ -270,7 +270,7 @@ export const content = {
           ],
         },
         {
-          title: 'Kârlılık & Hazine',
+          title: 'Karlılık ve Nakit Akışı',
           intro: 'Zamana duyarlı, tahakkuk ve nakit esaslı paralel kârlılık motoru — proje bazından yıllığa.',
           items: [
             { name: 'Zaman Dilimi Seçici', desc: 'Proje / aylık / çeyreklik / yıllık kırılımda kârlılık görünümü.' },
@@ -285,7 +285,7 @@ export const content = {
         },
         {
           title: 'DMO Kanalı',
-          intro: 'Doğrudan Mal Ortağı satış kanalının kendine özgü, risturn/komisyon-duyarlı kârlılık motoru.',
+          intro: 'Devlet Malzeme Ofisi satış kanalının kendine özgü, risturn/komisyon-duyarlı kârlılık motoru.',
           items: [
             { name: 'DMO Zaman Dilimi Seçici', desc: 'Aylık / çeyreklik / yıllık / kurum bazlı kırılım.' },
             { name: 'Net Kâr', desc: 'Aktif DMO siparişlerinin risturn ve komisyon sonrası net kârı.' },
@@ -659,7 +659,7 @@ export const content = {
         },
         {
           title: 'DMO Channel',
-          intro: 'A dedicated, rebate-and-commission-aware profitability engine for the direct-supply sales channel.',
+          intro: 'A dedicated, rebate-and-commission-aware profitability engine for the State Supply Office (DMO) sales channel.',
           items: [
             { name: 'DMO Grain Switcher', desc: 'Monthly / quarterly / yearly / per-institution breakdown.' },
             { name: 'Net Profit', desc: 'Net profit of active DMO orders after rebate and commission.' },
