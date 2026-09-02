@@ -4,7 +4,7 @@
  * Metni değiştirmek için content.mjs'i düzenle, sonra bunu çalıştır. Bağımlılık yok.
  * Bu proje Enflow ana reposundan bağımsızdır — kendi git geçmişi, kendi deploy'u var.
  */
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, existsSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { content } from './content.mjs';
@@ -12,6 +12,8 @@ import { icons } from './icons.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DIST = join(HERE, 'dist');
+const SHOTS_SRC = join(HERE, 'assets', 'screenshots');
+const hasShot = (slot) => existsSync(join(SHOTS_SRC, `${slot}.png`));
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const nl2br = (s) => esc(s).replace(/\n/g, '<br/>');
@@ -330,6 +332,45 @@ function renderAnalytics(c) {
   </section>`;
 }
 
+function renderTourShot(shot, pendingLabel) {
+  const media = hasShot(shot.slot)
+    ? `<img src="/screenshots/${shot.slot}.png" alt="${esc(shot.title)}" loading="lazy" />`
+    : `<div class="tour-shot-pending"><span>${esc(pendingLabel)}</span><code>${esc(shot.slot)}.png</code></div>`;
+  return `
+      <figure class="tour-shot${hasShot(shot.slot) ? '' : ' is-pending'} reveal">
+        <div class="tour-shot-frame">${media}</div>
+        <figcaption><strong>${esc(shot.title)}</strong>${esc(shot.caption)}</figcaption>
+      </figure>`;
+}
+
+function renderTourGroup(group, pendingLabel) {
+  const shots = group.shots.map((s) => renderTourShot(s, pendingLabel)).join('');
+  return `
+    <div class="tour-group">
+      <div class="tour-group-head reveal">
+        <h3 class="tour-group-title">${esc(group.unit)}</h3>
+        <p class="tour-basis">${esc(group.basis)}</p>
+      </div>
+      <div class="tour-shot-grid">${shots}</div>
+    </div>`;
+}
+
+function renderProductTour(c) {
+  const t = c.productTour;
+  const groups = t.groups.map((g) => renderTourGroup(g, t.pendingLabel)).join('');
+  return `
+  <section class="section section-tour" id="ekran-turu">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="section-title">${esc(t.title)}</h2>
+        <p class="section-subtitle">${esc(t.subtitle)}</p>
+      </div>
+      <p class="tour-note reveal">${esc(t.note)}</p>
+      ${groups}
+    </div>
+  </section>`;
+}
+
 function renderCta(c) {
   return `
   <section class="section section-cta" id="cta">
@@ -453,6 +494,34 @@ ${renderFooter(c)}
 </html>`;
 }
 
+function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
+  return `<!doctype html>
+<html lang="${c.htmlLang}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>${esc(c.productTour.title)} — Enflow</title>
+<meta name="description" content="${esc(c.productTour.subtitle)}" />
+<meta property="og:title" content="${esc(c.productTour.title)} — Enflow" />
+<meta property="og:description" content="${esc(c.productTour.subtitle)}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="stylesheet" href="${styleSrc}" />
+</head>
+<body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
+${renderNav(c, otherHref)}
+${renderSubPageHead(c, c.productTour.backLabel)}
+${renderProductTour(c)}
+${renderCta(c)}
+${renderFooter(c)}
+<script src="${animeSrc}"></script>
+<script src="${scriptSrc}"></script>
+</body>
+</html>`;
+}
+
 // ── Build ────────────────────────────────────────────────────────────────
 mkdirSync(DIST, { recursive: true });
 mkdirSync(join(DIST, 'en'), { recursive: true });
@@ -460,6 +529,8 @@ mkdirSync(join(DIST, 'dokumanlar'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'documents'), { recursive: true });
 mkdirSync(join(DIST, 'analitik'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'analytics'), { recursive: true });
+mkdirSync(join(DIST, 'ekran-turu'), { recursive: true });
+mkdirSync(join(DIST, 'en', 'product-tour'), { recursive: true });
 
 writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css', '/anime.min.js'));
 writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css', '../anime.min.js'));
@@ -482,6 +553,24 @@ writeFileSync(
   renderAnalyticsPage(content.en, '/analitik/', '../../script.js', '../../styles.css', '../../anime.min.js')
 );
 
+writeFileSync(
+  join(DIST, 'ekran-turu', 'index.html'),
+  renderProductTourPage(content.tr, '/en/product-tour/', '../script.js', '../styles.css', '../anime.min.js')
+);
+writeFileSync(
+  join(DIST, 'en', 'product-tour', 'index.html'),
+  renderProductTourPage(content.en, '/ekran-turu/', '../../script.js', '../../styles.css', '../../anime.min.js')
+);
+
+// Ekran turu görselleri: assets/screenshots/*  →  dist/screenshots/*
+if (existsSync(SHOTS_SRC)) {
+  const shotsOut = join(DIST, 'screenshots');
+  mkdirSync(shotsOut, { recursive: true });
+  for (const f of readdirSync(SHOTS_SRC)) {
+    if (/\.(png|jpe?g|webp|avif)$/i.test(f)) copyFileSync(join(SHOTS_SRC, f), join(shotsOut, f));
+  }
+}
+
 copyFileSync(join(HERE, 'styles.css'), join(DIST, 'styles.css'));
 copyFileSync(join(HERE, 'script.js'), join(DIST, 'script.js'));
 copyFileSync(join(HERE, 'anime.min.js'), join(DIST, 'anime.min.js'));
@@ -493,4 +582,4 @@ for (const f of ['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png', 'og
   if (existsSync(src)) copyFileSync(src, join(DIST, f));
 }
 
-console.log('✓ dist/index.html (TR) + dist/en/index.html (EN) + dokumanlar/documents + analitik/analytics sayfaları üretildi.');
+console.log('✓ dist/index.html (TR) + dist/en/index.html (EN) + dokumanlar/documents + analitik/analytics + ekran-turu/product-tour sayfaları üretildi.');

@@ -5,3 +5,4 @@ node_modules/
 .context/
 social/dist/
 social/output/
+scripts/ls-seed.json

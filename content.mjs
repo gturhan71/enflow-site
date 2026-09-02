@@ -18,6 +18,7 @@ export const content = {
         { href: '/#akis', label: 'Nasıl Çalışır' },
         { href: '/#deger', label: 'Değer' },
         { href: '/#guven', label: 'Güven' },
+        { href: '/ekran-turu/', label: 'Ekran Turu' },
         { href: '/analitik/', label: 'Analitik' },
         { href: '/dokumanlar/', label: 'Dökümanlar' },
       ],
@@ -364,6 +365,102 @@ export const content = {
         },
       ],
     },
+    productTour: {
+      eyebrow: 'Ürün Turu',
+      title: 'Ekran Turu',
+      subtitle:
+        'Enflow her birimin işini nasıl gördüğünü tek zincirde birleştirir. Aşağıda birim birim çalışma esası ve o birimin gerçek ekranları.',
+      backLabel: 'Ana sayfaya dön',
+      pendingLabel: 'Ekran görüntüsü hazırlanıyor',
+      note: 'Ekran görüntüleri Enflow demo ortamından alınır; tüm veriler temsilîdir, gerçek müşteri ya da ihale verisi içermez.',
+      groups: [
+        {
+          unit: 'Yönetim',
+          basis:
+            'Genel Müdür ve üst yönetim sisteme girince role göre açılan kokpiti görür: tüm birimlerden gelen kritik vadeler önem sırasına dizili, altında role özel KPI kartları. Bir onayın zincirin neresinde beklediği tek ekranda.',
+          shots: [
+            { slot: '01-yonetim-kokpiti', title: 'Yönetim Kokpiti', caption: 'Kritik uyarı şeridi + kazanım oranı, açık pipeline, ihale/sözleşme/teminat vadeleri — hepsi canlı.' },
+            { slot: '02-buyume-analitigi', title: 'Büyüme Analitiği', caption: 'Dönüşüm hunisi, kayıp nedenleri, iş/proje/müşteri sağlık skorları ve müşteri konsantrasyon riski.' },
+            { slot: '04-karlilik', title: 'Karlılık ve Nakit Akışı', caption: 'Planlanan / gerçekleşen / EAC marj yan yana; tahakkuk ve nakit esaslı paralel raporlama, konsolide nakit pozisyonu.' },
+          ],
+        },
+        {
+          unit: 'Birim Raporları',
+          basis:
+            'Her birim kendi dönemsel metriklerini aynı şablonla raporlar. Sistem bir önceki dönemle otomatik kıyaslar (▲/▼) ve onay zincirinde en uzun bekleyen birimi darboğaz olarak öne çıkarır.',
+          shots: [
+            { slot: '03-birim-genel-bakis', title: 'Birim Genel Bakış', caption: 'CRM/Satış, Presales, Satınalma, Finans, Hukuk, İhale ve Proje birimlerinin öne çıkan metrikleri + iş akışı darboğazı.' },
+          ],
+        },
+        {
+          unit: 'CRM / Satış',
+          basis:
+            'Saha ziyareti bir fırsata dönüşür; fırsat aşamadan aşamaya ilerledikçe pipeline değeri, kazanma oranı ve müşteri portföyü canlı güncellenir. Teklif onay süreci buradan başlar.',
+          shots: [
+            { slot: '05-crm-genel-bakis', title: 'CRM Genel Bakış', caption: 'Aktif müşteri, pipeline değeri, kazanılan değer ve kazanma oranı; aşama bazlı pipeline dağılımı.' },
+            { slot: '06-crm-firsatlar', title: 'Fırsatlar', caption: 'Fırsat listesi ve satış boru hattı — her fırsatın aşaması, değeri ve kazanma olasılığı.' },
+          ],
+        },
+        {
+          unit: 'Presales / Teknik',
+          basis:
+            'Teknik ekip fırsata bağlı malzeme listesini (BoM) ve maliyeti hazırlar; onaylandığında satınalmaya otomatik devredilir. Teklif marjı bu ekranda şekillenir.',
+          shots: [
+            { slot: '07-presales-bom', title: 'BoM & Tasarım', caption: 'Malzeme listesi, birim maliyetler, toplam maliyet ve teklif marjı; devir durumu.' },
+          ],
+        },
+        {
+          unit: 'Satınalma',
+          basis:
+            'Presales\'ten devralınan malzeme listeleri satınalma talebine, talepler siparişe (PO) dönüşür. Her adım statüsü ve bekleyen onayıyla izlenir.',
+          shots: [
+            { slot: '08-satinalma', title: 'Satın Alma', caption: 'Talep sayısı, PO değeri, teslimat sayısı ve bekleyen onaylar — statüye göre gruplu.' },
+          ],
+        },
+        {
+          unit: 'Finans',
+          basis:
+            'Sözleşme ve proje ilerledikçe fatura kalemleri oluşur. Alacak yaşlandırma, tahsilat ve teminat mektubu vadeleri para birimi bazında tek panelde toplanır.',
+          shots: [
+            { slot: '09-finans', title: 'Finans', caption: 'Kesilen fatura, faturalanan tutar, toplam alacak; alacak–tahsilat–vadesi geçen kırılımı.' },
+          ],
+        },
+        {
+          unit: 'Sözleşme & Hukuk',
+          basis:
+            'Kazanılan ihale sözleşme sürecine düşer; imza tamamlanınca proje kaydı kendiliğinden açılır. Hukuk vakaları ve dosya vadeleri aynı modülde ayrı sekmede yönetilir.',
+          shots: [
+            { slot: '10-sozlesme-yonetimi', title: 'Sözleşme Yönetimi', caption: 'Sözleşmeye hazır işler, evrak tamamlanma durumu, sözleşme bedeli ve son tarih uyarıları; Hukuk sekmesi.' },
+          ],
+        },
+        {
+          unit: 'Proje Yönetimi',
+          basis:
+            'İmzalanan her sözleşme bir projeye dönüşür. Milestone\'lar, planlanan–gerçekleşen marj ve ilerleme yüzdesi izlenir; gecikmeler otomatik olarak yönetime eskale edilir.',
+          shots: [
+            { slot: '11-proje-yonetimi', title: 'Proje Yönetimi', caption: 'Aktif / tamamlanan proje sayısı, ortalama ilerleme, proje durum dağılımı ve yaklaşan milestone\'lar.' },
+          ],
+        },
+        {
+          unit: 'Kurumsal Yönetişim',
+          basis:
+            'Alınan dersler, risk & fırsat sicili (1–25 matris), kurumsal KPI hedefleri ve dış doküman kayıtları — tenant\'a özgü, atomik sayaçlı otomatik doküman numaralandırmasıyla.',
+          shots: [
+            { slot: '13-genel-hususlar', title: 'Genel Hususlar', caption: 'Risk & fırsat matrisi, alınan dersler sicili, kurumsal KPI sicili ve dış doküman sicili.' },
+          ],
+        },
+        {
+          unit: 'Süreç & Denetim Şeffaflığı',
+          basis:
+            'Sistemdeki her oluşturma/güncelleme/onay/devir olayı zaman damgalı denetim izine yazılır. Süreçlerin nasıl kurgulandığı ve boş koltukları dolduran sanal agent\'ların her kararı görünür ve geri alınabilir.',
+          shots: [
+            { slot: '14-denetim-izi', title: 'Denetim İzi', caption: 'Zaman damgalı olay akışı; varlık tipi ve aksiyona göre filtre, insan/agent aktör ayrımı.' },
+            { slot: '15-sanal-agentlar', title: 'Sanal Agentlar', caption: 'Eklenti kataloğu, danışman/otonom mod anahtarı, çalıştırma geçmişi ve bekleyen ratifikasyon sayacı.' },
+            { slot: '16-surec-tasarimcisi', title: 'Süreç Tasarımcısı', caption: 'Her aşama için sorumlu birim, onay tipi, vekil ataması ve skip-logic önizlemesi.' },
+          ],
+        },
+      ],
+    },
     cta: {
       title: 'Süreçlerinizin nerede kopuk olduğunu birlikte görelim.',
       subtitle: 'Kısa bir demoda, kendi süreçlerinizin Enflow zincirinde nasıl aktığını gösterelim.',
@@ -394,6 +491,7 @@ export const content = {
         { href: '/en/#akis', label: 'How It Works' },
         { href: '/en/#deger', label: 'Value' },
         { href: '/en/#guven', label: 'Trust' },
+        { href: '/en/product-tour/', label: 'Screen Tour' },
         { href: '/en/analytics/', label: 'Analytics' },
         { href: '/en/documents/', label: 'Resources' },
       ],
@@ -734,6 +832,102 @@ export const content = {
             { name: 'Process Taxonomy', desc: 'Transparent view of which processes are wired to live modules.' },
             { name: 'Custom Process Definition', desc: 'A tenant can define its own process from scratch.' },
             { name: 'Default Template Loading', desc: 'Installs 13 validated processes in one call, with a results report.' },
+          ],
+        },
+      ],
+    },
+    productTour: {
+      eyebrow: 'Product Tour',
+      title: 'Screen Tour',
+      subtitle:
+        'Enflow chains how every unit does its job into one flow. Below, unit by unit: the operating basis and that unit\'s real screens.',
+      backLabel: 'Back to home',
+      pendingLabel: 'Screenshot in preparation',
+      note: 'Screenshots are captured from the Enflow demo environment; all data is illustrative and contains no real customer or tender data.',
+      groups: [
+        {
+          unit: 'Executive',
+          basis:
+            'When the GM and senior management sign in, they see a role-based cockpit: critical deadlines from every unit ranked by urgency, with role-specific KPI cards below. Where an approval is waiting in the chain is visible on one screen.',
+          shots: [
+            { slot: '01-yonetim-kokpiti', title: 'Executive Cockpit', caption: 'Critical-alerts strip plus win rate, open pipeline, tender/contract/guarantee deadlines — all live.' },
+            { slot: '02-buyume-analitigi', title: 'Growth Analytics', caption: 'Conversion funnel, loss reasons, business/project/customer health scores and customer concentration risk.' },
+            { slot: '04-karlilik', title: 'Profitability & Treasury', caption: 'Planned / actual / EAC margin side by side; accrual and cash-basis parallel reporting, consolidated cash position.' },
+          ],
+        },
+        {
+          unit: 'Unit Reports',
+          basis:
+            'Each unit reports its period metrics on the same template. The system compares against the previous period automatically (▲/▼) and surfaces the longest-waiting unit in the approval chain as the bottleneck.',
+          shots: [
+            { slot: '03-birim-genel-bakis', title: 'Unit Overview', caption: 'Headline metrics for CRM/Sales, Presales, Procurement, Finance, Legal, Tender and Project units, plus the workflow bottleneck.' },
+          ],
+        },
+        {
+          unit: 'CRM / Sales',
+          basis:
+            'A field visit becomes an opportunity; as it moves stage to stage, pipeline value, win rate and the customer portfolio update live. The proposal approval process starts here.',
+          shots: [
+            { slot: '05-crm-genel-bakis', title: 'CRM Overview', caption: 'Active customers, pipeline value, won value and win rate; stage-based pipeline distribution.' },
+            { slot: '06-crm-firsatlar', title: 'Opportunities', caption: 'Opportunity list and sales pipeline — each opportunity\'s stage, value and win probability.' },
+          ],
+        },
+        {
+          unit: 'Presales / Technical',
+          basis:
+            'The technical team prepares the bill of materials (BoM) and cost tied to the opportunity; once approved it hands off to procurement automatically. Proposal margin takes shape on this screen.',
+          shots: [
+            { slot: '07-presales-bom', title: 'BoM & Design', caption: 'Bill of materials, unit costs, total cost and proposal margin; hand-off status.' },
+          ],
+        },
+        {
+          unit: 'Procurement',
+          basis:
+            'BoMs handed off from Presales become purchase requests, and requests become purchase orders (PO). Every step is tracked with its status and pending approval.',
+          shots: [
+            { slot: '08-satinalma', title: 'Procurement', caption: 'Request count, PO value, delivery count and pending approvals — grouped by status.' },
+          ],
+        },
+        {
+          unit: 'Finance',
+          basis:
+            'As contracts and projects progress, invoice lines are created. Receivables ageing, collections and letter-of-guarantee expiries are consolidated by currency on one panel.',
+          shots: [
+            { slot: '09-finans', title: 'Finance', caption: 'Invoices issued, invoiced amount, total receivables; receivables–collections–overdue breakdown.' },
+          ],
+        },
+        {
+          unit: 'Contracts & Legal',
+          basis:
+            'A won tender drops into the contract process; when signature completes, the project record opens itself. Legal cases and file deadlines live in the same module on a separate tab.',
+          shots: [
+            { slot: '10-sozlesme-yonetimi', title: 'Contract Management', caption: 'Contract-ready items, document completion status, contract value and deadline alerts; Legal tab.' },
+          ],
+        },
+        {
+          unit: 'Project Management',
+          basis:
+            'Every signed contract becomes a project. Milestones, planned vs. actual margin and progress percentage are tracked; delays are escalated to management automatically.',
+          shots: [
+            { slot: '11-proje-yonetimi', title: 'Project Management', caption: 'Active / completed project count, average progress, project status distribution and upcoming milestones.' },
+          ],
+        },
+        {
+          unit: 'Corporate Governance',
+          basis:
+            'Lessons learned, a risk & opportunity register (1–25 matrix), corporate KPI targets and external-document records — with tenant-specific, atomically-sequenced automatic document numbering.',
+          shots: [
+            { slot: '13-genel-hususlar', title: 'Governance Registers', caption: 'Risk & opportunity matrix, lessons-learned register, corporate KPI register and external-document register.' },
+          ],
+        },
+        {
+          unit: 'Process & Audit Transparency',
+          basis:
+            'Every create/update/approve/hand-off event in the system is written to a timestamped audit trail. How processes are designed — and every decision of the virtual agents that fill empty seats — is visible and reversible.',
+          shots: [
+            { slot: '14-denetim-izi', title: 'Audit Trail', caption: 'Timestamped event stream; filter by entity type and action, human/agent actor distinction.' },
+            { slot: '15-sanal-agentlar', title: 'Virtual Agents', caption: 'Add-on catalog, advisory/autonomous mode switch, run history and pending ratification counter.' },
+            { slot: '16-surec-tasarimcisi', title: 'Process Designer', caption: 'Responsible unit, approval type, delegate assignment and skip-logic preview for each stage.' },
           ],
         },
       ],
