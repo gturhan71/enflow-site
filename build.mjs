@@ -393,6 +393,10 @@ ${renderCta(c)}
 ${renderFooter(c)}
 <script src="${animeSrc}"></script>
 <script src="${scriptSrc}"></script>
+<script type="module">
+  import { inject } from 'https://cdn.vercel-insights.com/v1/script.js';
+  inject();
+</script>
 </body>
 </html>`;
 }
@@ -419,6 +423,10 @@ ${renderDocuments(c)}
 ${renderFooter(c)}
 <script src="${animeSrc}"></script>
 <script src="${scriptSrc}"></script>
+<script type="module">
+  import { inject } from 'https://cdn.vercel-insights.com/v1/script.js';
+  inject();
+</script>
 </body>
 </html>`;
 }
@@ -446,6 +454,10 @@ ${renderCta(c)}
 ${renderFooter(c)}
 <script src="${animeSrc}"></script>
 <script src="${scriptSrc}"></script>
+<script type="module">
+  import { inject } from 'https://cdn.vercel-insights.com/v1/script.js';
+  inject();
+</script>
 </body>
 </html>`;
 }
