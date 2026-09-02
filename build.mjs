@@ -375,6 +375,7 @@ function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:title" content="${esc(c.meta.title)}" />
 <meta property="og:description" content="${esc(c.meta.description)}" />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
@@ -408,6 +409,7 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:title" content="${esc(c.documents.title)} — Enflow" />
 <meta property="og:description" content="${esc(c.documents.subtitle)}" />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
@@ -434,6 +436,7 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:title" content="${esc(c.analytics.title)} — Enflow" />
 <meta property="og:description" content="${esc(c.analytics.subtitle)}" />
 <meta property="og:type" content="website" />
+<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
 </head>
@@ -485,7 +488,7 @@ copyFileSync(join(HERE, 'anime.min.js'), join(DIST, 'anime.min.js'));
 if (existsSync(join(HERE, 'robots.txt'))) copyFileSync(join(HERE, 'robots.txt'), join(DIST, 'robots.txt'));
 
 const ASSETS = join(HERE, 'assets');
-for (const f of ['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png']) {
+for (const f of ['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png', 'og-image.png']) {
   const src = join(ASSETS, f);
   if (existsSync(src)) copyFileSync(src, join(DIST, f));
 }
