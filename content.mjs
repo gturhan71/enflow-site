@@ -366,7 +366,6 @@ export const content = {
       ],
     },
     productTour: {
-      eyebrow: 'Ürün Turu',
       title: 'Ekran Turu',
       subtitle:
         'Enflow her birimin işini nasıl gördüğünü tek zincirde birleştirir. Aşağıda birim birim çalışma esası ve o birimin gerçek ekranları.',
@@ -837,7 +836,6 @@ export const content = {
       ],
     },
     productTour: {
-      eyebrow: 'Product Tour',
       title: 'Screen Tour',
       subtitle:
         'Enflow chains how every unit does its job into one flow. Below, unit by unit: the operating basis and that unit\'s real screens.',
