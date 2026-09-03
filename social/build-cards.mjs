@@ -69,12 +69,52 @@ function flowCard(size) {
   return shell('flow-chain', size, 'Uçtan Uca Akış', body);
 }
 
+// productTour.groups[].shots[] içinden slot'a göre (unit + shot verisi) bulur.
+function findShot(slot) {
+  for (const group of c.productTour.groups) {
+    const shot = group.shots.find((s) => s.slot === slot);
+    if (shot) return { unit: group.unit, ...shot };
+  }
+  throw new Error(`Ekran turu slot'u bulunamadı: ${slot}`);
+}
+
+// Gerçek ürün ekranı kartı — görsel assets/screenshots/'tan, başlık/açıklama
+// content.mjs → productTour.groups'tan (yeni metin yazılmaz).
+function shotCard(slot, i, size) {
+  const shot = findShot(slot);
+  const body = `
+    <div class="shot-body">
+      <div class="shot-frame"><img src="../../assets/screenshots/${shot.slot}.jpg" alt="${esc(shot.title)}" /></div>
+      <div class="shot-text">
+        <span class="shot-unit">${esc(shot.unit)}</span>
+        <h3 class="shot-title">${esc(shot.title)}</h3>
+        <p class="shot-caption">${esc(shot.caption)}</p>
+      </div>
+    </div>`;
+  return shell(`shot-${i + 1}`, size, 'Gerçek Ürün Ekranı', body);
+}
+
+// İnteraktif önizleme (mock demo) tanıtım kartı — nav.demoPreview + hero'dan
+// (yeni metin yazılmaz).
+function demoCard(size) {
+  const demoHost = c.nav.demoPreview.href.replace(/^https?:\/\//, '');
+  const body = `
+    <p class="demo-tagline">${esc(c.hero.ctaSecondary)} <span class="demo-arrow">&rarr;</span></p>
+    <p class="demo-sub">${esc(c.hero.subtitle)}</p>
+    <div class="demo-url-chip">${esc(demoHost)}</div>`;
+  return shell('demo-cta', size, c.nav.demoPreview.label, body);
+}
+
 const cards = [];
 for (const size of ['square', 'wide']) {
   c.problem.items.forEach((item, i) => cards.push(problemCard(item, i, size)));
   c.diff.cards.forEach((card, i) => cards.push(diffCard(card, i, size)));
   cards.push(statCard(size));
   cards.push(flowCard(size));
+  ['01-yonetim-kokpiti', '05-crm-genel-bakis', '10-sozlesme-yonetimi'].forEach((slot, i) =>
+    cards.push(shotCard(slot, i, size)),
+  );
+  cards.push(demoCard(size));
 }
 
 const html = `<!doctype html>

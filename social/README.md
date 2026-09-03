@@ -7,7 +7,7 @@ gönderi) ve 1200×627 (LinkedIn geniş/link-önizleme) — retina (2×) kalited
 ## Üretim
 
 ```bash
-node social/build-cards.mjs   # → social/dist/cards.html (24 kart, 12 tasarım × 2 boyut)
+node social/build-cards.mjs   # → social/dist/cards.html (32 kart, 16 tasarım × 2 boyut)
 node social/export.mjs        # → social/output/*.png
 ```
 
@@ -15,11 +15,18 @@ node social/export.mjs        # → social/output/*.png
 commit edilmez. Yalnız `assets/og-image.png` (istatistik kartının geniş varyantı,
 sitenin kendi link-önizleme görseli olarak) repoya dahildir.
 
-## Mevcut kartlar (12 tasarım)
+## Mevcut kartlar (16 tasarım)
 - **problem-1..6** — "Tanıdık geliyor mu?" 6 acı noktası (`content.mjs` → `problem.items`)
 - **diff-1..4** — "Klasik yol vs Enflow" karşılaştırma (`content.mjs` → `diff.cards`)
 - **stat-hero** — 29/43/37 istatistik + kapanış cümlesi (`content.mjs` → `value.cta`)
 - **flow-chain** — 8 adımlık uçtan uca akış (`content.mjs` → `flow.steps`)
+- **shot-1..3** — gerçek ürün ekranı (Yönetim Kokpiti / CRM Genel Bakış / Sözleşme
+  Yönetimi); görsel `assets/screenshots/`'tan, başlık+açıklama `content.mjs` →
+  `productTour.groups[].shots[]`'tan. Başka bir slot göstermek istersen
+  `build-cards.mjs`'teki `['01-yonetim-kokpiti', ...]` listesini değiştir —
+  seçtiğin slot'un `assets/screenshots/{slot}.jpg` olarak var olması yeter.
+- **demo-cta** — "İnteraktif Önizleme" (mock demo) tanıtım kartı; `content.mjs` →
+  `nav.demoPreview` (link) + `hero.ctaSecondary`/`hero.subtitle` (metin)
 
 ## Yeni kart eklemek
 1. Metni **sadece** `../content.mjs`'e ekle (yeni bir `problem.items` maddesi,
