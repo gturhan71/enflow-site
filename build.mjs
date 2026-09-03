@@ -32,6 +32,7 @@ function renderNav(c, otherHref) {
       <nav class="nav-links">${links}</nav>
       <div class="nav-actions">
         <a class="lang-switch" href="${otherHref}" aria-label="${esc(c.nav.langSwitch.label)}">${esc(c.nav.langSwitch.label)}</a>
+        <a class="btn btn-accent btn-sm header-cta" href="${esc(c.nav.demoPreview.href)}" target="_blank" rel="noopener">${esc(c.nav.demoPreview.label)}</a>
         <a class="btn btn-primary btn-sm header-cta" href="${home}#cta">${esc(c.nav.cta)}</a>
         <button class="nav-toggle" id="navToggle" aria-label="Menu">${icon('menu')}</button>
       </div>
@@ -39,6 +40,7 @@ function renderNav(c, otherHref) {
   </header>
   <div class="mobile-nav" id="mobileNav">
     ${c.nav.links.map((l) => `<a href="${l.href}">${esc(l.label)}</a>`).join('')}
+    <a class="btn btn-accent" href="${esc(c.nav.demoPreview.href)}" target="_blank" rel="noopener">${esc(c.nav.demoPreview.label)}</a>
     <a class="btn btn-primary" href="${home}#cta">${esc(c.nav.cta)}</a>
   </div>`;
 }
