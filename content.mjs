@@ -465,7 +465,7 @@ export const content = {
       title: 'Süreçlerinizin nerede kopuk olduğunu birlikte görelim.',
       subtitle: 'Kısa bir demoda, kendi süreçlerinizin Enflow zincirinde nasıl aktığını gösterelim.',
       buttonLabel: 'Demo Talep Et',
-      email: 'gokhanturhan71@gmail.com',
+      email: 'info@enflow.com.tr',
       emailLabel: 'E-posta gönder',
     },
     footer: {
@@ -936,7 +936,7 @@ export const content = {
       title: 'Let\'s find out where your process is broken.',
       subtitle: 'In a short demo, we\'ll show how your own process flows through the Enflow chain.',
       buttonLabel: 'Request a Demo',
-      email: 'gokhanturhan71@gmail.com',
+      email: 'info@enflow.com.tr',
       emailLabel: 'Send an email',
     },
     footer: {
