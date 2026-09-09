@@ -467,6 +467,25 @@ export const content = {
       buttonLabel: 'Demo Talep Et',
       email: 'info@enflow.com.tr',
       emailLabel: 'E-posta gönder',
+      emailSubject: 'Firmamızda deneme amaçlı olarak yazılımınızın kurulmasını ve test edilmesini istiyorum.',
+      emailBody:
+        'Sayın İlgili,\n' +
+        'Aşağıda vereceğimiz bilgiler doğrultusunda planlı bir zamanda ön görüşmemizi gerçekleştirerek yazılımınızı test etmek istiyoruz. Aşağıdaki bilgilerin doğruluğunu teyid ederek gerekli planlamanın yapılmasını rica ederiz.\n' +
+        '\n' +
+        'Firma adı:\n' +
+        'Adresi:\n' +
+        'Telefon:\n' +
+        'Email:\n' +
+        '\n' +
+        'Çalışan sayısı:\n' +
+        'Birim Sayısı:\n' +
+        '\n' +
+        'Firmada Sunucu var mı?\n' +
+        'Yazılım için gereksinimleri karşılayabilir mi?\n' +
+        '\n' +
+        'Ne kadar süre test etmeyi planlıyorsunuz?\n' +
+        '\n' +
+        'Bu bilgiler ile gerekli planlamanın yapılmasını rica ederiz.',
     },
     footer: {
       text: 'Enflow — B2B Süreç ve Operasyon Platformu',
@@ -938,6 +957,25 @@ export const content = {
       buttonLabel: 'Request a Demo',
       email: 'info@enflow.com.tr',
       emailLabel: 'Send an email',
+      emailSubject: 'We would like to install and test your software at our company on a trial basis.',
+      emailBody:
+        'Dear Sir/Madam,\n' +
+        'We would like to test your software after a preliminary meeting at a scheduled time, based on the information below. Please confirm these details so we can plan accordingly.\n' +
+        '\n' +
+        'Company name:\n' +
+        'Address:\n' +
+        'Phone:\n' +
+        'Email:\n' +
+        '\n' +
+        'Number of employees:\n' +
+        'Number of units:\n' +
+        '\n' +
+        'Does your company have a server?\n' +
+        'Can you meet the requirements for the software?\n' +
+        '\n' +
+        'How long do you plan to test the software?\n' +
+        '\n' +
+        'We kindly request that the necessary planning be made based on this information.',
     },
     footer: {
       text: 'Enflow — B2B Process & Operations Platform',

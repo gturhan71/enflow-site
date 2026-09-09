@@ -18,6 +18,11 @@ const hasShot = (slot) => existsSync(join(SHOTS_SRC, `${slot}.jpg`));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const nl2br = (s) => esc(s).replace(/\n/g, '<br/>');
 const icon = (name, cls = 'icon') => (icons[name] || '').replace('<svg ', `<svg class="${cls}" `);
+// mailto: linki — konu+içerik önceden dolu; e-posta adresinin kendisi çıplak
+// kalır (bazı istemciler @'in yüzde-kodlanmasını doğru çözmüyor), yalnız
+// subject/body query değerleri encodeURIComponent'ten geçer.
+const mailtoHref = (email, subject, body) =>
+  `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
 function renderNav(c, otherHref) {
   const home = c.nav.home;
@@ -374,6 +379,7 @@ function renderProductTour(c) {
 }
 
 function renderCta(c) {
+  const mailto = esc(mailtoHref(c.cta.email, c.cta.emailSubject, c.cta.emailBody));
   return `
   <section class="section section-cta" id="cta">
     <div class="wrap">
@@ -381,8 +387,8 @@ function renderCta(c) {
         <h2 class="cta-title">${esc(c.cta.title)}</h2>
         <p class="cta-subtitle">${esc(c.cta.subtitle)}</p>
         <div class="cta-btn-group">
-          <a class="btn btn-primary" href="mailto:${esc(c.cta.email)}">${icon('mail')}${esc(c.cta.buttonLabel)}</a>
-          <a class="btn btn-secondary" href="mailto:${esc(c.cta.email)}">${esc(c.cta.emailLabel)} &rarr;</a>
+          <a class="btn btn-primary" href="${mailto}">${icon('mail')}${esc(c.cta.buttonLabel)}</a>
+          <a class="btn btn-secondary" href="${mailto}">${esc(c.cta.emailLabel)} &rarr;</a>
         </div>
       </div>
     </div>
