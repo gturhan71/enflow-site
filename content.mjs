@@ -466,7 +466,6 @@ export const content = {
       subtitle: 'Kısa bir demoda, kendi süreçlerinizin Enflow zincirinde nasıl aktığını gösterelim.',
       buttonLabel: 'Demo Talep Et',
       email: 'info@enflow.com.tr',
-      emailLabel: 'E-posta gönder',
       emailSubject: 'Firmamızda deneme amaçlı olarak yazılımınızın kurulmasını ve test edilmesini istiyorum.',
       emailBody:
         'Sayın İlgili,\n' +
@@ -956,7 +955,6 @@ export const content = {
       subtitle: 'In a short demo, we\'ll show how your own process flows through the Enflow chain.',
       buttonLabel: 'Request a Demo',
       email: 'info@enflow.com.tr',
-      emailLabel: 'Send an email',
       emailSubject: 'We would like to install and test your software at our company on a trial basis.',
       emailBody:
         'Dear Sir/Madam,\n' +

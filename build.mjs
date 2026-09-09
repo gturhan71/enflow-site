@@ -388,7 +388,6 @@ function renderCta(c) {
         <p class="cta-subtitle">${esc(c.cta.subtitle)}</p>
         <div class="cta-btn-group">
           <a class="btn btn-primary" href="${mailto}">${icon('mail')}${esc(c.cta.buttonLabel)}</a>
-          <a class="btn btn-secondary" href="${mailto}">${esc(c.cta.emailLabel)} &rarr;</a>
         </div>
       </div>
     </div>
