@@ -21,7 +21,7 @@ function shell(id, size, eyebrow, bodyHtml) {
     <div class="card-eyebrow">${esc(eyebrow)}</div>
     <div class="card-body">${bodyHtml}</div>
     <div class="card-footer">
-      <div class="brand-symbol">E</div>
+      <img class="brand-symbol" src="../../assets/brand/enflow-mark.png" alt="Enflow" />
       <div class="brand-block">
         <span class="name">Enflow</span>
         <span class="url">enflow-site.vercel.app</span>

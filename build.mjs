@@ -31,7 +31,7 @@ function renderNav(c, otherHref) {
   <header class="site-header">
     <div class="wrap header-inner">
       <a href="${home}#top" class="brand">
-        <span class="brand-symbol">E</span>
+        <img class="brand-mark" src="/enflow-mark.png" alt="" width="43" height="27" />
         <span class="brand-name">${esc(c.nav.brand)}</span>
       </a>
       <nav class="nav-links">${links}</nav>
@@ -399,7 +399,7 @@ function renderFooter(c) {
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div class="footer-brand-block">
-        <div class="brand brand-sm"><span class="brand-symbol">E</span>${esc(c.nav.brand)}</div>
+        <div class="brand brand-sm"><img class="brand-mark" src="/enflow-mark.png" alt="" width="38" height="24" />${esc(c.nav.brand)}</div>
         <p class="footer-desc">${esc(c.footer.text)}</p>
       </div>
       <div class="footer-nav-block">
@@ -588,5 +588,7 @@ for (const f of ['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png', 'og
   const src = join(ASSETS, f);
   if (existsSync(src)) copyFileSync(src, join(DIST, f));
 }
+const markSrc = join(ASSETS, 'brand', 'enflow-mark.png');
+if (existsSync(markSrc)) copyFileSync(markSrc, join(DIST, 'enflow-mark.png'));
 
 console.log('✓ dist/index.html (TR) + dist/en/index.html (EN) + dokumanlar/documents + analitik/analytics + ekran-turu/product-tour sayfaları üretildi.');
