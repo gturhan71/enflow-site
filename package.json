@@ -5,5 +5,8 @@
   "description": "Enflow tanıtım sitesi — karar vericilere yönelik, tek sayfa TR/EN landing page.",
   "scripts": {
     "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
   }
 }
