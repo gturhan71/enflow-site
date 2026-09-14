@@ -625,6 +625,12 @@ copyFileSync(join(HERE, 'script.js'), join(DIST, 'script.js'));
 copyFileSync(join(HERE, 'anime.min.js'), join(DIST, 'anime.min.js'));
 if (existsSync(join(HERE, 'robots.txt'))) copyFileSync(join(HERE, 'robots.txt'), join(DIST, 'robots.txt'));
 
+// Site doğrulama dosyaları (Google Search Console vb.) — kök dizinde
+// googleXXXXXXXX.html olarak bırakılır, dist köküne aynen kopyalanır.
+for (const f of readdirSync(HERE)) {
+  if (/^google[a-f0-9]+\.html$/.test(f)) copyFileSync(join(HERE, f), join(DIST, f));
+}
+
 // sitemap.xml — TR/EN çifti + hreflang alternates (bkz. seoTags aynı mantık).
 const SITEMAP_PAIRS = [
   ['/', '/en/'],
