@@ -17,6 +17,20 @@ const hasShot = (slot) => existsSync(join(SHOTS_SRC, `${slot}.jpg`));
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const nl2br = (s) => esc(s).replace(/\n/g, '<br/>');
+const BASE_URL = 'https://enflow-site.vercel.app';
+// canonical + hreflang (tr/en karşılıklı) + og:url + twitter:card.
+// otherHref her zaman "diğer dilin bu sayfadaki karşılığı" (renderNav'ın
+// dil değiştirme linkiyle aynı) — trPath/enPath'i buradan çıkarıyoruz.
+function seoTags(c, canonicalPath, otherHref) {
+  const trPath = c.lang === 'tr' ? canonicalPath : otherHref;
+  const enPath = c.lang === 'en' ? canonicalPath : otherHref;
+  return `<link rel="canonical" href="${BASE_URL}${canonicalPath}" />
+<link rel="alternate" hreflang="tr" href="${BASE_URL}${trPath}" />
+<link rel="alternate" hreflang="en" href="${BASE_URL}${enPath}" />
+<link rel="alternate" hreflang="x-default" href="${BASE_URL}${trPath}" />
+<meta property="og:url" content="${BASE_URL}${canonicalPath}" />
+<meta name="twitter:card" content="summary_large_image" />`;
+}
 const icon = (name, cls = 'icon') => (icons[name] || '').replace('<svg ', `<svg class="${cls}" `);
 // mailto: linki — konu+içerik önceden dolu; e-posta adresinin kendisi çıplak
 // kalır (bazı istemciler @'in yüzde-kodlanmasını doğru çözmüyor), yalnız
@@ -281,7 +295,7 @@ function renderDocuments(c) {
   <section class="section section-documents" id="dokumanlar">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 class="section-title">${esc(c.documents.title)}</h2>
+        <h1 class="section-title">${esc(c.documents.title)}</h1>
         <p class="section-subtitle">${esc(c.documents.subtitle)}</p>
       </div>
       <div class="documents-grid">${cards}</div>
@@ -331,7 +345,7 @@ function renderAnalytics(c) {
   <section class="section section-analytics" id="analitik-icerik">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 class="section-title">${esc(c.analytics.title)}</h2>
+        <h1 class="section-title">${esc(c.analytics.title)}</h1>
         <p class="section-subtitle">${esc(c.analytics.subtitle)}</p>
       </div>
       <div class="kpi-categories-deck">${categories}</div>
@@ -369,7 +383,7 @@ function renderProductTour(c) {
   <section class="section section-tour" id="ekran-turu">
     <div class="wrap">
       <div class="section-head reveal">
-        <h2 class="section-title">${esc(t.title)}</h2>
+        <h1 class="section-title">${esc(t.title)}</h1>
         <p class="section-subtitle">${esc(t.subtitle)}</p>
       </div>
       <p class="tour-note reveal">${esc(t.note)}</p>
@@ -412,7 +426,7 @@ function renderFooter(c) {
   </footer>`;
 }
 
-function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
+function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -424,9 +438,21 @@ function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:description" content="${esc(c.meta.description)}" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
-<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
+<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Enflow',
+    url: BASE_URL,
+    logo: `${BASE_URL}/apple-touch-icon.png`,
+    description: c.meta.description,
+  })}</script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -447,7 +473,7 @@ ${renderFooter(c)}
 </html>`;
 }
 
-function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
+function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -459,9 +485,13 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:description" content="${esc(c.documents.subtitle)}" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
-<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -475,7 +505,7 @@ ${renderFooter(c)}
 </html>`;
 }
 
-function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
+function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -487,9 +517,13 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:description" content="${esc(c.analytics.subtitle)}" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
-<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -504,7 +538,7 @@ ${renderFooter(c)}
 </html>`;
 }
 
-function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
+function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) {
   return `<!doctype html>
 <html lang="${c.htmlLang}">
 <head>
@@ -516,9 +550,13 @@ function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:description" content="${esc(c.productTour.subtitle)}" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
-<script defer src="/_vercel/insights/script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -543,34 +581,34 @@ mkdirSync(join(DIST, 'en', 'analytics'), { recursive: true });
 mkdirSync(join(DIST, 'ekran-turu'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'product-tour'), { recursive: true });
 
-writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css', '/anime.min.js'));
-writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css', '../anime.min.js'));
+writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css', '/anime.min.js', '/'));
+writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css', '../anime.min.js', '/en/'));
 
 writeFileSync(
   join(DIST, 'dokumanlar', 'index.html'),
-  renderDocumentsPage(content.tr, '/en/documents/', '../script.js', '../styles.css', '../anime.min.js')
+  renderDocumentsPage(content.tr, '/en/documents/', '../script.js', '../styles.css', '../anime.min.js', '/dokumanlar/')
 );
 writeFileSync(
   join(DIST, 'en', 'documents', 'index.html'),
-  renderDocumentsPage(content.en, '/dokumanlar/', '../../script.js', '../../styles.css', '../../anime.min.js')
+  renderDocumentsPage(content.en, '/dokumanlar/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/documents/')
 );
 
 writeFileSync(
   join(DIST, 'analitik', 'index.html'),
-  renderAnalyticsPage(content.tr, '/en/analytics/', '../script.js', '../styles.css', '../anime.min.js')
+  renderAnalyticsPage(content.tr, '/en/analytics/', '../script.js', '../styles.css', '../anime.min.js', '/analitik/')
 );
 writeFileSync(
   join(DIST, 'en', 'analytics', 'index.html'),
-  renderAnalyticsPage(content.en, '/analitik/', '../../script.js', '../../styles.css', '../../anime.min.js')
+  renderAnalyticsPage(content.en, '/analitik/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/analytics/')
 );
 
 writeFileSync(
   join(DIST, 'ekran-turu', 'index.html'),
-  renderProductTourPage(content.tr, '/en/product-tour/', '../script.js', '../styles.css', '../anime.min.js')
+  renderProductTourPage(content.tr, '/en/product-tour/', '../script.js', '../styles.css', '../anime.min.js', '/ekran-turu/')
 );
 writeFileSync(
   join(DIST, 'en', 'product-tour', 'index.html'),
-  renderProductTourPage(content.en, '/ekran-turu/', '../../script.js', '../../styles.css', '../../anime.min.js')
+  renderProductTourPage(content.en, '/ekran-turu/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/product-tour/')
 );
 
 // Ekran turu görselleri: assets/screenshots/*  →  dist/screenshots/*
@@ -586,6 +624,29 @@ copyFileSync(join(HERE, 'styles.css'), join(DIST, 'styles.css'));
 copyFileSync(join(HERE, 'script.js'), join(DIST, 'script.js'));
 copyFileSync(join(HERE, 'anime.min.js'), join(DIST, 'anime.min.js'));
 if (existsSync(join(HERE, 'robots.txt'))) copyFileSync(join(HERE, 'robots.txt'), join(DIST, 'robots.txt'));
+
+// sitemap.xml — TR/EN çifti + hreflang alternates (bkz. seoTags aynı mantık).
+const SITEMAP_PAIRS = [
+  ['/', '/en/'],
+  ['/dokumanlar/', '/en/documents/'],
+  ['/analitik/', '/en/analytics/'],
+  ['/ekran-turu/', '/en/product-tour/'],
+];
+const urlEntry = (path, trPath, enPath) => `  <url>
+    <loc>${BASE_URL}${path}</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="${BASE_URL}${trPath}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${enPath}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${trPath}" />
+  </url>`;
+const sitemapUrls = SITEMAP_PAIRS.flatMap(([tr, en]) => [urlEntry(tr, tr, en), urlEntry(en, tr, en)]).join('\n');
+writeFileSync(
+  join(DIST, 'sitemap.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${sitemapUrls}
+</urlset>
+`
+);
 
 const ASSETS = join(HERE, 'assets');
 for (const f of ['favicon.ico', 'favicon-96x96.png', 'apple-touch-icon.png', 'og-image.png']) {
