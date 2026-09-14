@@ -426,6 +426,7 @@ function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -460,6 +461,7 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -487,6 +489,7 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -515,6 +518,7 @@ function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
