@@ -419,7 +419,7 @@ function renderFooter(c) {
       <div class="footer-nav-block">
         <div class="footer-links">
           <a href="${esc(c.footer.linkedinHref)}" class="footer-icon-link" target="_blank" rel="noopener" aria-label="${esc(c.footer.linkedinLabel)}">${icon('linkedin')}</a>
-          <a href="${c.footer.wikiHref}" class="footer-link" target="_blank" rel="noopener">${esc(c.footer.wikiLabel)} &rarr;</a>
+          <a href="${c.footer.wikiHref}" class="footer-link">${esc(c.footer.wikiLabel)} &rarr;</a>
         </div>
         <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems. Released under Commercial License.</p>
       </div>
@@ -630,6 +630,15 @@ if (existsSync(join(HERE, 'robots.txt'))) copyFileSync(join(HERE, 'robots.txt'),
 // googleXXXXXXXX.html olarak bırakılır, dist köküne aynen kopyalanır.
 for (const f of readdirSync(HERE)) {
   if (/^google[a-f0-9]+\.html$/.test(f)) copyFileSync(join(HERE, f), join(DIST, f));
+}
+
+// Ürün Wiki — ana Enflow reposundan `node scripts/sync-wiki.mjs` ile
+// senkronize edilmiş bağımsız tek dosya (bkz. o script). Yoksa build
+// sessizce atlar, siteyi bozmaz.
+const WIKI_SRC = join(HERE, 'wiki', 'index.html');
+if (existsSync(WIKI_SRC)) {
+  mkdirSync(join(DIST, 'wiki'), { recursive: true });
+  copyFileSync(WIKI_SRC, join(DIST, 'wiki', 'index.html'));
 }
 
 // sitemap.xml — TR/EN çifti + hreflang alternates (bkz. seoTags aynı mantık).

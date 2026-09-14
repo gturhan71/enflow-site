@@ -26,6 +26,8 @@ Bağımlılık yok (`node_modules` gerekmez). Metni değiştirmek için **sadece
 - `/ekran-turu/` / `/en/product-tour/` — birim birim gerçek ekran görüntüleri + her birimin çalışma esası anlatımı (kaynak: `scripts/capture-screenshots.mjs` ile bir demo tenant'tan alınan görseller, `assets/screenshots/`)
 - `/dokumanlar/` / `/en/documents/` — satış & pazarlama dokümanları (PPT/PDF, hazır olduklarında)
 - `/analitik/` / `/en/analytics/` — Enflow'da yönetime sunulan **her** KPI/analitik/süreç-şeffaflığı özelliğinin eksiksiz kataloğu (109 madde, 10 kategori); içerik ana Enflow reposundaki gerçek kod/UI etiketlerinden derlenmiştir, uydurma madde yok
+- `/wiki/` — Ürün Wiki (ana Enflow reposundan senkronize edilen bağımsız tek
+  dosya; bkz. altta "Ürün Wiki nasıl senkronize edilir")
 
 ## Ekran Turu görselleri nasıl yenilenir
 1. Enflow dev sunucusunu çalıştır (`localhost:3000`), bir demo tenant'a (kurgusal
@@ -53,12 +55,32 @@ push otomatik yeniden deploy tetikler, ayrı bir CI adımı gerekmez.
 Başka bir statik host (Netlify/Cloudflare Pages/GitHub Pages) kullanmak
 istersen aynı ayar geçerli: build komutu `node build.mjs`, çıktı dizini `dist/`.
 
+## Ürün Wiki nasıl senkronize edilir
+Wiki'nin gerçek kaynağı ana Enflow reposundaki `walkthrough.md §27`'dir —
+buradaki `wiki/index.html` sadece **kopyalanmış bir anlık görüntü**, kaynak
+değil. Wiki içeriği ana repoda değiştiğinde (§27 güncellenip
+`node wiki/build.mjs` çalıştırıldığında):
+
+```bash
+node scripts/sync-wiki.mjs   # ana repodaki wiki/index.html'i buraya kopyalar
+node build.mjs                # dist/wiki/index.html'e yayınlar
+git add -A && git commit -m "chore(wiki): senkronize et" && git push
+```
+
+`wiki/index.html` bağımsız tek dosya (inline CSS, harici asset yok) —
+`build.mjs` onu aynen `dist/wiki/`'ye kopyalar, siteye entegre etmeye/yeniden
+tasarlamaya çalışmaz. Kaynağın kendi `<meta name="robots" content="noindex...">`
+etiketi korunur (wiki arama motorlarında indekslenmez, bilinçli tercih —
+değiştirmek istersen kaynak dosyada, ana repoda değiştir).
+
+Farklı bir makinede/yoldaysan: `ENFLOW_WIKI_SRC=/path/to/Enflow/wiki/index.html node scripts/sync-wiki.mjs`.
+
 ## İçerik değiştirirken dikkat
 - Sahte müşteri logosu/testimonial/uydurma sayı **eklenmez** — ürünün henüz
   yayınlanabilir referansı yok; güven, mekanik kanıtla (otomatik zincir,
   denetim izi, danışman-modu güvencesi) kurulur.
 - Her yeni bölüm hem `content.mjs`'teki `tr` hem `en` objesine eklenmeli (aynı
   anahtar şekli).
-- Footer'daki "Ürün Wiki" linki Enflow ana reposundaki
-  `https://gturhan71.github.io/Enflow/wiki/` adresine işaret eder (bu site ayrı
-  deploy edildiği için göreli yol kullanılmaz).
+- Footer'daki "Ürün Wiki" linki artık site-içi `/wiki/`'ye işaret eder (eskiden
+  `https://gturhan71.github.io/Enflow/wiki/` idi) — güncel tutmak için yukarıdaki
+  senkronizasyon adımlarını izle.

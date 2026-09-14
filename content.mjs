@@ -489,7 +489,7 @@ export const content = {
     footer: {
       text: 'Enflow — B2B Süreç ve Operasyon Platformu',
       wikiLabel: 'Ürün Wiki',
-      wikiHref: 'https://gturhan71.github.io/Enflow/wiki/',
+      wikiHref: '/wiki/',
       linkedinLabel: "Enflow'u LinkedIn'de takip edin",
       linkedinHref: 'https://www.linkedin.com/company/enflow-tr',
     },
@@ -980,7 +980,7 @@ export const content = {
     footer: {
       text: 'Enflow — B2B Process & Operations Platform',
       wikiLabel: 'Product Wiki',
-      wikiHref: 'https://gturhan71.github.io/Enflow/wiki/',
+      wikiHref: '/wiki/',
       linkedinLabel: 'Follow Enflow on LinkedIn',
       linkedinHref: 'https://www.linkedin.com/company/enflow-tr',
     },
