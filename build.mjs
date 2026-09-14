@@ -418,6 +418,7 @@ function renderFooter(c) {
       </div>
       <div class="footer-nav-block">
         <div class="footer-links">
+          <a href="${esc(c.footer.linkedinHref)}" class="footer-icon-link" target="_blank" rel="noopener" aria-label="${esc(c.footer.linkedinLabel)}">${icon('linkedin')}</a>
           <a href="${c.footer.wikiHref}" class="footer-link" target="_blank" rel="noopener">${esc(c.footer.wikiLabel)} &rarr;</a>
         </div>
         <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems. Released under Commercial License.</p>
