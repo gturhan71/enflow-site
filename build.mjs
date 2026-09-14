@@ -426,6 +426,10 @@ function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -461,6 +465,10 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -489,6 +497,10 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
@@ -518,6 +530,10 @@ function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
 <meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
