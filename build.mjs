@@ -17,7 +17,7 @@ const hasShot = (slot) => existsSync(join(SHOTS_SRC, `${slot}.jpg`));
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const nl2br = (s) => esc(s).replace(/\n/g, '<br/>');
-const BASE_URL = 'https://enflow-site.vercel.app';
+const BASE_URL = 'https://www.enflow.com.tr';
 // canonical + hreflang (tr/en karşılıklı) + og:url + twitter:card.
 // otherHref her zaman "diğer dilin bu sayfadaki karşılığı" (renderNav'ın
 // dil değiştirme linkiyle aynı) — trPath/enPath'i buradan çıkarıyoruz.
@@ -392,6 +392,76 @@ function renderProductTour(c) {
   </section>`;
 }
 
+function renderFaqItem(item) {
+  return `
+      <details class="faq-item reveal">
+        <summary>${esc(item.q)}</summary>
+        <p>${esc(item.a)}</p>
+      </details>`;
+}
+
+function renderFaq(c) {
+  const items = c.faq.items.map(renderFaqItem).join('');
+  return `
+  <section class="section section-faq" id="sss">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h1 class="section-title">${esc(c.faq.title)}</h1>
+        <p class="section-subtitle">${esc(c.faq.subtitle)}</p>
+      </div>
+      <div class="faq-list">${items}</div>
+    </div>
+  </section>`;
+}
+
+function faqJsonLd(c) {
+  const entities = c.faq.items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  }));
+  return `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entities,
+  })}</script>`;
+}
+
+function renderLegalSection(c, doc) {
+  const sections = doc.sections
+    .map((s) => `
+      <div class="legal-section reveal">
+        <h2>${esc(s.heading)}</h2>
+        <p>${nl2br(s.body)}</p>
+      </div>`)
+    .join('');
+  return `
+  <section class="section section-legal" id="legal">
+    <div class="wrap wrap-narrow">
+      <div class="section-head reveal">
+        <h1 class="section-title">${esc(doc.title)}</h1>
+        <p class="section-subtitle">${esc(doc.subtitle)}</p>
+        <p class="legal-updated">${esc(doc.updatedLabel)}: ${esc(doc.updated)}</p>
+      </div>
+      <div class="legal-draft-notice reveal">${esc(doc.draftNotice)}</div>
+      ${sections}
+    </div>
+  </section>`;
+}
+
+function renderNotFound(c) {
+  const links = c.notFound.links.map((l) => `<a class="btn btn-secondary btn-sm" href="${l.href}">${esc(l.label)}</a>`).join('');
+  return `
+  <section class="section section-notfound">
+    <div class="wrap wrap-narrow notfound-inner">
+      <h1 class="section-title">${esc(c.notFound.title)}</h1>
+      <p class="section-subtitle">${esc(c.notFound.subtitle)}</p>
+      <a class="btn btn-primary" href="${c.nav.home}">${esc(c.notFound.homeLabel)}</a>
+      <div class="notfound-links">${links}</div>
+    </div>
+  </section>`;
+}
+
 function renderCta(c) {
   const mailto = esc(mailtoHref(c.cta.email, c.cta.emailSubject, c.cta.emailBody));
   return `
@@ -420,6 +490,8 @@ function renderFooter(c) {
         <div class="footer-links">
           <a href="${esc(c.footer.linkedinHref)}" class="footer-icon-link" target="_blank" rel="noopener" aria-label="${esc(c.footer.linkedinLabel)}">${icon('linkedin')}</a>
           <a href="${c.footer.wikiHref}" class="footer-link">${esc(c.footer.wikiLabel)} &rarr;</a>
+          <a href="${c.footer.privacyHref}" class="footer-link">${esc(c.footer.privacyLabel)}</a>
+          <a href="${c.footer.termsHref}" class="footer-link">${esc(c.footer.termsLabel)}</a>
         </div>
         <p class="footer-copy">&copy; ${new Date().getFullYear()} Enflow Systems. Released under Commercial License.</p>
       </div>
@@ -438,7 +510,7 @@ function renderPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) 
 <meta property="og:title" content="${esc(c.meta.title)}" />
 <meta property="og:description" content="${esc(c.meta.description)}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+<meta property="og:image" content="${BASE_URL}/og-image.png" />
 ${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
@@ -485,7 +557,7 @@ function renderDocumentsPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canoni
 <meta property="og:title" content="${esc(c.documents.title)} — Enflow" />
 <meta property="og:description" content="${esc(c.documents.subtitle)}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+<meta property="og:image" content="${BASE_URL}/og-image.png" />
 ${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
@@ -517,7 +589,7 @@ function renderAnalyticsPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canoni
 <meta property="og:title" content="${esc(c.analytics.title)} — Enflow" />
 <meta property="og:description" content="${esc(c.analytics.subtitle)}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+<meta property="og:image" content="${BASE_URL}/og-image.png" />
 ${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
@@ -550,7 +622,7 @@ function renderProductTourPage(c, otherHref, scriptSrc, styleSrc, animeSrc, cano
 <meta property="og:title" content="${esc(c.productTour.title)} — Enflow" />
 <meta property="og:description" content="${esc(c.productTour.subtitle)}" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://enflow-site.vercel.app/og-image.png" />
+<meta property="og:image" content="${BASE_URL}/og-image.png" />
 ${seoTags(c, canonicalPath, otherHref)}
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 <link rel="stylesheet" href="${styleSrc}" />
@@ -572,6 +644,94 @@ ${renderFooter(c)}
 </html>`;
 }
 
+function renderFaqPage(c, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) {
+  return `<!doctype html>
+<html lang="${c.htmlLang}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>${esc(c.faq.title)} — Enflow</title>
+<meta name="description" content="${esc(c.faq.subtitle)}" />
+<meta property="og:title" content="${esc(c.faq.title)} — Enflow" />
+<meta property="og:description" content="${esc(c.faq.subtitle)}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="${BASE_URL}/og-image.png" />
+${seoTags(c, canonicalPath, otherHref)}
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="stylesheet" href="${styleSrc}" />
+${faqJsonLd(c)}
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
+</head>
+<body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
+${renderNav(c, otherHref)}
+${renderSubPageHead(c, c.faq.backLabel)}
+${renderFaq(c)}
+${renderCta(c)}
+${renderFooter(c)}
+<script src="${animeSrc}"></script>
+<script src="${scriptSrc}"></script>
+</body>
+</html>`;
+}
+
+function renderLegalPage(c, doc, otherHref, scriptSrc, styleSrc, animeSrc, canonicalPath) {
+  return `<!doctype html>
+<html lang="${c.htmlLang}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>${esc(doc.title)} — Enflow</title>
+<meta name="description" content="${esc(doc.subtitle)}" />
+<meta property="og:title" content="${esc(doc.title)} — Enflow" />
+<meta property="og:description" content="${esc(doc.subtitle)}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="${BASE_URL}/og-image.png" />
+${seoTags(c, canonicalPath, otherHref)}
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="stylesheet" href="${styleSrc}" />
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/analytics/script.js"></script>
+</head>
+<body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
+${renderNav(c, otherHref)}
+${renderSubPageHead(c, doc.backLabel)}
+${renderLegalSection(c, doc)}
+${renderFooter(c)}
+<script src="${animeSrc}"></script>
+<script src="${scriptSrc}"></script>
+</body>
+</html>`;
+}
+
+function renderNotFoundPage(c, otherHref, scriptSrc, styleSrc, animeSrc) {
+  return `<!doctype html>
+<html lang="${c.htmlLang}">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>${esc(c.notFound.title)} — Enflow</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="stylesheet" href="${styleSrc}" />
+</head>
+<body>
+<canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
+${renderNav(c, otherHref)}
+${renderNotFound(c)}
+${renderFooter(c)}
+<script src="${animeSrc}"></script>
+<script src="${scriptSrc}"></script>
+</body>
+</html>`;
+}
+
 // ── Build ────────────────────────────────────────────────────────────────
 mkdirSync(DIST, { recursive: true });
 mkdirSync(join(DIST, 'en'), { recursive: true });
@@ -581,6 +741,12 @@ mkdirSync(join(DIST, 'analitik'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'analytics'), { recursive: true });
 mkdirSync(join(DIST, 'ekran-turu'), { recursive: true });
 mkdirSync(join(DIST, 'en', 'product-tour'), { recursive: true });
+mkdirSync(join(DIST, 'sss'), { recursive: true });
+mkdirSync(join(DIST, 'en', 'faq'), { recursive: true });
+mkdirSync(join(DIST, 'gizlilik-politikasi'), { recursive: true });
+mkdirSync(join(DIST, 'en', 'privacy-policy'), { recursive: true });
+mkdirSync(join(DIST, 'kullanim-sartlari'), { recursive: true });
+mkdirSync(join(DIST, 'en', 'terms-of-use'), { recursive: true });
 
 writeFileSync(join(DIST, 'index.html'), renderPage(content.tr, '/en/', '/script.js', '/styles.css', '/anime.min.js', '/'));
 writeFileSync(join(DIST, 'en', 'index.html'), renderPage(content.en, '/', '../script.js', '../styles.css', '../anime.min.js', '/en/'));
@@ -611,6 +777,37 @@ writeFileSync(
   join(DIST, 'en', 'product-tour', 'index.html'),
   renderProductTourPage(content.en, '/ekran-turu/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/product-tour/')
 );
+
+writeFileSync(
+  join(DIST, 'sss', 'index.html'),
+  renderFaqPage(content.tr, '/en/faq/', '../script.js', '../styles.css', '../anime.min.js', '/sss/')
+);
+writeFileSync(
+  join(DIST, 'en', 'faq', 'index.html'),
+  renderFaqPage(content.en, '/sss/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/faq/')
+);
+
+writeFileSync(
+  join(DIST, 'gizlilik-politikasi', 'index.html'),
+  renderLegalPage(content.tr, content.tr.privacyPolicy, '/en/privacy-policy/', '../script.js', '../styles.css', '../anime.min.js', '/gizlilik-politikasi/')
+);
+writeFileSync(
+  join(DIST, 'en', 'privacy-policy', 'index.html'),
+  renderLegalPage(content.en, content.en.privacyPolicy, '/gizlilik-politikasi/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/privacy-policy/')
+);
+
+writeFileSync(
+  join(DIST, 'kullanim-sartlari', 'index.html'),
+  renderLegalPage(content.tr, content.tr.termsOfUse, '/en/terms-of-use/', '../script.js', '../styles.css', '../anime.min.js', '/kullanim-sartlari/')
+);
+writeFileSync(
+  join(DIST, 'en', 'terms-of-use', 'index.html'),
+  renderLegalPage(content.en, content.en.termsOfUse, '/kullanim-sartlari/', '../../script.js', '../../styles.css', '../../anime.min.js', '/en/terms-of-use/')
+);
+
+// 404 — Vercel statik çıktı kökünde tek bir 404.html dosyasını eşleşmeyen
+// her path için otomatik sunar (locale'den bağımsız); TR içerikle üretilir.
+writeFileSync(join(DIST, '404.html'), renderNotFoundPage(content.tr, '/en/', '/script.js', '/styles.css', '/anime.min.js'));
 
 // Ekran turu görselleri: assets/screenshots/*  →  dist/screenshots/*
 if (existsSync(SHOTS_SRC)) {
@@ -647,6 +844,9 @@ const SITEMAP_PAIRS = [
   ['/dokumanlar/', '/en/documents/'],
   ['/analitik/', '/en/analytics/'],
   ['/ekran-turu/', '/en/product-tour/'],
+  ['/sss/', '/en/faq/'],
+  ['/gizlilik-politikasi/', '/en/privacy-policy/'],
+  ['/kullanim-sartlari/', '/en/terms-of-use/'],
 ];
 const urlEntry = (path, trPath, enPath) => `  <url>
     <loc>${BASE_URL}${path}</loc>
