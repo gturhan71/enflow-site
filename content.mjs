@@ -20,6 +20,7 @@ export const content = {
         { href: '/#guven', label: 'Güven' },
         { href: '/ekran-turu/', label: 'Ekran Turu' },
         { href: '/analitik/', label: 'Analitik' },
+        { href: '/sss/', label: 'SSS' },
         { href: '/dokumanlar/', label: 'Dökümanlar' },
       ],
       cta: 'Demo Talep Et',
@@ -461,6 +462,143 @@ export const content = {
         },
       ],
     },
+    faq: {
+      eyebrow: 'Merak Edilenler',
+      title: 'Sık Sorulan Sorular',
+      subtitle: 'Enflow hakkında en çok sorulan sorular — demodan önce aklındaki soruları burada yanıtlamaya çalıştık.',
+      backLabel: 'Ana sayfaya dön',
+      items: [
+        {
+          q: 'Enflow tam olarak nedir, kime hitap eder?',
+          a: 'Enflow, saha ziyaretinden başlayıp CRM fırsatına, teklif ve ihaleye, sözleşme ve projeye, satınalmaya ve nihayet faturalama-tahsilata kadar tüm B2B süreç zincirini tek platformda birleştiren kurumsal bir sistem. Satış, presales, satınalma, finans, hukuk, ihale/İYB ve proje yönetimi birimleriyle üst yönetim aynı zincir üzerinde çalışır.',
+        },
+        {
+          q: 'Enflow hangi süreçleri birbirine bağlıyor?',
+          a: 'Ziyaret → CRM (fırsat) → Presales (BoM/maliyet) → teklif & müzakere → [ihale/İYB] → sözleşme (imza) → proje → satınalma → finans (fatura & tahsilat). Bir aşama tamamlandığında bir sonraki aşamanın kaydı kendiliğinden açılır; hiçbir şey birimler arasında elle taşınmaz.',
+        },
+        {
+          q: 'Sanal agent\'lar (boş koltukları dolduran yapay zekâ) otonom karar alıyor mu?',
+          a: 'Hayır. Finans ve hukuk konularında agent\'lar yalnızca önerir — karar her zaman yetkili bir insanda kalır. Yalnızca geri alınabilir işaretli eylemler otomatik çalışır, her biri ayrı bir denetim kaydı üretir ve sonradan itiraz edilip geri alınabilir.',
+        },
+        {
+          q: 'Verilerimiz ne kadar güvende, çok kiracılı (multi-tenant) yapı nasıl izole ediliyor?',
+          a: 'Her şirketin verisi tam izole tutulur; IBAN, vergi no, API anahtarı gibi kritik alanlar şirkete özel bir anahtarla şifrelenir. Sistemdeki her oluşturma/güncelleme/onay/devir olayı zaman damgalı bir denetim izine yazılır ve kaydı kimin (insan mı, agent mı) oluşturduğu her satırda açıkça etiketlenir.',
+        },
+        {
+          q: 'Fiyatlandırma nasıl işliyor?',
+          a: 'Enflow\'un güncel fiyat listesini bu sitede yayınlamıyoruz; çalışan sayınız, birim sayınız ve kurulum tercihinize (bulut ya da kendi sunucunuz) göre teklif hazırlıyoruz. En hızlı yol, aşağıdaki "Demo Talep Et" ile bize ulaşman.',
+        },
+        {
+          q: 'Enflow\'u kendi sunucumuzda (on-premise) çalıştırabilir miyiz, yoksa yalnızca bulutta mı sunuluyor?',
+          a: 'İkisi de mümkün. Demo talebinde firmanızda sunucu olup olmadığını ve yazılımın gereksinimlerini karşılayıp karşılamadığını soruyoruz, çünkü hem bulut hem kendi altyapınızda kurulum destekliyoruz.',
+        },
+        {
+          q: 'Demo/deneme süreci nasıl işliyor?',
+          a: '"Demo Talep Et" butonuna tıklayınca açılan e-postada firma adı, çalışan/birim sayısı ve test süresi gibi birkaç kısa bilgiyi dolduruyorsun; bu bilgiler doğrultusunda bir ön görüşme planlayıp deneme sürecini birlikte kuruyoruz.',
+        },
+        {
+          q: 'Analitik ve raporlama tarafında ne sunuyor?',
+          a: 'Yönetim kokpitinden birim raporlarına, büyüme analitiğinden kârlılık & hazine motoruna kadar onlarca kokpit paneli ve analitik rapor var — tamamının dökümünü Ekran Turu ve Analitik sayfalarında, gerçek ürün ekranlarıyla görebilirsin.',
+        },
+      ],
+    },
+    notFound: {
+      eyebrow: '404',
+      title: 'Bu sayfa bulunamadı.',
+      subtitle: 'Aradığın sayfa taşınmış ya da hiç var olmamış olabilir. Aşağıdan devam edebilirsin.',
+      homeLabel: 'Ana sayfaya dön',
+      links: [
+        { href: '/ekran-turu/', label: 'Ekran Turu' },
+        { href: '/analitik/', label: 'Analitik' },
+        { href: '/sss/', label: 'Sık Sorulan Sorular' },
+        { href: '/dokumanlar/', label: 'Dökümanlar' },
+      ],
+    },
+    privacyPolicy: {
+      eyebrow: 'Yasal',
+      title: 'Gizlilik Politikası',
+      subtitle: 'Enflow tanıtım sitesini ziyaret ettiğinde hangi verilerin nasıl işlendiğini bu sayfada açıklıyoruz.',
+      backLabel: 'Ana sayfaya dön',
+      updatedLabel: 'Son güncelleme',
+      updated: '[GÜNCELLEME TARİHİ — yayınlamadan önce doldurulacak]',
+      draftNotice:
+        'Bu sayfa taslak aşamasındadır — köşeli parantez içindeki alanlar (şirket unvanı, adres, MERSİS/vergi no vb.) resmî bilgilerle doldurulup hukuki inceleme yapılmadan yayınlanmamalıdır.',
+      sections: [
+        {
+          heading: 'Veri sorumlusu',
+          body:
+            'Bu internet sitesinin (www.enflow.com.tr) veri sorumlusu [ŞİRKET UNVANI]\'dir (\"Enflow\", \"biz\"). Adres: [ADRES]. Ticaret sicil / MERSİS no: [MERSİS NO]. İletişim: info@enflow.com.tr.',
+        },
+        {
+          heading: 'Hangi verileri topluyoruz',
+          body:
+            'Bu site kendi başına bir form çalıştırmaz. \"Demo Talep Et\" bağlantısına tıkladığında e-posta istemcinde bizim adresimize (info@enflow.com.tr) önceden doldurulmuş bir taslak e-posta açılır; o e-postayı gönderip göndermemek tamamen sana bağlıdır ve gönderdiğin bilgiler (firma adı, iletişim bilgileri vb.) doğrudan e-posta yoluyla bize ulaşır, bu site üzerinden bir veritabanına kaydedilmez.',
+        },
+        {
+          heading: 'Çerezler ve takip teknolojileri',
+          body:
+            'Bu site kendi kodu üzerinden hiçbir çerez (cookie) ya da tarayıcı depolama (localStorage) kullanmaz. Trafik ölçümü için Vercel Web Analytics kullanılır; bu araç varsayılan olarak çerezsiz çalışır ve ziyaretçileri kişisel olarak tanımlayan bir kimlik saklamaz.',
+        },
+        {
+          heading: 'Verilerin saklanma süresi ve aktarımı',
+          body:
+            '"Demo Talep Et" üzerinden gönderdiğin bilgiler yalnızca demo/deneme sürecinin planlanması amacıyla kullanılır ve üçüncü taraflarla paylaşılmaz. [Saklama süresi ve varsa yurt dışı aktarım bilgisi eklenecek.]',
+        },
+        {
+          heading: 'KVKK kapsamındaki hakların',
+          body:
+            '6698 sayılı Kişisel Verilerin Korunması Kanunu\'nun 11. maddesi uyarınca; verinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilme, eksik/yanlış işlenmişse düzeltilmesini isteme ve kanunda öngörülen şartlarda silinmesini/yok edilmesini isteme haklarına sahipsin. Taleplerini info@enflow.com.tr adresine iletebilirsin.',
+        },
+        {
+          heading: 'Değişiklikler',
+          body: 'Bu politika güncellenebilir; önemli değişiklikler bu sayfada yayınlanır.',
+        },
+      ],
+    },
+    termsOfUse: {
+      eyebrow: 'Yasal',
+      title: 'Kullanım Şartları',
+      subtitle: 'www.enflow.com.tr sitesini kullanarak aşağıdaki şartları kabul etmiş sayılırsın.',
+      backLabel: 'Ana sayfaya dön',
+      updatedLabel: 'Son güncelleme',
+      updated: '[GÜNCELLEME TARİHİ — yayınlamadan önce doldurulacak]',
+      draftNotice:
+        'Bu sayfa taslak aşamasındadır — köşeli parantez içindeki alanlar resmî bilgilerle doldurulup hukuki inceleme yapılmadan yayınlanmamalıdır.',
+      sections: [
+        {
+          heading: 'Kapsam',
+          body:
+            'Bu kullanım şartları, [ŞİRKET UNVANI] (\"Enflow\") tarafından işletilen www.enflow.com.tr tanıtım sitesinin kullanımını kapsar. Site, Enflow yazılım platformunun tanıtımı ve demo talebi amacıyla sunulur; Enflow yazılımının kendisinin kullanım şartları ayrı bir lisans/hizmet sözleşmesine tabidir.',
+        },
+        {
+          heading: 'Fikri mülkiyet',
+          body:
+            'Sitedeki tüm metin, tasarım, logo, ekran görüntüsü ve içerik [ŞİRKET UNVANI]\'ye aittir ya da ona lisanslanmıştır. Önceden yazılı izin alınmadan ticari amaçla çoğaltılamaz, dağıtılamaz.',
+        },
+        {
+          heading: 'Ekran görüntüleri ve demo verileri',
+          body:
+            'Ekran Turu ve Analitik sayfalarındaki ürün ekran görüntüleri demo/temsilî veriyle oluşturulmuştur; gerçek müşteri, ihale ya da kurum verisi içermez.',
+        },
+        {
+          heading: 'Sorumluluk reddi',
+          body:
+            'Site içeriği "olduğu gibi" sunulur; doğruluk, güncellik ya da belirli bir amaca uygunluk konusunda açık ya da zımni bir garanti verilmez. Enflow, sitenin kullanımından doğabilecek doğrudan ya da dolaylı zararlardan, yürürlükteki mevzuatın izin verdiği azami ölçüde sorumlu tutulamaz.',
+        },
+        {
+          heading: 'Dış bağlantılar',
+          body: 'Site; LinkedIn, Ürün Wiki ve interaktif demo önizlemesi gibi üçüncü taraf adreslere bağlantı verebilir. Bu adreslerin içeriğinden Enflow sorumlu değildir.',
+        },
+        {
+          heading: 'Uygulanacak hukuk',
+          body: 'Bu kullanım şartları Türkiye Cumhuriyeti kanunlarına tabidir; uyuşmazlıklarda [YETKİLİ MAHKEME/İCRA DAİRESİ] yetkilidir.',
+        },
+        {
+          heading: 'Değişiklikler',
+          body: 'Bu şartlar önceden haber verilmeksizin güncellenebilir; güncel sürüm her zaman bu sayfada yayınlanır.',
+        },
+      ],
+    },
     cta: {
       title: 'Süreçlerinizin nerede kopuk olduğunu birlikte görelim.',
       subtitle: 'Kısa bir demoda, kendi süreçlerinizin Enflow zincirinde nasıl aktığını gösterelim.',
@@ -492,6 +630,10 @@ export const content = {
       wikiHref: '/wiki/',
       linkedinLabel: "Enflow'u LinkedIn'de takip edin",
       linkedinHref: 'https://www.linkedin.com/company/enflow-tr',
+      privacyLabel: 'Gizlilik Politikası',
+      privacyHref: '/gizlilik-politikasi/',
+      termsLabel: 'Kullanım Şartları',
+      termsHref: '/kullanim-sartlari/',
     },
   },
 
@@ -513,6 +655,7 @@ export const content = {
         { href: '/en/#guven', label: 'Trust' },
         { href: '/en/product-tour/', label: 'Screen Tour' },
         { href: '/en/analytics/', label: 'Analytics' },
+        { href: '/en/faq/', label: 'FAQ' },
         { href: '/en/documents/', label: 'Resources' },
       ],
       cta: 'Request a Demo',
@@ -952,6 +1095,143 @@ export const content = {
         },
       ],
     },
+    faq: {
+      eyebrow: 'FAQ',
+      title: 'Frequently Asked Questions',
+      subtitle: 'The questions we hear most about Enflow — answered here before you ever need a demo.',
+      backLabel: 'Back to home',
+      items: [
+        {
+          q: 'What exactly is Enflow, and who is it for?',
+          a: 'Enflow is an enterprise platform that chains the entire B2B process — from the first field visit to a CRM opportunity, proposal and tender, contract and project, procurement, and finally invoicing and collection — into one system. Sales, presales, procurement, finance, legal, tender/bid management and project management units, plus senior management, all work on the same chain.',
+        },
+        {
+          q: 'Which processes does Enflow chain together?',
+          a: 'Visit → CRM (opportunity) → Presales (BoM/cost) → proposal & negotiation → [tender/bid management] → contract (signature) → project → procurement → finance (invoicing & collection). When one stage closes, the next stage\'s record opens itself — nothing is moved by hand between units.',
+        },
+        {
+          q: 'Do the virtual agents that fill empty seats make autonomous decisions?',
+          a: 'No. On finance and legal matters, agents only recommend — the decision always stays with an authorized person. Only actions flagged as reversible run automatically, each producing its own audit record, and every one can later be challenged and rolled back.',
+        },
+        {
+          q: 'How secure is our data, and how is the multi-tenant structure isolated?',
+          a: 'Every company\'s data is fully isolated; sensitive fields such as IBAN, tax ID and API keys are encrypted with a company-specific key. Every create/update/approve/hand-off event is written to a timestamped audit trail, and every record is explicitly tagged with who created it — human or agent.',
+        },
+        {
+          q: 'How does pricing work?',
+          a: 'We don\'t publish a price list on this site; we quote based on your employee count, number of units, and deployment preference (cloud or your own servers). The fastest way to get a number is to reach out via "Request a Demo" below.',
+        },
+        {
+          q: 'Can we run Enflow on our own servers (on-premise), or is it cloud-only?',
+          a: 'Both are possible. When you request a demo we ask whether your company has a server and whether it meets the software\'s requirements, because we support deployment on both our cloud and your own infrastructure.',
+        },
+        {
+          q: 'How does the demo/trial process work?',
+          a: 'Clicking "Request a Demo" opens a pre-filled email with a few short fields — company name, employee/unit count, and how long you\'d like to trial it. From there we schedule a preliminary call and set up the trial together.',
+        },
+        {
+          q: 'What does the analytics and reporting side offer?',
+          a: 'From the executive cockpit to per-unit reports, from growth analytics to the profitability & treasury engine, there are dozens of cockpit panels and analytics reports — see the full breakdown, with real product screens, on the Screen Tour and Analytics pages.',
+        },
+      ],
+    },
+    notFound: {
+      eyebrow: '404',
+      title: 'This page could not be found.',
+      subtitle: 'The page you were looking for may have moved, or never existed. You can continue from here.',
+      homeLabel: 'Back to home',
+      links: [
+        { href: '/en/product-tour/', label: 'Product Tour' },
+        { href: '/en/analytics/', label: 'Analytics' },
+        { href: '/en/faq/', label: 'FAQ' },
+        { href: '/en/documents/', label: 'Resources' },
+      ],
+    },
+    privacyPolicy: {
+      eyebrow: 'Legal',
+      title: 'Privacy Policy',
+      subtitle: 'This page explains what data is processed, and how, when you visit the Enflow marketing site.',
+      backLabel: 'Back to home',
+      updatedLabel: 'Last updated',
+      updated: '[UPDATE DATE — to be filled in before publishing]',
+      draftNotice:
+        'This page is a draft — the bracketed fields (legal entity name, address, company registry number, etc.) must be filled in with official information and reviewed by counsel before this page goes live.',
+      sections: [
+        {
+          heading: 'Data controller',
+          body:
+            'The data controller for this website (www.enflow.com.tr) is [LEGAL ENTITY NAME] ("Enflow", "we"). Address: [ADDRESS]. Company registry number: [REGISTRY NUMBER]. Contact: info@enflow.com.tr.',
+        },
+        {
+          heading: 'What data we collect',
+          body:
+            'This site does not run its own form. Clicking "Request a Demo" opens a pre-filled draft email, addressed to us (info@enflow.com.tr), in your own email client; whether you send it is entirely up to you, and any information you send (company name, contact details, etc.) reaches us directly by email — it is never stored in a database by this site.',
+        },
+        {
+          heading: 'Cookies and tracking technologies',
+          body:
+            'This site\'s own code sets no cookies and uses no browser storage (localStorage). Traffic is measured with Vercel Web Analytics, which by default is cookieless and stores no identifier that personally identifies a visitor.',
+        },
+        {
+          heading: 'Retention and transfer',
+          body:
+            'Information sent via "Request a Demo" is used only to plan the demo/trial process and is not shared with third parties. [Retention period and any cross-border transfer details to be added.]',
+        },
+        {
+          heading: 'Your rights',
+          body:
+            'Depending on your jurisdiction (for Turkey, under KVKK Law No. 6698, Article 11), you generally have the right to learn whether your data is processed, request information about it, learn its purpose, know the third parties it is shared with, request correction of inaccurate data, and request its deletion where legally required. Send requests to info@enflow.com.tr.',
+        },
+        {
+          heading: 'Changes',
+          body: 'This policy may be updated; material changes will be posted on this page.',
+        },
+      ],
+    },
+    termsOfUse: {
+      eyebrow: 'Legal',
+      title: 'Terms of Use',
+      subtitle: 'By using www.enflow.com.tr, you agree to the terms below.',
+      backLabel: 'Back to home',
+      updatedLabel: 'Last updated',
+      updated: '[UPDATE DATE — to be filled in before publishing]',
+      draftNotice:
+        'This page is a draft — the bracketed fields must be filled in with official information and reviewed by counsel before this page goes live.',
+      sections: [
+        {
+          heading: 'Scope',
+          body:
+            'These terms of use cover the www.enflow.com.tr marketing site, operated by [LEGAL ENTITY NAME] ("Enflow"). The site exists to present the Enflow software platform and handle demo requests; use of the Enflow software itself is governed by a separate license/service agreement.',
+        },
+        {
+          heading: 'Intellectual property',
+          body:
+            'All text, design, logos, screenshots and other content on this site belong to, or are licensed to, [LEGAL ENTITY NAME]. None of it may be reproduced or distributed for commercial purposes without prior written permission.',
+        },
+        {
+          heading: 'Screenshots and demo data',
+          body:
+            'Product screenshots on the Screen Tour and Analytics pages were captured from a demo environment with illustrative data; they contain no real customer, tender or institutional data.',
+        },
+        {
+          heading: 'Disclaimer',
+          body:
+            'The site is provided "as is," with no express or implied warranty as to accuracy, currency, or fitness for a particular purpose. To the maximum extent permitted by applicable law, Enflow is not liable for direct or indirect damages arising from use of the site.',
+        },
+        {
+          heading: 'External links',
+          body: 'The site may link to third-party destinations such as LinkedIn, the Product Wiki, and the interactive demo preview. Enflow is not responsible for the content of those destinations.',
+        },
+        {
+          heading: 'Governing law',
+          body: 'These terms are governed by the laws of the Republic of Türkiye; disputes fall under the jurisdiction of [COMPETENT COURT].',
+        },
+        {
+          heading: 'Changes',
+          body: 'These terms may be updated without prior notice; the current version is always published on this page.',
+        },
+      ],
+    },
     cta: {
       title: 'Let\'s find out where your process is broken.',
       subtitle: 'In a short demo, we\'ll show how your own process flows through the Enflow chain.',
@@ -983,6 +1263,10 @@ export const content = {
       wikiHref: '/wiki/',
       linkedinLabel: 'Follow Enflow on LinkedIn',
       linkedinHref: 'https://www.linkedin.com/company/enflow-tr',
+      privacyLabel: 'Privacy Policy',
+      privacyHref: '/en/privacy-policy/',
+      termsLabel: 'Terms of Use',
+      termsHref: '/en/terms-of-use/',
     },
   },
 };

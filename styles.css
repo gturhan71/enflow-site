@@ -572,7 +572,7 @@ button { font: inherit; }
 .brand-sm { font-size: 16px; margin-bottom: 8px; }
 .footer-desc { font-size: 13px; color: var(--txt-secondary); line-height: 1.5; }
 .footer-nav-block { text-align: right; }
-.footer-links { margin-bottom: 8px; display: flex; gap: 16px; justify-content: flex-end; }
+.footer-links { margin-bottom: 8px; display: flex; gap: 16px; justify-content: flex-end; flex-wrap: wrap; }
 .footer-link {
   font-size: 13px; font-weight: 500;
   color: var(--accent); transition: opacity 0.15s ease;
@@ -592,6 +592,63 @@ button { font: inherit; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 /* ── Responsive Adaptations ──────────────────────────────────── */
+/* ── FAQ ──────────────────────────────────────────────────────── */
+.faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 760px; }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+}
+.faq-item summary {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--txt-primary);
+  letter-spacing: -0.012em;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  flex-shrink: 0;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--txt-tertiary);
+  transition: transform 0.2s var(--ease);
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item[open] summary { margin-bottom: 12px; }
+.faq-item p { font-size: 14.5px; color: var(--txt-secondary); line-height: 1.6; }
+
+/* ── Legal pages (Privacy / Terms) ───────────────────────────── */
+.wrap-narrow { max-width: 760px; }
+.legal-updated { margin-top: 10px; font-size: 13px; color: var(--txt-tertiary); }
+.legal-draft-notice {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  font-size: 13.5px;
+  color: var(--accent-amber);
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+.legal-section { margin-bottom: 32px; }
+.legal-section h2 { font-size: 19px; font-weight: 600; color: var(--txt-primary); margin-bottom: 10px; letter-spacing: -0.015em; }
+.legal-section p { font-size: 15px; color: var(--txt-body); line-height: 1.65; }
+
+/* ── 404 ──────────────────────────────────────────────────────── */
+.section-notfound { padding-top: 64px; }
+.notfound-inner { text-align: center; }
+.notfound-inner .section-title { font-size: clamp(40px, 6vw, 64px); }
+.notfound-inner .section-subtitle { margin-left: auto; margin-right: auto; margin-bottom: 32px; }
+.notfound-links { margin-top: 28px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
 @media (max-width: 1024px) {
   .ledger-track { grid-template-columns: repeat(4, 1fr); }
   .specs-grid { grid-template-columns: repeat(2, 1fr); }
