@@ -89,6 +89,9 @@ const STEPS = [
   ['14-denetim-izi',      async (p) => { await clickNav(p, 'Denetim İzi', { expandFirst: 'Şirket Ayarları' }); }],
   ['15-sanal-agentlar',   async (p) => { await clickNav(p, 'Sanal Agentlar', { expandFirst: 'Şirket Ayarları' }); }],
   ['16-surec-tasarimcisi', async (p) => { await clickNav(p, 'İş Akışı', { expandFirst: 'Şirket Ayarları' }); }],
+  ['17-is-emirleri',       async (p) => { await clickNav(p, 'Profesyonel Hizmetler'); }],
+  ['18-haftalik-takvim',   async (p) => { await clickNav(p, 'Profesyonel Hizmetler'); await settle(p, 1000); await clickTab(p, 'Haftalık Takvim'); }],
+  ['19-ekip-utilizasyonu', async (p) => { await clickNav(p, 'Profesyonel Hizmetler'); await settle(p, 1000); await clickTab(p, 'Ekip Utilizasyonu'); }],
 ];
 
 const browser = await chromium.launch();

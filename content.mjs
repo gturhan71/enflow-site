@@ -166,6 +166,7 @@ export const content = {
         { icon: 'truck', title: 'Presales & satınalma', text: 'Malzeme listesi, maliyet analizi, tedarikçi kıyaslama ve teslimat takibi.' },
         { icon: 'gavel', title: 'Sözleşme & hukuk', text: 'Evrak/imza akışı, onay zincirleri ve doküman kodlama.' },
         { icon: 'filetext', title: 'Kamu ihalesi firmaları', text: 'İhale takibi, uygunluk checklist\'i ve teminat mektubu yönetimi.' },
+        { icon: 'clock', title: 'Saha operasyonu & teknik servis', text: 'İş emri sevkiyatı, SLA takibi, ekip utilizasyonu ve müşteri memnuniyet puanı tek panelde.' },
       ],
     },
     documents: {
@@ -365,6 +366,22 @@ export const content = {
             { name: 'Varsayılan Şablon Yükleme', desc: '13 doğrulanmış süreç tek çağrıyla kurulur, sonuç raporu gösterilir.' },
           ],
         },
+        {
+          title: 'Profesyonel Hizmetler',
+          intro: 'Kurulum, arıza ve bakım iş emirlerini sevkiyattan kapanışa yöneten saha operasyonu paneli.',
+          items: [
+            { name: 'İş Emri Yönetimi', desc: 'DRAFT → SCHEDULED → IN_PROGRESS → COMPLETED statü akışı; kapanışta müşteri imza/foto kanıtı zorunlu.' },
+            { name: 'Haftalık Teknisyen Takvimi', desc: 'Saha ekibinin haftalık dağıtımı, ziyaret planı paternine benzer görünüm.' },
+            { name: 'Dış Kaynak Mini-Onayı', desc: 'Malzeme/hizmet için hafif, tek-adımlı birim yöneticisi onayı.' },
+            { name: 'SLA Takibi', desc: 'Sözleşme teslim tarihinden "kopyala" önerisi; aşımda kırmızı rozet.' },
+            { name: 'Teknisyen Maliyeti', desc: 'Saatlik/günlük ücret — yalnız GM ve Profesyonel Hizmetler Müdürü görür.' },
+            { name: 'Ekip Utilizasyonu Dashboard\'u', desc: 'Aylık dönem, %doluluk, SLA performansı ve işçilik maliyeti, bar grafikli.' },
+            { name: 'Resmi Tatil Takvimi', desc: 'Tenant bazlı tatil listesi, kapasite hesabına otomatik dahil olur.' },
+            { name: 'Müşteri Memnuniyet Puanı (CSAT)', desc: 'Kapanışta opsiyonel 1-5 yıldız; birim özetinde ortalama.' },
+            { name: 'Kapasite-Farkındalıklı Dispatch', desc: 'Sevkiyat ekranında teknisyenin güncel açık iş sayısı önerisi.' },
+            { name: 'Teknisyene Tam Bağlam', desc: 'Kaynak servis talebinin bildiren kişisi, iletişim bilgisi ve kanıtları + kendi saha ekleri tek ekranda.' },
+          ],
+        },
       ],
     },
     productTour: {
@@ -440,6 +457,16 @@ export const content = {
             'İmzalanan her sözleşme bir projeye dönüşür. Milestone\'lar, planlanan–gerçekleşen marj ve ilerleme yüzdesi izlenir; gecikmeler otomatik olarak yönetime eskale edilir.',
           shots: [
             { slot: '11-proje-yonetimi', title: 'Proje Yönetimi', caption: 'Aktif / tamamlanan proje sayısı, ortalama ilerleme, proje durum dağılımı ve yaklaşan milestone\'lar.' },
+          ],
+        },
+        {
+          unit: 'Profesyonel Hizmetler',
+          basis:
+            'Kurulum, arıza ve bakım iş emirleri sevkiyattan kapanışa tek birimde yönetilir. Teknisyen kendi haftalık programını görür, yönetici ekip kapasitesini ve müşteri memnuniyetini izler.',
+          shots: [
+            { slot: '17-is-emirleri', title: 'İş Emirleri', caption: 'Statü akışı (DRAFT→SCHEDULED→IN_PROGRESS→COMPLETED), SLA rozetleri ve kapanış kanıtı.' },
+            { slot: '18-haftalik-takvim', title: 'Haftalık Teknisyen Takvimi', caption: 'Saha ekibinin haftalık dağıtımı; sevkiyatta teknisyenin güncel açık iş sayısı görünür.' },
+            { slot: '19-ekip-utilizasyonu', title: 'Ekip Utilizasyonu', caption: 'Aylık %doluluk, SLA performansı ve CSAT ortalaması, bar grafikli özet.' },
           ],
         },
         {
@@ -799,6 +826,7 @@ export const content = {
         { icon: 'truck', title: 'Presales & procurement', text: 'Bill of materials, cost analysis, vendor comparison and delivery tracking.' },
         { icon: 'gavel', title: 'Contracts & legal', text: 'Document/signature flow, approval chains and document coding.' },
         { icon: 'filetext', title: 'Public tender bidders', text: 'Tender tracking, eligibility checklists and bid-bond management.' },
+        { icon: 'clock', title: 'Field operations & technical service', text: 'Work-order dispatch, SLA tracking, team utilization and customer satisfaction score in one panel.' },
       ],
     },
     documents: {
@@ -998,6 +1026,22 @@ export const content = {
             { name: 'Default Template Loading', desc: 'Installs 13 validated processes in one call, with a results report.' },
           ],
         },
+        {
+          title: 'Professional Services',
+          intro: 'The field-operations panel that runs installation, repair and maintenance work orders from dispatch to close-out.',
+          items: [
+            { name: 'Work Order Management', desc: 'DRAFT → SCHEDULED → IN_PROGRESS → COMPLETED status flow; customer signature/photo proof required to close.' },
+            { name: 'Weekly Technician Calendar', desc: 'Weekly field-team distribution, in a view similar to the visit-plan pattern.' },
+            { name: 'Outsourced-Resource Mini-Approval', desc: 'A lightweight, single-step unit-manager approval for outsourced materials or services.' },
+            { name: 'SLA Tracking', desc: '"Copy from contract" suggestion for the delivery date; overdue items get a red badge.' },
+            { name: 'Technician Cost', desc: 'Hourly/daily rate — visible only to the GM and the Professional Services Manager.' },
+            { name: 'Team Utilization Dashboard', desc: 'Monthly period, % utilization, SLA performance and labor cost, with a bar chart.' },
+            { name: 'Official Holiday Calendar', desc: 'Tenant-specific holiday list, automatically factored into capacity.' },
+            { name: 'Customer Satisfaction Score (CSAT)', desc: 'Optional 1-5 star rating at close-out; averaged in the unit summary.' },
+            { name: 'Capacity-Aware Dispatch', desc: 'The dispatch screen suggests each technician\'s current open-job count.' },
+            { name: 'Full Context for the Technician', desc: 'The source service ticket\'s reporter, contact details and evidence, plus the technician\'s own field attachments, on one screen.' },
+          ],
+        },
       ],
     },
     productTour: {
@@ -1073,6 +1117,16 @@ export const content = {
             'Every signed contract becomes a project. Milestones, planned vs. actual margin and progress percentage are tracked; delays are escalated to management automatically.',
           shots: [
             { slot: '11-proje-yonetimi', title: 'Project Management', caption: 'Active / completed project count, average progress, project status distribution and upcoming milestones.' },
+          ],
+        },
+        {
+          unit: 'Professional Services',
+          basis:
+            'Installation, repair and maintenance work orders are managed in one unit, from dispatch to close-out. The technician sees their own weekly schedule; managers track team capacity and customer satisfaction.',
+          shots: [
+            { slot: '17-is-emirleri', title: 'Work Orders', caption: 'Status flow (DRAFT→SCHEDULED→IN_PROGRESS→COMPLETED), SLA badges and close-out proof.' },
+            { slot: '18-haftalik-takvim', title: 'Weekly Technician Calendar', caption: 'Weekly field-team distribution; the dispatch screen shows each technician\'s current open-job count.' },
+            { slot: '19-ekip-utilizasyonu', title: 'Team Utilization', caption: 'Monthly % utilization, SLA performance and average CSAT, summarized with a bar chart.' },
           ],
         },
         {
