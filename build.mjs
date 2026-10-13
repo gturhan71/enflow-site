@@ -517,7 +517,7 @@ ${seoTags(c, canonicalPath, otherHref)}
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/analytics/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 <script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -564,7 +564,7 @@ ${seoTags(c, canonicalPath, otherHref)}
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/analytics/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -596,7 +596,7 @@ ${seoTags(c, canonicalPath, otherHref)}
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/analytics/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -629,7 +629,7 @@ ${seoTags(c, canonicalPath, otherHref)}
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/analytics/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -663,7 +663,7 @@ ${faqJsonLd(c)}
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/analytics/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
@@ -696,7 +696,7 @@ ${seoTags(c, canonicalPath, otherHref)}
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
-<script defer src="/_vercel/analytics/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <canvas id="bgWave" class="bg-wave-canvas" aria-hidden="true"></canvas>
