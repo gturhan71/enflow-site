@@ -572,6 +572,16 @@ export const content = {
             '"Demo Talep Et" üzerinden gönderdiğin bilgiler yalnızca demo/deneme sürecinin planlanması amacıyla kullanılır ve üçüncü taraflarla paylaşılmaz. [Saklama süresi ve varsa yurt dışı aktarım bilgisi eklenecek.]',
         },
         {
+          heading: 'Veri güvenliği',
+          body:
+            'Bu site, kendi sunucusunda hiçbir ziyaretçi verisi tutmaz ya da işlemez — tamamı statik sayfalardan oluşur. "Demo Talep Et" ile paylaştığın tek bilgi, kendi e-posta istemcinden doğrudan bize (info@enflow.com.tr) giden bir e-postadır; bu site üzerinden bir veritabanına kaydedilmez. Sitenin tamamı HTTPS (şifreli bağlantı) üzerinden sunulur. Barındırma altyapımız (Vercel), endüstri standardı fiziksel ve teknik güvenlik önlemlerine sahiptir.',
+        },
+        {
+          heading: 'Veri ihlali durumunda',
+          body:
+            'Kişisel verilerin hukuka aykırı yollarla başkaları tarafından elde edilmesi hâlinde, 6698 sayılı Kanun\'un 12. maddesi ve Kişisel Verileri Koruma Kurulu\'nun 24.01.2019 tarihli kararı uyarınca durumu öğrendiğimiz andan itibaren en geç 72 saat içinde Kişisel Verileri Koruma Kurulu\'na ve etkilenen kişilere bildiririz. [İç müdahale süreci ve bildirim kanalı netleştirilip buraya eklenecek.]',
+        },
+        {
           heading: 'KVKK kapsamındaki hakların',
           body:
             '6698 sayılı Kişisel Verilerin Korunması Kanunu\'nun 11. maddesi uyarınca; verinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, yurt içinde/yurt dışında aktarıldığı üçüncü kişileri bilme, eksik/yanlış işlenmişse düzeltilmesini isteme ve kanunda öngörülen şartlarda silinmesini/yok edilmesini isteme haklarına sahipsin. Taleplerini info@enflow.com.tr adresine iletebilirsin.',
@@ -1230,6 +1240,16 @@ export const content = {
           heading: 'Retention and transfer',
           body:
             'Information sent via "Request a Demo" is used only to plan the demo/trial process and is not shared with third parties. [Retention period and any cross-border transfer details to be added.]',
+        },
+        {
+          heading: 'Data security',
+          body:
+            'This site stores or processes no visitor data on its own server — it consists entirely of static pages. The only information you share via "Request a Demo" is an email sent directly from your own email client to us (info@enflow.com.tr); it is never saved to a database by this site. The entire site is served over HTTPS (an encrypted connection). Our hosting infrastructure (Vercel) maintains industry-standard physical and technical security measures.',
+        },
+        {
+          heading: 'In the event of a data breach',
+          body:
+            'If personal data is unlawfully obtained by others, we will notify the Turkish Data Protection Authority (KVKK) and the affected individuals as soon as we become aware, and no later than 72 hours, per Article 12 of Law No. 6698 and the Board\'s decision of 24 January 2019. [Internal response process and notification channel to be finalized and added here.]',
         },
         {
           heading: 'Your rights',
