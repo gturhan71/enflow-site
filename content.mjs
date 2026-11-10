@@ -8,7 +8,7 @@ export const content = {
     meta: {
       title: 'Enflow — Süreçleriniz artık birbirini beklemesin',
       description:
-        'Ziyaretten tahsilata kadar tüm B2B sürecinizi tek otomatik zincirde birleştiren kurumsal platform. Kopuk araçlar yok, kayıp bilgi yok.',
+        'Ziyaretten tahsilata kadar tüm B2B sürecinizi tek otomatik zincirde birleştiren kurumsal platform. Kopuk araçlar yok, kayıp bilgi yok. Enflow AI v3.0.0 ile bilgiye ekran ekran aramadan, soru sorarak ulaşın.',
     },
     nav: {
       brand: 'Enflow',
@@ -17,6 +17,7 @@ export const content = {
         { href: '/#fark', label: 'Fark' },
         { href: '/#akis', label: 'Nasıl Çalışır' },
         { href: '/#deger', label: 'Değer' },
+        { href: '/#enflow-ai', label: 'Enflow AI' },
         { href: '/#guven', label: 'Güven' },
         { href: '/ekran-turu/', label: 'Ekran Turu' },
         { href: '/analitik/', label: 'Analitik' },
@@ -34,6 +35,11 @@ export const content = {
         'Ziyaretten tahsilata kadar tüm B2B sürecinizi tek zincirde otomatikleştiren platform. Bir adım biter, bir sonraki kendiliğinden açılır — hiçbir şey birimler arasında kaybolmaz.',
       ctaPrimary: 'Demo Talep Et',
       ctaSecondary: 'Nasıl çalıştığını gör',
+      announce: {
+        label: 'Yeni: Enflow AI v3.0.0.',
+        text: 'Platformdaki bilgiye artık soru sorarak ulaşın. Yetkiler aynı, son karar insanda.',
+        href: '#enflow-ai',
+      },
       chain: ['Ziyaret', 'CRM', 'Presales', 'Teklif', 'Sözleşme', 'Proje', 'Satınalma', 'Finans'],
     },
     problem: {
@@ -86,8 +92,9 @@ export const content = {
       items: [
         { label: 'Frontend', value: 'React 19 · TypeScript 6 · Vite 8 Rolldown · Tailwind CSS v4' },
         { label: 'Backend & ORM', value: 'Express 5 · Prisma 7 · SQLite (Geliştirme) / PostgreSQL 14+ (Üretim)' },
-        { label: 'Kurumsal Güvenlik', value: '486/486 RBAC Testi · Ed25519 İmzalı Lisanslama · bcryptjs & JWT' },
+        { label: 'Kurumsal Güvenlik', value: '1.000+ Otomatik Yetki Testi · Ed25519 İmzalı Lisanslama · bcryptjs & JWT' },
         { label: 'Sistem Kapsamı', value: '64 Veri Modeli · 36 API Alanı · 29 Kokpit Ekranı · 8 Sanal Agent' },
+        { wide: true, label: 'Yapay Zeka Katmanı', value: '21 Salt Okunur Asistan Aracı · Yerel Model (Ollama, LM Studio, vLLM) · Kendi Anahtarınızla Bulut Sağlayıcı' },
       ],
     },
     flow: {
@@ -98,7 +105,7 @@ export const content = {
         { label: 'CRM & Pipeline', desc: 'Fırsat açılır, müşteri sağlık skoru ve bütçe takip edilir.', input: 'Müşteri bütçesi & karar vericiler', output: 'Presales görev ataması & hijyen skoru', role: 'Satış / CRM Agent' },
         { label: 'Presales & BoM', desc: 'Malzeme listesi (BoM) ve maliyet modeli hazırlanır.', input: 'Şartname & ürün gereksinimleri', output: 'Maliyet analizi & dip marj sınırı', role: 'Teknik Presales' },
         { label: 'Teklif & Müzakere', desc: 'Versiyonlu teklif PDF, marj korumalı pazarlık günlüğü.', input: 'Dinamik iskonto & ödeme vadesi', output: 'İmzalı teklif & revizyon kaydı', role: 'Satış Yönetimi' },
-        { label: 'İhale & Sözleşme', desc: 'Evrak checklist\'i, AI şartname analizi ve imza akışı.', input: 'KİK/şartname evrakı & teminat mektubu', output: 'Onaylı sözleşme kaydı & risk skoru', auto: true, role: 'Hukuk / Tender Agent (Danışman)' },
+        { label: 'İhale & Sözleşme', desc: 'Evrak checklist\'i, YZ ile parça parça sözleşme ve şartname analizi, imza akışı.', input: 'KİK/şartname evrakı & teminat mektubu', output: 'Onaylı sözleşme kaydı & risk skoru', auto: true, role: 'Hukuk / Tender Agent (Danışman)' },
         { label: 'Proje Yürütme', desc: 'Milestone, WBS iş paketleri ve canlı karlılık grafiği.', input: 'Proje takvimi & teslim taşları', output: 'Canlı marj & satınalma talepleri', auto: true, role: 'Proje Ekibi / Project Agent' },
         { label: 'Satınalma & Stok', desc: 'Tedarikçi teklif kıyaslama, PO siparişi ve teslimat.', input: 'Onaylı malzeme talebi & teklifler', output: 'Satınalma siparişi (PO) & irsaliye', auto: true, role: 'Satınalma / Procurement Agent' },
         { label: 'Finans & Tahsilat', desc: 'e-Fatura, banka mutabakatı ve tahsilat kapanışı.', input: 'Tamamlanan milestone & teslim tutanağı', output: 'e-Fatura, KDV & nakit mutabakatı', auto: true, role: 'Finans / Finance Agent (Danışman)' },
@@ -135,6 +142,53 @@ export const content = {
         href: '/analitik/',
       },
     },
+    ai: {
+      title: 'Ekran ekran aramak yerine sorun.',
+      subtitle:
+        'Enflow AI v3.0.0, Enflow v2.5.0\'ın üzerine, değerlerini değiştirmeden eklenen bir yapay zeka katmanı. Asistan cevabını modelin hafızasından değil, o anki kayıtlardan ve yalnızca sizin ekranda görebildiğiniz veriden üretir.',
+      demo: {
+        question: 'Bu çeyreğin kârlılığı nasıl?',
+        answer:
+          'Hangi kırılımı görmek istersiniz: proje, müşteri ya da ürün grubu? Dönemi de netleştirelim: içinde bulunduğumuz çeyrek mi, geçen çeyrek mi?',
+        userLabel: 'Kullanıcı',
+        assistantLabel: 'Enflow AI',
+        note: 'Belirsiz sorularda asistan önce ne kastedildiğini sorar. Örnek temsilîdir.',
+      },
+      cards: [
+        {
+          icon: 'layers',
+          title: 'Tüm modülleri okur',
+          text: '21 okuma aracıyla CRM\'den finansa, evraklardan denetim izine kadar; dashboard göstergeleri, kârlılık ve yönetim analizleri dahil.',
+        },
+        {
+          icon: 'clock',
+          title: 'Dönemi sorar, kaynağı söyler',
+          text: 'Tarihe bağlı sorularda dönem verilmemişse sorar; cevabın hangi ekrandan geldiğini ve nasıl hesaplandığını belirtir.',
+        },
+        {
+          icon: 'search',
+          title: 'Ne kastedildiğini sorar',
+          text: 'Belirsiz bir soruda tahmin yürütmez; önce hangi kırılımı ya da kaydı kastettiğinizi netleştirir.',
+        },
+        {
+          icon: 'filetext',
+          title: 'Uzun belgeleri parça parça analiz eder',
+          text: 'Sözleşme ve şartnameler bölünür, her parça ayrı incelenir (yükümlülük, ceza, teminat, süre), sonuçlar birleştirilir; analiz arka planda sürer.',
+        },
+        {
+          icon: 'checkcircle',
+          title: 'Uydurmaz',
+          text: 'Veri yoksa söyler; kayıtlara bakmadan cevap üretmeye kalkışırsa yeniden yönlendirilir.',
+        },
+        {
+          icon: 'alertcircle',
+          title: 'Sınırını açıkça belirtir',
+          text: 'Pencerede her zaman görünen uyarı: asistan hata yapabilir, önemli kararlarda kaynak ekran kontrol edilmelidir.',
+        },
+      ],
+      continuity:
+        'Yapay zeka kapalıyken de Enflow çalışır. Tüm modüller, onay zincirleri ve raporlar YZ\'den bağımsızdır; yalnız asistan ve analiz özellikleri kullanılamaz hale gelir ve bunu açıkça bildirir.',
+    },
     trust: {
       title: 'Otomasyon, kontrolü elinizden almaz.',
       subtitle:
@@ -154,6 +208,21 @@ export const content = {
           icon: 'checkcircle',
           title: 'Her adım izlenebilir',
           text: 'Aktör kim — insan mı, agent mı — her kayıtta açıkça etiketlenir; hiçbir işlem kaynağı belirsiz kalmaz.',
+        },
+        {
+          icon: 'users',
+          title: 'Asistanda ekranla birebir yetki',
+          text: 'Asistan ekrandaki kapılardan geçer: ekranda göremediğinizi asistan da göstermez, API de vermez. Bin üzerinde otomatik yetki testi her değişiklikte çalışır.',
+        },
+        {
+          icon: 'building',
+          title: 'Veri şirketinizde kalabilir',
+          text: 'Yerel modelle (Ollama, LM Studio, vLLM) veri şirket dışına çıkmaz; bulut tercih edilirse kendi anahtarınız kullanılır. Kayıt kimlikleri ve kişisel iletişim bilgileri modele gönderilmez.',
+        },
+        {
+          icon: 'filetext',
+          title: 'Asistan salt okunur',
+          text: 'Kayıt oluşturamaz, değiştiremez, onaylayamaz. Her çalışması araç kullanımıyla denetim izine yazılır; mesaj içeriği saklanmaz.',
         },
       ],
     },
@@ -186,6 +255,12 @@ export const content = {
         {
           title: 'Enflow Genel Bakış',
           description: 'Karar vericiler için tek sayfalık ürün özeti — sorun, çözüm ve fark tek bakışta.',
+          format: 'PDF',
+          status: 'soon',
+        },
+        {
+          title: 'Enflow AI v3.0.0 Whitepaper',
+          description: 'Değerler, uçtan uca akış, modüller, Enflow AI Asistanı ile güvenlik ve veri egemenliği; 10 sayfada.',
           format: 'PDF',
           status: 'soon',
         },
@@ -527,6 +602,22 @@ export const content = {
           q: 'Analitik ve raporlama tarafında ne sunuyor?',
           a: 'Yönetim kokpitinden birim raporlarına, büyüme analitiğinden kârlılık & hazine motoruna kadar onlarca kokpit paneli ve analitik rapor var — tamamının dökümünü Ekran Turu ve Analitik sayfalarında, gerçek ürün ekranlarıyla görebilirsin.',
         },
+        {
+          q: 'Enflow AI nedir, mevcut Enflow değişiyor mu?',
+          a: 'Enflow AI v3.0.0, Enflow v2.5.0\'ın üzerine eklenen bir yapay zeka katmanıdır. Uçtan uca akış, rol ve izin yapısı ve onay zincirleri birebir korunur. Yeni olan, tüm modülleri okuyan bir asistandır: bilgiyi ekranlar arasında aramak yerine sorarsınız; asistan cevabın hangi ekrandan geldiğini söyler.',
+        },
+        {
+          q: 'Verilerimiz yapay zeka modeline gidiyor mu? Yerel model kullanabilir miyiz?',
+          a: 'Yapay zeka sağlayıcısı koda gömülü değildir; şirket kendi sağlayıcısını kendi anahtarıyla seçer. Ollama, LM Studio veya vLLM gibi yerel bir model kullanıldığında veri şirket dışına çıkmaz. Hangi sağlayıcı seçilirse seçilsin kayıt kimlikleri ve kişisel iletişim bilgileri modele gönderilmez. Bağlanan modelin bağlam uzunluğu ve hızı ölçülür, ayarlar buna göre kendiliğinden belirlenir.',
+        },
+        {
+          q: 'Asistan kayıt değiştirebilir ya da onay verebilir mi?',
+          a: 'Hayır. Asistan salt okunurdur; kayıt oluşturamaz, değiştiremez, onaylayamaz. Kullanıcının ekranda göremediği veriyi asistan da göremez. Her asistan çalışması araç kullanımıyla denetim izine yazılır, mesaj içeriği saklanmaz.',
+        },
+        {
+          q: 'Yapay zeka kapalıysa ya da yapılandırılmamışsa ne olur?',
+          a: 'Enflow çalışmaya devam eder. Tüm modüller, onay zincirleri ve raporlar yapay zekadan bağımsızdır. Yalnız asistan ve analiz özellikleri kullanılamaz hale gelir ve sistem bunu açıkça bildirir; örnek veriye sessizce düşmez.',
+        },
       ],
     },
     notFound: {
@@ -662,7 +753,7 @@ export const content = {
         'Bu bilgiler ile gerekli planlamanın yapılmasını rica ederiz.',
     },
     footer: {
-      text: 'Enflow — B2B Süreç ve Operasyon Platformu',
+      text: 'Enflow — B2B Süreç ve Operasyon Platformu · Enflow AI v3.0.0',
       wikiLabel: 'Ürün Wiki',
       wikiHref: '/wiki/',
       linkedinLabel: "Enflow'u LinkedIn'de takip edin",
@@ -680,7 +771,7 @@ export const content = {
     meta: {
       title: 'Enflow — Your processes stop waiting on each other',
       description:
-        'A unified platform that chains your entire B2B process — from field visit to payment collection — into one automatic flow. No disconnected tools, no lost information.',
+        'A unified platform that chains your entire B2B process — from field visit to payment collection — into one automatic flow. No disconnected tools, no lost information. With Enflow AI v3.0.0, ask for information instead of searching screen by screen.',
     },
     nav: {
       brand: 'Enflow',
@@ -689,6 +780,7 @@ export const content = {
         { href: '/en/#fark', label: 'Why Different' },
         { href: '/en/#akis', label: 'How It Works' },
         { href: '/en/#deger', label: 'Value' },
+        { href: '/en/#enflow-ai', label: 'Enflow AI' },
         { href: '/en/#guven', label: 'Trust' },
         { href: '/en/product-tour/', label: 'Screen Tour' },
         { href: '/en/analytics/', label: 'Analytics' },
@@ -706,6 +798,11 @@ export const content = {
         'One chain that automates your entire B2B process — from the first field visit to the final payment. One step closes, the next opens itself. Nothing gets lost between departments.',
       ctaPrimary: 'Request a Demo',
       ctaSecondary: 'See how it works',
+      announce: {
+        label: 'New: Enflow AI v3.0.0.',
+        text: 'Reach the information in the platform by simply asking. Same permissions; the final decision stays with a person.',
+        href: '#enflow-ai',
+      },
       chain: ['Visit', 'CRM', 'Presales', 'Proposal', 'Contract', 'Project', 'Procurement', 'Finance'],
     },
     specs: {
@@ -714,8 +811,9 @@ export const content = {
       items: [
         { label: 'Frontend', value: 'React 19 · TypeScript 6 · Vite 8 Rolldown · Tailwind CSS v4' },
         { label: 'Backend & ORM', value: 'Express 5 · Prisma 7 · SQLite (Development) / PostgreSQL 14+ (Production)' },
-        { label: 'Enterprise Security', value: '486/486 RBAC Test Suite · Ed25519 Signed Licenses · bcryptjs & JWT' },
+        { label: 'Enterprise Security', value: '1,000+ Automated Permission Tests · Ed25519 Signed Licenses · bcryptjs & JWT' },
         { label: 'System Scope', value: '64 Data Models · 36 API Domains · 29 Cockpit Modules · 8 Virtual Agents' },
+        { wide: true, label: 'AI Layer', value: '21 Read-Only Assistant Tools · Local Models (Ollama, LM Studio, vLLM) · Cloud Provider With Your Own Key' },
       ],
     },
     problem: {
@@ -769,7 +867,7 @@ export const content = {
         { label: 'CRM & Pipeline', desc: 'Opportunity opens, customer health score and value tracked.', input: 'Deal size & decision makers', output: 'Presales task assignment & hygiene score', role: 'Sales / CRM Agent' },
         { label: 'Presales & BoM', desc: 'Bill of materials (BoM) and cost models prepared.', input: 'Spec sheet & BoM lines', output: 'Cost analysis & margin bounds', role: 'Technical Presales' },
         { label: 'Proposal & Negotiation', desc: 'Versioned proposal PDF, floor-margin-protected bargaining.', input: 'Dynamic discounts & payment terms', output: 'Signed proposal & revision log', role: 'Sales Leadership' },
-        { label: 'Contract & Tender', desc: 'Checklist, AI tender/legal analysis, and signature flow.', input: 'Tender spec doc & bid bond', output: 'Approved contract & risk report', auto: true, role: 'Legal / Tender Agent (Advisory)' },
+        { label: 'Contract & Tender', desc: 'Checklist, section-by-section AI analysis of contracts and specs, and signature flow.', input: 'Tender spec doc & bid bond', output: 'Approved contract & risk report', auto: true, role: 'Legal / Tender Agent (Advisory)' },
         { label: 'Project Execution', desc: 'Milestones, WBS work packages, and live margin graph.', input: 'Project schedule & deliverables', output: 'Live cost variance & procurement triggers', auto: true, role: 'Project Team / Project Agent' },
         { label: 'Procurement & Stock', desc: 'Supplier quote comparison, PO generation, and delivery.', input: 'Approved requisition & quotes', output: 'Purchase order (PO) & waybill', auto: true, role: 'Procurement / Procurement Agent' },
         { label: 'Finance & Collection', desc: 'e-Invoicing, bank reconciliation, and revenue realization.', input: 'Milestone sign-off & acceptance form', output: 'e-Invoice, VAT & ledger entry', auto: true, role: 'Finance / Finance Agent (Advisory)' },
@@ -806,6 +904,53 @@ export const content = {
         href: '/en/analytics/',
       },
     },
+    ai: {
+      title: 'Ask instead of searching screen by screen.',
+      subtitle:
+        'Enflow AI v3.0.0 is an AI layer added on top of Enflow v2.5.0 without changing its values. The assistant builds its answer not from the model\'s memory but from current records, and only from data you can already see on your own screens.',
+      demo: {
+        question: 'How is profitability this quarter?',
+        answer:
+          'Which breakdown would you like: by project, customer or product group? And let\'s pin down the period: the current quarter or last quarter?',
+        userLabel: 'User',
+        assistantLabel: 'Enflow AI',
+        note: 'On ambiguous questions the assistant first asks what you mean. Illustrative example.',
+      },
+      cards: [
+        {
+          icon: 'layers',
+          title: 'Reads every module',
+          text: '21 read tools covering CRM to finance, documents to the audit trail — dashboard indicators, profitability and management analytics included.',
+        },
+        {
+          icon: 'clock',
+          title: 'Asks for the period, names the source',
+          text: 'On date-bound questions it asks for the period if none is given, and states which screen the answer came from and how it was calculated.',
+        },
+        {
+          icon: 'search',
+          title: 'Asks what you mean',
+          text: 'It does not guess on an ambiguous question; it first clarifies which breakdown or record you are after.',
+        },
+        {
+          icon: 'filetext',
+          title: 'Analyzes long documents in parts',
+          text: 'Contracts and specifications are split, each part reviewed separately (obligations, penalties, guarantees, deadlines) and the results merged; analysis runs in the background.',
+        },
+        {
+          icon: 'checkcircle',
+          title: 'Does not make things up',
+          text: 'If there is no data, it says so; if it tries to answer without checking the records, it is redirected.',
+        },
+        {
+          icon: 'alertcircle',
+          title: 'States its limits openly',
+          text: 'An always-visible notice in the window: the assistant can make mistakes; check the source screen for important decisions.',
+        },
+      ],
+      continuity:
+        'Enflow keeps working with AI switched off. All modules, approval chains and reports are independent of AI; only the assistant and analysis features become unavailable, and the system says so clearly.',
+    },
     trust: {
       title: 'Automation never takes control away from you.',
       subtitle: 'Handing a platform your entire sales and finance data demands trust. In Enflow, automation has clear limits.',
@@ -824,6 +969,21 @@ export const content = {
           icon: 'checkcircle',
           title: 'Every step is traceable',
           text: 'The actor — human or agent — is explicitly tagged on every record; no action ever has an unclear origin.',
+        },
+        {
+          icon: 'users',
+          title: 'Assistant permissions match the screen',
+          text: 'The assistant passes through the same gates as the screen: what you cannot see on screen, the assistant will not show and the API will not return. Over a thousand automated permission tests run on every change.',
+        },
+        {
+          icon: 'building',
+          title: 'Data can stay in your company',
+          text: 'With a local model (Ollama, LM Studio, vLLM) data never leaves your company; if you prefer a cloud provider, your own key is used. Record IDs and personal contact details are never sent to the model.',
+        },
+        {
+          icon: 'filetext',
+          title: 'The assistant is read-only',
+          text: 'It cannot create, change or approve records. Every run is written to the audit trail with its tool usage; message content is not stored.',
         },
       ],
     },
@@ -856,6 +1016,12 @@ export const content = {
         {
           title: 'Enflow at a Glance',
           description: 'A one-page product summary for decision-makers — problem, solution and difference at a glance.',
+          format: 'PDF',
+          status: 'soon',
+        },
+        {
+          title: 'Enflow AI v3.0.0 Whitepaper',
+          description: 'Values, the end-to-end flow, modules, the Enflow AI Assistant, and security and data sovereignty — in 10 pages.',
           format: 'PDF',
           status: 'soon',
         },
@@ -1197,6 +1363,22 @@ export const content = {
           q: 'What does the analytics and reporting side offer?',
           a: 'From the executive cockpit to per-unit reports, from growth analytics to the profitability & treasury engine, there are dozens of cockpit panels and analytics reports — see the full breakdown, with real product screens, on the Screen Tour and Analytics pages.',
         },
+        {
+          q: 'What is Enflow AI, and does the existing Enflow change?',
+          a: 'Enflow AI v3.0.0 is an AI layer added on top of Enflow v2.5.0. The end-to-end flow, the role and permission structure and the approval chains are preserved exactly. What is new is an assistant that reads every module: instead of searching across screens you ask, and the assistant tells you which screen the answer came from.',
+        },
+        {
+          q: 'Does our data go to an AI model? Can we use a local model?',
+          a: 'The AI provider is not hard-coded; each company chooses its own provider with its own key. With a local model such as Ollama, LM Studio or vLLM, data never leaves the company. Whichever provider is chosen, record IDs and personal contact details are never sent to the model. The connected model\'s context length and speed are measured and settings adjust themselves accordingly.',
+        },
+        {
+          q: 'Can the assistant change records or give approvals?',
+          a: 'No. The assistant is read-only; it cannot create, change or approve records. Data a user cannot see on screen is invisible to the assistant too. Every assistant run is written to the audit trail with its tool usage; message content is not stored.',
+        },
+        {
+          q: 'What happens if AI is switched off or not configured?',
+          a: 'Enflow keeps working. All modules, approval chains and reports are independent of AI. Only the assistant and analysis features become unavailable, and the system says so clearly instead of silently falling back to sample data.',
+        },
       ],
     },
     notFound: {
@@ -1332,7 +1514,7 @@ export const content = {
         'We kindly request that the necessary planning be made based on this information.',
     },
     footer: {
-      text: 'Enflow — B2B Process & Operations Platform',
+      text: 'Enflow — B2B Process & Operations Platform · Enflow AI v3.0.0',
       wikiLabel: 'Product Wiki',
       wikiHref: '/wiki/',
       linkedinLabel: 'Follow Enflow on LinkedIn',

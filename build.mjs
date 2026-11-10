@@ -79,6 +79,7 @@ function renderHero(c) {
       <div class="hero-header">
         <h1 class="hero-title">${nl2br(c.hero.title)}</h1>
         <p class="hero-lead">${esc(c.hero.subtitle)}</p>
+        ${c.hero.announce ? `<p class="hero-announce"><a href="${esc(c.hero.announce.href)}"><strong>${esc(c.hero.announce.label)}</strong> ${esc(c.hero.announce.text)} <span class="btn-arrow">&rarr;</span></a></p>` : ''}
         <div class="hero-actions">
           <a class="btn btn-primary" href="#cta">${esc(c.hero.ctaPrimary)}</a>
           <a class="btn btn-secondary" href="#akis">${esc(c.hero.ctaSecondary)} <span class="btn-arrow">&rarr;</span></a>
@@ -96,7 +97,7 @@ function renderSpecs(c) {
   const items = c.specs.items
     .map(
       (it) => `
-      <div class="spec-card reveal">
+      <div class="spec-card${it.wide ? ' spec-card-wide' : ''} reveal">
         <span class="spec-label">${esc(it.label)}</span>
         <h4 class="spec-val">${esc(it.value)}</h4>
       </div>`
@@ -222,6 +223,37 @@ function renderValue(c) {
       </div>
       <div class="value-grid">${cards}</div>
       ${cta}
+    </div>
+  </section>`;
+}
+
+function renderAi(c) {
+  if (!c.ai) return '';
+  const cards = c.ai.cards
+    .map(
+      (v) => `
+      <div class="value-card reveal">
+        <div class="card-icon-wrap">${icon(v.icon)}</div>
+        <h4 class="value-title">${esc(v.title)}</h4>
+        <p class="value-desc">${esc(v.text)}</p>
+      </div>`
+    )
+    .join('');
+  const d = c.ai.demo;
+  return `
+  <section class="section section-ai" id="enflow-ai">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="section-title">${esc(c.ai.title)}</h2>
+        <p class="section-subtitle">${esc(c.ai.subtitle)}</p>
+      </div>
+      <figure class="ai-demo reveal">
+        <div class="ai-msg ai-msg-user"><span class="ai-msg-who">${esc(d.userLabel)}</span><p>${esc(d.question)}</p></div>
+        <div class="ai-msg ai-msg-assistant"><span class="ai-msg-who">${esc(d.assistantLabel)}</span><p>${esc(d.answer)}</p></div>
+        <figcaption class="ai-demo-note">${esc(d.note)}</figcaption>
+      </figure>
+      <div class="ai-grid">${cards}</div>
+      <p class="ai-continuity reveal">${esc(c.ai.continuity)}</p>
     </div>
   </section>`;
 }
@@ -536,6 +568,7 @@ ${renderProblem(c)}
 ${renderDiff(c)}
 ${renderFlow(c)}
 ${renderValue(c)}
+${renderAi(c)}
 ${renderTrust(c)}
 ${renderAudience(c)}
 ${renderCta(c)}
