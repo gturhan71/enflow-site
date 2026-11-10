@@ -1025,7 +1025,7 @@ export const content = {
           description: 'Values, the end-to-end flow, modules, the Enflow AI Assistant, and security and data sovereignty — in 10 pages.',
           format: 'PDF',
           status: 'ready',
-          href: '/docs/enflow-ai-whitepaper-v3.0.0.pdf',
+          href: '/docs/enflow-ai-whitepaper-v3.0.0-en.pdf',
         },
       ],
     },
