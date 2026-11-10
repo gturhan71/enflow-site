@@ -851,6 +851,14 @@ if (existsSync(SHOTS_SRC)) {
   }
 }
 
+// Satış & pazarlama dokümanları: assets/docs/*.pdf  →  dist/docs/*
+const DOCS_SRC = join(HERE, 'assets', 'docs');
+if (existsSync(DOCS_SRC)) {
+  mkdirSync(join(DIST, 'docs'), { recursive: true });
+  for (const f of readdirSync(DOCS_SRC)) {
+    if (/\.(pdf|pptx?)$/i.test(f)) copyFileSync(join(DOCS_SRC, f), join(DIST, 'docs', f));
+  }
+}
 copyFileSync(join(HERE, 'styles.css'), join(DIST, 'styles.css'));
 copyFileSync(join(HERE, 'script.js'), join(DIST, 'script.js'));
 copyFileSync(join(HERE, 'anime.min.js'), join(DIST, 'anime.min.js'));
